@@ -1,0 +1,56 @@
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-indigo-600 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-indigo-700">UNIT 04 · 路徑規劃基礎（整合 L7, L8）</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 15</span>
+              </div>
+
+              <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+                構型空間（C-Space）與高維搜尋的演算法演進
+              </h2>
+
+              <p class="mag-body mb-2.5">
+                假設一條走廊寬 <strong>60 公分</strong>，在平面圖上這塊區域明明是「空的」，但寬 30 公分的掃地機器人能輕鬆通過，寬 80 公分的搬運車卻會卡死！為了讓演算法不用每次都計算複雜的車身碰撞體積，數學家發明了<strong>構型空間（Configuration Space, C-Space）</strong>：把所有障礙物向外<strong>膨脹（Minkowski Sum）機器人半徑 r</strong>，機器人本體就能簡化成一顆「無體積的幾何質點」！
+              </p>
+
+              <!-- SVG C-Space Obstacle Inflation -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
+                <div class="text-xs font-bold text-slate-800 mb-1">📐 Minkowski 障礙物膨脹：把機器人縮小成一個點</div>
+                <svg viewBox="0 0 460 122" class="w-full h-auto">
+                  <!-- Workspace -->
+                  <rect x="8" y="8" width="205" height="106" rx="8" fill="#F8FAFC" stroke="#CBD5E1"/>
+                  <text x="18" y="24" font-size="9.5" font-weight="bold" fill="#475569">真實工作空間（Workspace）</text>
+                  <rect x="85" y="42" width="46" height="46" fill="#64748B"/>
+                  <circle cx="48" cy="65" r="16" fill="#4F46E5" fill-opacity="0.25" stroke="#4F46E5" stroke-width="2"/>
+                  <circle cx="48" cy="65" r="3" fill="#4F46E5"/>
+                  <text x="26" y="96" font-size="8.5" fill="#4F46E5">半徑 r 的實體機器人</text>
+
+                  <text x="220" y="65" font-size="16" font-weight="bold" fill="#4F46E5">➔</text>
+
+                  <!-- C-Space -->
+                  <rect x="245" y="8" width="207" height="106" rx="8" fill="#EEF2FF" stroke="#A5B4FC"/>
+                  <text x="255" y="24" font-size="9.5" font-weight="bold" fill="#4338CA">構型空間（C-Space）</text>
+                  <!-- Inflated Obstacle -->
+                  <rect x="312" y="28" width="76" height="76" rx="15" fill="#FCA5A5" fill-opacity="0.55" stroke="#DC2626" stroke-dasharray="3 2"/>
+                  <rect x="327" y="43" width="46" height="46" fill="#64748B"/>
+                  <!-- Point Robot -->
+                  <circle cx="282" cy="65" r="4" fill="#4F46E5"/>
+                  <path d="M 282 65 Q 302 22 415 58" fill="none" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 2"/>
+                  <text x="256" y="96" font-size="8.5" font-weight="bold" fill="#B91C1C">膨脹後若走廊閉合 = 卡死！</text>
+                </svg>
+              </div>
+
+              <!-- Algorithm Evolution Ladder -->
+              <div class="bg-slate-900 text-slate-100 rounded-xl p-3 text-xs space-y-1.5">
+                <div class="font-bold text-indigo-300">🪜 演算法演進：為什麼 A* 會在機械臂前崩潰？</div>
+                <p class="text-[11px] text-slate-300 leading-snug">
+                  <strong>① A* 啟發式搜尋（f(n) = g(n) + h(n)）：</strong>在 2D 地圖（100×100 = 10⁴ 格點）極快，但遇上 7 軸機械臂（100⁷ = 10¹⁴）或 24 軸靈巧手（100²⁴）就會陷入<strong>「維度災難」</strong>。
+                </p>
+                <p class="text-[11px] text-slate-300 leading-snug">
+                  <strong>② 採樣型規劃（Sampling-Based）：</strong>放棄切格子，改在空間中隨機撒點連線！<strong>PRM（機率路網）</strong>適合靜態地圖多次查詢；<strong>RRT / RRT*</strong> 像樹根般快速生長探索，透過 <em>Goal Bias（目標偏向）</em> 加速抵達終點，並用 <em>Rewiring（重連線）</em> 逐步修剪成最短路徑。
+                </p>
+              </div>
+            </div>
+          </div>
+        

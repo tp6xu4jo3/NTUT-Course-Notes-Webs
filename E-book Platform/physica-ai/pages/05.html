@@ -1,0 +1,87 @@
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-blue-700 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-blue-700">UNIT 01 · 工程現場實錄</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 05</span>
+              </div>
+
+              <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-1.5">
+                現實世界的五大物理天坑圖鑑
+              </h2>
+              <p class="text-xs text-slate-600 mb-3">
+                為什麼機器人一離開恆溫空調實驗室就頻頻出包？以下是工程師最常踩中的五個真實物理陷阱：
+              </p>
+
+              <!-- 5 Physical Pitfall Illustrated Cards -->
+              <div class="space-y-2">
+                <!-- Pitfall 1 -->
+                <div class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-3 shadow-sm">
+                  <svg viewBox="0 0 48 48" class="w-11 h-11 shrink-0">
+                    <rect width="48" height="48" rx="10" fill="#FEF2F2"/>
+                    <path d="M16 14 L16 28 L12 34 M32 14 L32 28 L36 34" stroke="#DC2626" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                    <path d="M21 10 Q24 6 21 3 M27 10 Q30 6 27 3" stroke="#F97316" stroke-width="2" fill="none"/>
+                  </svg>
+                  <div class="text-xs leading-snug">
+                    <div class="font-bold text-slate-900">① Dina / Greer 溫暖夾爪（熱力學退化）</div>
+                    <p class="text-slate-600 mt-0.5">機械臂連續運作幾小時後，馬達發熱使橡膠指尖軟化、摩擦係數改變導致東西滑落——團隊常誤以為是 AI 演算法出了 Bug！</p>
+                  </div>
+                </div>
+
+                <!-- Pitfall 2 -->
+                <div class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-3 shadow-sm">
+                  <svg viewBox="0 0 48 48" class="w-11 h-11 shrink-0">
+                    <rect width="48" height="48" rx="10" fill="#EFF6FF"/>
+                    <line x1="8" y1="24" x2="28" y2="24" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="3 2"/>
+                    <circle cx="33" cy="18" r="2.5" fill="#38BDF8"/>
+                    <circle cx="36" cy="25" r="3" fill="#0284C7"/>
+                    <circle cx="32" cy="31" r="2.5" fill="#38BDF8"/>
+                  </svg>
+                  <div class="text-xs leading-snug">
+                    <div class="font-bold text-slate-900">② LiDAR 灑水幻影（光學散射假陽性）</div>
+                    <p class="text-slate-600 mt-0.5">光學雷達射出的雷射光束打到路邊灑水器水花或汽車排氣白煙會被散射回來，自駕車誤以為前方突然出現一堵「混凝土牆」而緊急急煞。</p>
+                  </div>
+                </div>
+
+                <!-- Pitfall 3 -->
+                <div class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-3 shadow-sm">
+                  <svg viewBox="0 0 48 48" class="w-11 h-11 shrink-0">
+                    <rect width="48" height="48" rx="10" fill="#FFF7ED"/>
+                    <path d="M14 28 Q24 14 34 28 Z" fill="#FDBA74" stroke="#EA580C" stroke-width="2"/>
+                    <path d="M12 32 Q24 38 36 32" stroke="#0284C7" stroke-width="2.5" fill="none"/>
+                  </svg>
+                  <div class="text-xs leading-snug">
+                    <div class="font-bold text-slate-900">③ OBI 餵食機器人與融化冰淇淋（時變流體）</div>
+                    <p class="text-slate-600 mt-0.5">冰淇淋隨室溫從固體變成黏稠液體，舀取力道與防潑灑角度必須動態調整，固定軌跡只會把湯匙戳空或灑滿桌。</p>
+                  </div>
+                </div>
+
+                <!-- Pitfall 4 -->
+                <div class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-3 shadow-sm">
+                  <svg viewBox="0 0 48 48" class="w-11 h-11 shrink-0">
+                    <rect width="48" height="48" rx="10" fill="#F0FDFA"/>
+                    <rect x="18" y="10" width="12" height="28" rx="2" fill="#CCFBF1" stroke="#0D9488" stroke-width="2"/>
+                    <line x1="10" y1="24" x2="38" y2="24" stroke="#F43F5E" stroke-width="2" stroke-dasharray="2 2"/>
+                  </svg>
+                  <div class="text-xs leading-snug">
+                    <div class="font-bold text-slate-900">④ 透明玻璃門與不規則軟地形</div>
+                    <p class="text-slate-600 mt-0.5">紅外線深度相機會直接穿透玻璃門看到門後景物，導致機器人一頭撞上玻璃；厚地毯與斜坡也會讓輪式底盤打滑。</p>
+                  </div>
+                </div>
+
+                <!-- Pitfall 5 -->
+                <div class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-3 shadow-sm">
+                  <svg viewBox="0 0 48 48" class="w-11 h-11 shrink-0">
+                    <rect width="48" height="48" rx="10" fill="#F5F3FF"/>
+                    <rect x="14" y="14" width="20" height="20" rx="4" fill="#DDD6FE" stroke="#7C3AED" stroke-width="2"/>
+                    <path d="M25 17 L21 24 L26 24 L23 31" stroke="#7C3AED" stroke-width="2" fill="none"/>
+                  </svg>
+                  <div class="text-xs leading-snug">
+                    <div class="font-bold text-slate-900">⑤ 邊緣算力與電池續航緊箍咒</div>
+                    <p class="text-slate-600 mt-0.5">機器人不能拖著一座資料中心走路，所有視覺與控制模型必須壓縮進數十瓦功耗的機載晶片中即時運算。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        

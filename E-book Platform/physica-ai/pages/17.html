@@ -1,0 +1,74 @@
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-indigo-600 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-indigo-700">UNIT 04 · 軌跡優化與感測融合</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 17</span>
+              </div>
+
+              <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+                Path、Trajectory 與 Policy：加入「時間」的藝術
+              </h2>
+
+              <!-- 3-Column Comparison -->
+              <div class="grid grid-cols-3 gap-2 text-xs mb-2.5">
+                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                  <div class="font-bold text-slate-800">Path（路徑）</div>
+                  <div class="font-mono-code text-[10px] text-indigo-600 my-0.5">q(s) · 純幾何</div>
+                  <p class="text-[11px] text-slate-600">只管從 A 到 B 畫在地面上的路線，不管開多快。</p>
+                </div>
+                <div class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-300">
+                  <div class="font-bold text-indigo-950">Trajectory（軌跡）</div>
+                  <div class="font-mono-code text-[10px] text-indigo-700 my-0.5">q(t) · 幾何＋時間</div>
+                  <p class="text-[11px] text-slate-700">規定每一毫秒的位置、速度與加速度，實現時間差避撞。</p>
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                  <div class="font-bold text-slate-800">Policy（策略）</div>
+                  <div class="font-mono-code text-[10px] text-teal-700 my-0.5">π(sₜ) → aₜ · 閉環</div>
+                  <p class="text-[11px] text-slate-600">不死背時間表，根據當下感測畫面即時輸出控制指令。</p>
+                </div>
+              </div>
+
+              <!-- SVG Intersection Timing Avoidance & Sensor Fusion -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
+                <div class="text-xs font-bold text-slate-800 mb-1">⏱️ 十字路口時間差避撞 & LiDAR-相機感測融合</div>
+                <svg viewBox="0 0 460 148" class="w-full h-auto">
+                  <!-- Left: Intersection Timing -->
+                  <rect x="6" y="6" width="215" height="136" rx="8" fill="#F8FAFC" stroke="#CBD5E1"/>
+                  <text x="16" y="22" font-size="9.5" font-weight="bold" fill="#1E293B">幾何路徑相交，但時間錯開就安全！</text>
+                  <!-- Cross Roads -->
+                  <line x1="30" y1="82" x2="195" y2="82" stroke="#94A3B8" stroke-width="14"/>
+                  <line x1="112" y1="34" x2="112" y2="132" stroke="#94A3B8" stroke-width="14"/>
+                  <!-- Car A -->
+                  <rect x="48" y="76" width="20" height="12" rx="2" fill="#1D4ED8"/>
+                  <text x="32" y="66" font-size="8.5" font-weight="bold" fill="#1D4ED8">自車 (t=2s 通過)</text>
+                  <!-- Car B -->
+                  <rect x="106" y="38" width="12" height="20" rx="2" fill="#EA580C"/>
+                  <text x="124" y="50" font-size="8.5" font-weight="bold" fill="#EA580C">橫向車 (t=4s 通過)</text>
+
+                  <!-- Right: LiDAR + Camera Fusion -->
+                  <rect x="233" y="6" width="221" height="136" rx="8" fill="#EEF2FF" stroke="#A5B4FC"/>
+                  <text x="243" y="22" font-size="9.5" font-weight="bold" fill="#3730A3">LiDAR 3D + 相機 2D 感測器融合</text>
+                  <rect x="246" y="34" width="84" height="44" rx="5" fill="#1E293B"/>
+                  <text x="255" y="53" font-size="9" fill="#38BDF8" font-family="JetBrains Mono">LiDAR 點雲</text>
+                  <text x="255" y="67" font-size="8.5" fill="#CBD5E1">精準距離 12.4m</text>
+
+                  <rect x="354" y="34" width="88" height="44" rx="5" fill="#1E293B"/>
+                  <text x="363" y="53" font-size="9" fill="#FDE047" font-family="JetBrains Mono">RGB 相機</text>
+                  <text x="363" y="67" font-size="8.5" fill="#CBD5E1">語意：紅燈/行人</text>
+
+                  <text x="246" y="98" font-size="9" fill="#1E293B">透過外參/內參投影把 3D 點雲貼上 2D 影像，</text>
+                  <text x="246" y="112" font-size="9" font-weight="bold" fill="#4338CA">同時知道「它是誰（語意）」與「有多遠（幾何）」！</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Trajectory Optimization Cost Function -->
+            <div class="bg-slate-900 text-white rounded-xl p-2.5 text-xs">
+              <div class="text-amber-300 font-bold mb-0.5">⚖️ 軌跡優化目標函數（Trajectory Optimization）：</div>
+              <div class="font-mono-code text-[11px] text-slate-200">
+                Minimize J = w₁·C_safety(遠離障礙) + w₂·C_comfort(減少急動度 Jerk) + w₃·C_efficiency(準時抵達)
+              </div>
+            </div>
+          </div>
+        

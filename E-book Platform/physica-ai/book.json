@@ -1,0 +1,125 @@
+{
+  "id": "physica-ai",
+  "title": "PHYSICA AI",
+  "subtitle": "實體智能科學誌 · Vol. 01",
+  "cover": "cover.svg",
+  "styles": [
+    "magazine.css"
+  ],
+  "scripts": [
+    "vendor/tailwind-play-3.4.10.js"
+  ],
+  "widgets": "widgets.js",
+  "pages": [
+    "pages/01.html",
+    "pages/02.html",
+    "pages/03.html",
+    "pages/04.html",
+    "pages/05.html",
+    "pages/06.html",
+    "pages/07.html",
+    "pages/08.html",
+    "pages/09.html",
+    "pages/10.html",
+    "pages/11.html",
+    "pages/12.html",
+    "pages/13.html",
+    "pages/14.html",
+    "pages/15.html",
+    "pages/16.html",
+    "pages/17.html",
+    "pages/18.html",
+    "pages/19.html",
+    "pages/20.html",
+    "pages/21.html",
+    "pages/22.html",
+    "pages/23.html",
+    "pages/24.html"
+  ],
+  "toc": [
+    {
+      "title": "雜誌封面 & 卷首語與學習地圖",
+      "unit": "創刊特輯",
+      "color": "#1D4ED8",
+      "lectures": "L1–L11 全景導覽",
+      "page": 0
+    },
+    {
+      "title": "當 AI 走出螢幕踏入物理世界",
+      "unit": "單元一｜覺醒",
+      "color": "#1D4ED8",
+      "lectures": "整合 Lecture 1, 2",
+      "page": 2
+    },
+    {
+      "title": "現實世界的五大物理天坑 & 科技的人性溫度",
+      "unit": "單元一｜覺醒",
+      "color": "#1D4ED8",
+      "lectures": "整合 Lecture 1, 2, 11",
+      "page": 4
+    },
+    {
+      "title": "為什麼不能直接用網路影片教機器人？",
+      "unit": "單元二｜數據飛輪",
+      "color": "#EA580C",
+      "lectures": "整合 Lecture 3",
+      "page": 6
+    },
+    {
+      "title": "七大資料採集策略全景圖鑑",
+      "unit": "單元二｜數據飛輪",
+      "color": "#EA580C",
+      "lectures": "整合 Lecture 3, 10",
+      "page": 8
+    },
+    {
+      "title": "從 2D 像素還原 3D 物理世界",
+      "unit": "單元三｜幾何之眼",
+      "color": "#0D9488",
+      "lectures": "整合 Lecture 5, 6, 7",
+      "page": 10
+    },
+    {
+      "title": "SLAM 空間記憶與「評估悖論」",
+      "unit": "單元三｜幾何之眼",
+      "color": "#0D9488",
+      "lectures": "整合 Lecture 5, 6, 7",
+      "page": 12
+    },
+    {
+      "title": "構型空間、高維搜尋與車輛運動學",
+      "unit": "單元四｜運動大腦",
+      "color": "#4F46E5",
+      "lectures": "整合 Lecture 7, 8",
+      "page": 14
+    },
+    {
+      "title": "時間的藝術與物理操縱進階",
+      "unit": "單元四｜運動大腦",
+      "color": "#4F46E5",
+      "lectures": "整合 Lecture 8, 11",
+      "page": 16
+    },
+    {
+      "title": "從自動駕駛百年史到三重防護網",
+      "unit": "單元五｜安全工程",
+      "color": "#DC2626",
+      "lectures": "整合 Lecture 4, 9",
+      "page": 18
+    },
+    {
+      "title": "SOTIF 未知危險與台灣混合車流實戰",
+      "unit": "單元五｜安全工程",
+      "color": "#DC2626",
+      "lectures": "整合 Lecture 9",
+      "page": 20
+    },
+    {
+      "title": "未來全棧生態系 & 高中生互動快問快答",
+      "unit": "單元六｜未來全棧",
+      "color": "#7C3AED",
+      "lectures": "整合 Lecture 10, 11",
+      "page": 22
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-teal-600 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-teal-700">UNIT 03 · 同步定位與建圖</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 13</span>
+              </div>
+
+              <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+                SLAM：機器人在陌生房間邊走邊畫地圖
+              </h2>
+
+              <p class="mag-body mb-2.5">
+                在沒有 GPS 的室內，機器人靠 <strong>SLAM（同步定位與建圖）</strong>把每一幀局部點雲透過 <strong>4×4 齊次變換矩陣</strong>連乘（<code class="font-mono-code text-xs bg-slate-200 px-1 rounded">T_C3→C1 = T_C2→C1 · T_C3→C2</code>）拼接成全局地圖。對齊兩幀點雲的經典演算法是 <strong>ICP（迭代最近點）</strong>，但每幀雷達有 20 萬個點，工程師會精選 <strong>5,000 個高曲率邊角與平面特徵點</strong>，讓運算速度狂飆 40 倍！
+              </p>
+
+              <!-- SVG Loop Closure Diagram -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
+                <div class="text-xs font-bold text-slate-800 mb-1.5">🧭 閉眼走路的「漂移雙重影」與閉環檢測（Loop Closure）</div>
+                <svg viewBox="0 0 460 165" class="w-full h-auto">
+                  <!-- Left: Drift Double-Wall Ghosting -->
+                  <rect x="6" y="6" width="216" height="152" rx="8" fill="#FEF2F2" stroke="#FCA5A5"/>
+                  <text x="16" y="23" font-size="10" font-weight="bold" fill="#B91C1C">❌ 僅靠前端里程計：累積漂移（Drift）</text>
+
+                  <!-- True Square Room -->
+                  <rect x="44" y="42" width="120" height="86" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 3"/>
+                  <!-- Drifted Path -->
+                  <path d="M 44 128 L 164 126 L 170 38 L 52 34 L 58 114" fill="none" stroke="#DC2626" stroke-width="2.5"/>
+                  <circle cx="44" cy="128" r="4" fill="#1E293B"/>
+                  <circle cx="58" cy="114" r="4.5" fill="#DC2626"/>
+                  <text x="66" y="116" font-size="9" font-weight="bold" fill="#B91C1C">牆壁出現雙重影！</text>
+                  <text x="18" y="148" font-size="8.5" fill="#7F1D1D">每步 0.5° 誤差繞一圈後位置完全錯開</text>
+
+                  <!-- Right: Loop Closure Global Optimization -->
+                  <rect x="234" y="6" width="220" height="152" rx="8" fill="#F0FDFA" stroke="#5EEAD4"/>
+                  <text x="244" y="23" font-size="10" font-weight="bold" fill="#0F766E">✅ 後端閉環檢測：全局位姿圖拉正</text>
+
+                  <rect x="276" y="42" width="120" height="86" fill="none" stroke="#0D9488" stroke-width="3"/>
+                  <circle cx="276" cy="128" r="5" fill="#0D9488"/>
+                  <circle cx="276" cy="128" r="10" fill="none" stroke="#F59E0B" stroke-width="2"/>
+                  <text x="292" y="116" font-size="9" font-weight="bold" fill="#0F766E">辨識出「回到原點！」</text>
+                  <text x="246" y="148" font-size="8.5" fill="#115E59">平行線程執行 Pose Graph Optimization 瞬間閉合</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- UMI & Project Aria -->
+            <div class="grid grid-cols-2 gap-2.5 text-xs">
+              <div class="bg-slate-900 text-white p-2.5 rounded-xl">
+                <div class="font-bold text-teal-300">🗜️ UMI 手持採集夾爪</div>
+                <p class="text-slate-300 text-[11px] mt-0.5 leading-snug">
+                  不用買昂貴機械臂！人類直接拿著裝有魚眼相機與 SLAM 的手持夾爪去開門、疊碗，就能錄製精準 6D 軌跡教機器人。
+                </p>
+              </div>
+              <div class="bg-slate-900 text-white p-2.5 rounded-xl">
+                <div class="font-bold text-sky-300">👓 Meta Project Aria 眼鏡</div>
+                <p class="text-slate-300 text-[11px] mt-0.5 leading-snug">
+                  輕量智慧眼鏡內建多顆 SLAM 相機與眼動追蹤，在日常生活中無感記錄第一人稱空間記憶與人類注意力。
+                </p>
+              </div>
+            </div>
+          </div>
+        
