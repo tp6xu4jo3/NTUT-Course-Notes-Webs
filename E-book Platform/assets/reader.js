@@ -1,17 +1,57 @@
 import {getBooks,loadPosition,savePosition} from "./catalog.js";
+import {pageState,groupToc} from "./reader-state.js";
 const $=id=>document.getElementById(id),left=$("left"),right=$("right"),spread=$("spread"),mq=matchMedia("(min-width:1100px)"),status=$("reader-status"),stage=$("stage");
-let book,page=0,revision=0,scale=1,bindWidgets=()=>{},cache=new Map(),start=null;
+let book,page=0,revision=0,scale=1,bindWidgets=()=>{},cache=new Map(),start=null,displayedPage=null,activeChapter=null;
 const wide=()=>mq.matches;
-const clamp=n=>Math.max(0,Math.min(book.pages.length-1,Math.trunc(Number(n)||0)));
-function toggleToc(show){$("toc").hidden=!show;$("toc-toggle").setAttribute("aria-expanded",String(show));if(show)$("toc-close").focus()}
+const state=n=>pageState(book.pages.length,n,wide());
+function toggleToc(show){$("toc").hidden=!show;$("toc-toggle").setAttribute("aria-expanded",String(show));if(show){$("toc-close").focus();revealActive()}}
 function text(url){if(!cache.has(url)){const p=fetch(url).then(r=>{if(!r.ok)throw Error("HTTP "+r.status);return r.text()}).catch(e=>{cache.delete(url);throw e});cache.set(url,p)}return cache.get(url)}
 function script(url){return new Promise((resolve,reject)=>{const el=document.createElement("script");el.src=url;el.onload=resolve;el.onerror=reject;document.head.append(el)})}
 function css(url){return new Promise((resolve,reject)=>{const el=document.createElement("link");el.rel="stylesheet";el.href=url;el.onload=resolve;el.onerror=reject;document.head.append(el)})}
 function currentChapter(){return [...book.toc].reverse().find(c=>c.page<=page)}
-function sync(){const c=currentChapter();$("chapter").textContent=c?.title||"";const last=wide()?Math.min(page+1,book.pages.length-1):page;$("counter").textContent=(page+1===last+1?String(page+1):(page+1)+"–"+(last+1))+" / "+book.pages.length;$("percent").textContent=Math.round((last+1)/book.pages.length*100)+"%";$("progress").value=page+1;$("prev").disabled=page===0;$("next").disabled=last===book.pages.length-1;for(const b of $("toc-list").querySelectorAll("button")){if(Number(b.dataset.page)===c?.page)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")}}
-async function render(n){if(!book)return;const old=page,idx=clamp(n);page=wide()?idx-idx%2:idx;const request=++revision,here=page;const hasRight=wide()&&here+1<book.pages.length;sync();status.textContent="";spread.setAttribute("aria-busy","true");try{const [a,b]=await Promise.all([text(new URL(book.pages[here],book.base).href),hasRight?text(new URL(book.pages[here+1],book.base).href):Promise.resolve("")]);if(request!==revision)return;left.innerHTML=a;right.innerHTML=b;right.hidden=!hasRight;left.scrollTop=right.scrollTop=0;bindWidgets();savePosition(book.id,here);spread.style.setProperty("--direction",here>=old?"5px":"-5px");spread.classList.remove("page-in");void spread.offsetWidth;spread.classList.add("page-in");const upcoming=here+(wide()?2:1);if(upcoming<book.pages.length)text(new URL(book.pages[upcoming],book.base).href).catch(()=>{});}catch(e){if(request===revision){status.textContent="頁面載入失敗，請重新整理。";console.error(e)}}finally{if(request===revision)spread.removeAttribute("aria-busy")}}
+function revealActive(){
+  const panel=$("toc"),active=$("toc-list").querySelector('[aria-current="page"]');
+  if(panel.hidden||!active)return;
+  const bounds=panel.getBoundingClientRect(),r=active.getBoundingClientRect();
+  if(r.top<bounds.top||r.bottom>bounds.bottom)active.scrollIntoView({block:"nearest",inline:"nearest"});
+}
+function sync(){
+  const c=currentChapter(),s=state(page),count=book.pages.length,progress=$("progress");
+  $("chapter").textContent=c?.title||"";
+  $("counter").textContent=(s.first===s.last?String(s.first+1):(s.first+1)+"–"+(s.last+1))+" / "+count;
+  $("percent").textContent=s.percent+"%";
+  progress.value=s.value;
+  progress.setAttribute("aria-valuetext",$("counter").textContent+"，"+s.percent+"%");
+  $("prev").disabled=s.first===0;$("next").disabled=s.last===count-1;
+  const changed=activeChapter!==c?.page;activeChapter=c?.page;
+  for(const b of $("toc-list").querySelectorAll("button[data-page]")){
+    if(Number(b.dataset.page)===c?.page){
+      b.setAttribute("aria-current","page");
+      const group=b.closest("details");if(group&&changed)group.open=true;
+    }else b.removeAttribute("aria-current");
+  }
+  for(const group of $("toc-list").querySelectorAll(".toc-group")){
+    group.classList.toggle("is-current",!!group.querySelector('[aria-current="page"]'));
+  }
+  if(changed)revealActive();
+}
+async function render(n){if(!book)return;const old=displayedPage;page=state(n).first;const request=++revision,here=page;const hasRight=wide()&&here+1<book.pages.length;sync();status.textContent="";spread.setAttribute("aria-busy","true");try{const [a,b]=await Promise.all([text(new URL(book.pages[here],book.base).href),hasRight?text(new URL(book.pages[here+1],book.base).href):Promise.resolve("")]);if(request!==revision)return;left.innerHTML=a;right.innerHTML=b;right.hidden=!hasRight;left.scrollTop=right.scrollTop=0;bindWidgets();savePosition(book.id,here);spread.classList.remove("turn-next","turn-prev");if(old!==null&&here!==old){void spread.offsetWidth;spread.classList.add(here>old?"turn-next":"turn-prev");}displayedPage=here;const upcoming=here+(wide()?2:1);if(upcoming<book.pages.length)text(new URL(book.pages[upcoming],book.base).href).catch(()=>{});}catch(e){if(request===revision){status.textContent="頁面載入失敗，請重新整理。";console.error(e)}}finally{if(request===revision)spread.removeAttribute("aria-busy")}}
 function step(dir){if(!book)return;const n=page+dir*(wide()?2:1);if(n>=0&&n<book.pages.length)render(n)}
-function buildToc(){for(const c of book.toc){const b=document.createElement("button");b.className="toc-entry";b.dataset.page=c.page;const t=document.createElement("span"),num=document.createElement("span"),unit=document.createElement("small");t.textContent=c.title;num.textContent=String(c.page+1).padStart(2,"0");unit.textContent=c.unit||"";b.append(t,num,unit);b.onclick=()=>{render(c.page);if(!wide()){toggleToc(false);$("toc-toggle").focus()}};$("toc-list").append(b)}}
+function buildToc(){
+  const nav=$("toc-list");nav.replaceChildren();
+  for(const group of groupToc(book.toc)){
+    const section=document.createElement("details");section.className="toc-group";section.open=true;
+    const heading=document.createElement("summary");heading.className="toc-group-title";heading.textContent=group.unit||"章節";
+    const list=document.createElement("ol");list.className="toc-children";
+    for(const c of group.entries){
+      const item=document.createElement("li"),b=document.createElement("button"),t=document.createElement("span"),num=document.createElement("span");
+      b.type="button";b.className="toc-entry";b.dataset.page=c.page;t.textContent=c.title;num.className="toc-page";num.textContent=String(c.page+1).padStart(2,"0");
+      b.append(t,num);b.onclick=()=>{render(c.page);if(!wide()){toggleToc(false);$("toc-toggle").focus()}};
+      item.append(b);list.append(item);
+    }
+    section.append(heading,list);nav.append(section);
+  }
+}
 function font(delta){scale=Math.max(.88,Math.min(1.30,scale+delta));document.documentElement.style.setProperty("--font-scale",scale)}
 const interactive="button,a,input,select,textarea,label,summary,details,[role=button],[role=slider],[role=checkbox],[contenteditable],.quiz-card,[onclick]";
 $("prev").onclick=()=>step(-1);$("next").onclick=()=>step(1);$("progress").oninput=e=>render(Number(e.target.value)-1);$("toc-toggle").onclick=()=>{const show=$("toc").hidden;toggleToc(show);if(!show)$("toc-toggle").focus()};$("toc-close").onclick=()=>{toggleToc(false);$("toc-toggle").focus()};$("smaller").onclick=()=>font(-.06);$("larger").onclick=()=>font(.06);
@@ -30,4 +70,4 @@ spread.addEventListener("click",e=>{
 spread.addEventListener("touchstart",e=>{start=e.target.closest(interactive)?null:[e.changedTouches[0].clientX,e.changedTouches[0].clientY]},{passive:true});spread.addEventListener("touchend",e=>{if(!start)return;const [x,y]=start;start=null;const dx=e.changedTouches[0].clientX-x,dy=e.changedTouches[0].clientY-y;if(Math.abs(dx)>55&&Math.abs(dx)>1.5*Math.abs(dy)){ignoreClickUntil=Date.now()+500;step(dx<0?1:-1)}},{passive:true});
 spread.addEventListener("touchcancel",()=>{start=null},{passive:true});
 mq.addEventListener("change",()=>render(page));window.jumpToSpread=i=>render(i*2);
-try{const id=new URLSearchParams(location.search).get("book");book=(await getBooks()).find(b=>b.id===id);if(!book?.pages.length){location.replace("./");throw Error("Book unavailable")}document.title=book.title+" · E-book Platform";$("book-title").textContent=book.title;await Promise.all((book.styles||[]).map(p=>css(new URL(p,book.base))));for(const p of book.scripts||[])await script(new URL(p,book.base));if(book.widgets){const mod=await import(new URL(book.widgets,book.base));bindWidgets=mod.bindInteractiveWidgets}if(!book.toc.length)book.toc=[{title:book.title,page:0}];$("progress").max=book.pages.length;buildToc();await render(loadPosition(book.id))}catch(e){status.textContent="書籍無法載入。";console.error(e)}
+try{const id=new URLSearchParams(location.search).get("book");book=(await getBooks()).find(b=>b.id===id);if(!book?.pages.length){location.replace("./");throw Error("Book unavailable")}document.title=book.title+" · E-book Platform";$("book-title").textContent=book.title;await Promise.all((book.styles||[]).map(p=>css(new URL(p,book.base))));for(const p of book.scripts||[])await script(new URL(p,book.base));if(book.widgets){const mod=await import(new URL(book.widgets,book.base));bindWidgets=mod.bindInteractiveWidgets}if(!book.toc.length)book.toc=[{title:book.title,page:0}];$("progress").min=0;$("progress").max=book.pages.length;buildToc();await render(loadPosition(book.id))}catch(e){status.textContent="書籍無法載入。";console.error(e)}
