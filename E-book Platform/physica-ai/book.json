@@ -34,18 +34,30 @@
     "pages/21.html",
     "pages/22.html",
     "pages/23.html",
-    "pages/24.html"
+    "pages/24.html",
+    "pages/25.html",
+    "pages/26.html",
+    "pages/27.html",
+    "pages/28.html",
+    "pages/29.html",
+    "pages/30.html",
+    "pages/31.html",
+    "pages/32.html",
+    "pages/33.html",
+    "pages/34.html",
+    "pages/35.html",
+    "pages/36.html"
   ],
   "toc": [
     {
       "title": "雜誌封面 & 卷首語與學習地圖",
       "unit": "創刊特輯",
       "color": "#1D4ED8",
-      "lectures": "L1–L11 全景導覽",
+      "lectures": "L1–L12 全景導覽",
       "page": 0
     },
     {
-      "title": "當 AI 走出螢幕踏入物理世界",
+      "title": "實體 AI 的感知、決策與行動閉環",
       "unit": "單元一｜覺醒",
       "color": "#1D4ED8",
       "lectures": "整合 Lecture 1, 2",
@@ -94,14 +106,14 @@
       "page": 14
     },
     {
-      "title": "時間的藝術與物理操縱進階",
+      "title": "軌跡、控制與工程可行性",
       "unit": "單元四｜運動大腦",
       "color": "#4F46E5",
-      "lectures": "整合 Lecture 8, 11",
+      "lectures": "Lecture 8",
       "page": 16
     },
     {
-      "title": "從自動駕駛百年史到三重防護網",
+      "title": "部署架構、營運設計域與安全防護",
       "unit": "單元五｜安全工程",
       "color": "#DC2626",
       "lectures": "整合 Lecture 4, 9",
@@ -115,11 +127,46 @@
       "page": 20
     },
     {
-      "title": "未來全棧生態系 & 高中生互動快問快答",
+      "title": "NVIDIA Isaac 與機器人學習",
       "unit": "單元六｜未來全棧",
       "color": "#7C3AED",
       "lectures": "整合 Lecture 10, 11",
       "page": 22
+    },
+    {
+      "title": "操控器、末端工具與六自由度姿態",
+      "unit": "單元七｜靈巧操控",
+      "color": "#7C3AED",
+      "lectures": "Lecture 12",
+      "page": 24
+    },
+    {
+      "title": "姿態估計、四座標系與物件中心抓取",
+      "unit": "單元七｜靈巧操控",
+      "color": "#7C3AED",
+      "lectures": "Lecture 12",
+      "page": 26
+    },
+    {
+      "title": "直接抓取預測與三重可行性驗證",
+      "unit": "單元七｜靈巧操控",
+      "color": "#7C3AED",
+      "lectures": "Lecture 12",
+      "page": 30
+    },
+    {
+      "title": "食物操控、主動感知與軟硬體協同設計",
+      "unit": "單元七｜靈巧操控",
+      "color": "#7C3AED",
+      "lectures": "Lecture 11, 12",
+      "page": 32
+    },
+    {
+      "title": "技術練習與全刊複習",
+      "unit": "實作練習",
+      "color": "#7C3AED",
+      "lectures": "L1–L12",
+      "page": 34
     }
   ],
   "categories": [

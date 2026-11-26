@@ -11,7 +11,7 @@
               </h2>
 
               <p class="mag-body mb-2.5">
-                在沒有 GPS 的室內，機器人靠 <strong>SLAM（同步定位與建圖）</strong>把每一幀局部點雲透過 <strong>4×4 齊次變換矩陣</strong>連乘（<code class="font-mono-code text-xs bg-slate-200 px-1 rounded">T_C3→C1 = T_C2→C1 · T_C3→C2</code>）拼接成全局地圖。對齊兩幀點雲的經典演算法是 <strong>ICP（迭代最近點）</strong>，但每幀雷達有 20 萬個點，工程師會精選 <strong>5,000 個高曲率邊角與平面特徵點</strong>，讓運算速度狂飆 40 倍！
+                在沒有 GPS 的室內，機器人靠 <strong>SLAM（同步定位與建圖）</strong>把每一幀局部點雲透過 <strong>4×4 齊次變換矩陣</strong>連乘（<code class="font-mono-code text-xs bg-slate-200 px-1 rounded">T_C3→C1 = T_C2→C1 · T_C3→C2</code>）拼接成全局地圖。對齊兩幀點雲的經典演算法是 <strong>ICP（迭代最近點）</strong>，但每幀雷達有 20 萬個點，工程師會精選 <strong>5,000 個高曲率邊角與平面特徵點</strong>，使參與配準的點數降為原本的 1/40；實際速度仍取決於搜尋方式、迭代次數與硬體。
               </p>
 
               <!-- SVG Loop Closure Diagram -->
@@ -39,7 +39,7 @@
                   <circle cx="276" cy="128" r="5" fill="#0D9488"/>
                   <circle cx="276" cy="128" r="10" fill="none" stroke="#F59E0B" stroke-width="2"/>
                   <text x="292" y="116" font-size="9" font-weight="bold" fill="#0F766E">辨識出「回到原點！」</text>
-                  <text x="246" y="148" font-size="8.5" fill="#115E59">平行線程執行 Pose Graph Optimization 瞬間閉合</text>
+                  <text x="246" y="148" font-size="8.5" fill="#115E59">平行線程執行 Pose Graph Optimization 降低累積誤差</text>
                 </svg>
               </div>
             </div>

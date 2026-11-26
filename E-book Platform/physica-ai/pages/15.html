@@ -48,7 +48,7 @@
                   <strong>① A* 啟發式搜尋（f(n) = g(n) + h(n)）：</strong>在 2D 地圖（100×100 = 10⁴ 格點）極快，但遇上 7 軸機械臂（100⁷ = 10¹⁴）或 24 軸靈巧手（100²⁴）就會陷入<strong>「維度災難」</strong>。
                 </p>
                 <p class="text-[11px] text-slate-300 leading-snug">
-                  <strong>② 採樣型規劃（Sampling-Based）：</strong>放棄切格子，改在空間中隨機撒點連線！<strong>PRM（機率路網）</strong>適合靜態地圖多次查詢；<strong>RRT / RRT*</strong> 像樹根般快速生長探索，透過 <em>Goal Bias（目標偏向）</em> 加速抵達終點，並用 <em>Rewiring（重連線）</em> 逐步修剪成最短路徑。
+                  <strong>② 採樣型規劃（Sampling-Based）：</strong>放棄切格子，改在空間中隨機撒點連線！<strong>PRM（機率路網）</strong>適合靜態地圖多次查詢；<strong>RRT / RRT*</strong>：RRT 透過採樣延伸搜尋樹；RRT* 額外選擇低代價父節點與重連線，在適當條件下漸近逼近最佳解。
                 </p>
               </div>
             </div>
