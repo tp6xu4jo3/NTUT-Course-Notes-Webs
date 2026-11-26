@@ -1,1 +1,60 @@
-<article class="h-full flex flex-col"><header class="flex items-center justify-between border-b-2 pb-1.5 mb-3" style="border-color:#7C3AED"><span class="text-xs font-bold tracking-wider" style="color:#7C3AED">UNIT 07 · 食物操控（L11、L12）</span><span class="text-xs font-mono-code text-slate-400">P. 33</span></header><h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 leading-snug mb-3">主動感知與擴散策略：先理解食物再動作</h2><div class="space-y-2"><p class="mag-body mb-2.5">課程中的OBI餵食案例說明固定動作遇到食物融化、硬度或位置改變時，可能舀空、推走食物或取到過多份量。這些狀態不能只靠一次影像完整判斷。</p><section class="bg-white border border-slate-200 rounded-xl p-3 mb-2.5"><h3 class="font-bold text-sm text-slate-800 mb-1">主動感知</h3><div class="flex flex-wrap items-center justify-center gap-1.5 my-3 text-xs"><span class="rounded-md border bg-white px-2 py-2 font-bold" style="border-color:#7C3AED;color:#7C3AED">輕微攪拌／試探</span><span aria-hidden="true" class="text-slate-400">→</span><span class="rounded-md border bg-white px-2 py-2 font-bold" style="border-color:#7C3AED;color:#7C3AED">觀察阻力與形變</span><span aria-hidden="true" class="text-slate-400">→</span><span class="rounded-md border bg-white px-2 py-2 font-bold" style="border-color:#7C3AED;color:#7C3AED">估計食物狀態</span><span aria-hidden="true" class="text-slate-400">→</span><span class="rounded-md border bg-white px-2 py-2 font-bold" style="border-color:#7C3AED;color:#7C3AED">選擇舀取動作</span></div><p class="mag-body mb-2.5">用受控互動增加資訊，再依狀態選擇角度、深度及速度。對應研究：<a class="underline" href="https://thesis.lib.nycu.edu.tw/handle/20.500.14371/1251" target="_blank" rel="noopener noreferrer">SCONE</a>。</p></section><section class="bg-white border border-slate-200 rounded-xl p-3 mb-2.5"><h3 class="font-bold text-sm text-slate-800 mb-1">擴散策略與溢出預測</h3><div class="flex flex-wrap items-center justify-center gap-1.5 my-3 text-xs"><span class="rounded-md border bg-white px-2 py-2 font-bold" style="border-color:#7C3AED;color:#7C3AED">觀測</span><span aria-hidden="true" class="text-slate-400">→</span><span class="rounded-md border bg-white px-2 py-2 font-bold" style="border-color:#7C3AED;color:#7C3AED">動作去噪生成</span><span aria-hidden="true" class="text-slate-400">→</span><span class="rounded-md border bg-white px-2 py-2 font-bold" style="border-color:#7C3AED;color:#7C3AED">溢出預測</span><span aria-hidden="true" class="text-slate-400">→</span><span class="rounded-md border bg-white px-2 py-2 font-bold" style="border-color:#7C3AED;color:#7C3AED">調整並執行</span></div><p class="mag-body mb-2.5">擴散策略能生成多種合理動作，但仍可能在未見狀態下溢出。GRITS使用模擬訓練的溢出預測器引導動作，目標是降低溢出而非保證零溢出。</p></section><div class="bg-slate-900 text-slate-100 rounded-xl p-3 mt-2"><h3 class="text-xs font-bold text-amber-300 mb-1">研究來源</h3><p class="text-xs leading-relaxed"><a class="underline" href="https://hcis-lab.github.io/GRITS/" target="_blank" rel="noopener noreferrer">GRITS 專案</a> · <a class="underline" href="https://arxiv.org/abs/2510.00573" target="_blank" rel="noopener noreferrer">論文</a></p></div><p class="text-[11px] text-slate-500 mt-2">課程來源：<a class="underline" href="https://docs.google.com/document/d/1yg6q3MnkFNLyNEujEtNEDg-xp4bIosLthd8CjEkEXgs/edit" target="_blank" rel="noopener noreferrer">Lecture 12 講義</a>、<a class="underline" href="https://drive.google.com/file/d/1Xk47MRAxE3eSK0DlKbj4TOrOI6gweHWX/view" target="_blank" rel="noopener noreferrer">逐字稿 Part 1</a>、<a class="underline" href="https://drive.google.com/file/d/1lRt0Knt3tl-0dSu0_XpHauuE4tbwMgRn/view" target="_blank" rel="noopener noreferrer">Part 2</a></p></div></article>
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-red-600 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-red-700">UNIT 05 · 預期功能安全 SOTIF</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 33</span>
+              </div>
+
+              <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+                SOTIF：功能不足與未知危險
+              </h2>
+
+              <p class="mag-body mb-2.5">
+                功能安全處理由E/E系統故障引起的危害； <strong>SOTIF（預期功能安全）</strong>關注功能不足或可合理預見誤用所造成的危害。尤其需辨識第四象限——<strong>「未知危險（Unknown Unsafe）」</strong>：
+              </p>
+
+              <!-- SVG SOTIF 4-Quadrant Matrix -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
+                <svg viewBox="0 0 460 155" class="w-full h-auto">
+                  <!-- 4 Quadrants -->
+                  <rect x="8" y="6" width="218" height="68" rx="6" fill="#ECFDF5" stroke="#6EE7B7"/>
+                  <text x="16" y="23" font-size="9.5" font-weight="bold" fill="#047857">Q1｜已知安全（Known Safe）</text>
+                  <text x="16" y="38" font-size="8.5" fill="#065F46">晴天高速公路巡航，驗證通過的正常區</text>
+
+                  <rect x="234" y="6" width="218" height="68" rx="6" fill="#FFFBEB" stroke="#FCD34D"/>
+                  <text x="242" y="23" font-size="9.5" font-weight="bold" fill="#B45309">Q2｜已知危險（Known Unsafe）</text>
+                  <text x="242" y="38" font-size="8.5" fill="#78350F">已知濃霧會遮蔽相機，可設規則限制不啟動</text>
+
+                  <rect x="8" y="82" width="218" height="68" rx="6" fill="#EFF6FF" stroke="#93C5FD"/>
+                  <text x="16" y="99" font-size="9.5" font-weight="bold" fill="#1D4ED8">Q3｜未知安全（Unknown Safe）</text>
+                  <text x="16" y="114" font-size="8.5" fill="#1E3A8A">沒測試過的新路況，但模型泛化成功安全通過</text>
+
+                  <rect x="234" y="82" width="218" height="68" rx="6" fill="#FEF2F2" stroke="#DC2626" stroke-width="2"/>
+                  <text x="242" y="99" font-size="9.5" font-weight="bold" fill="#B91C1C">🚨 Q4｜未知危險（Unknown Unsafe）</text>
+                  <text x="242" y="114" font-size="8.5" fill="#7F1D1D">尚未辨識的危險情境，</text>
+                  <text x="242" y="128" font-size="8.5" font-weight="bold" fill="#991B1B">SOTIF 的核心目標就是不斷縮小 Q4！</text>
+                </svg>
+              </div>
+
+              <!-- Cruise 2023 Case + Scenario Pyramid & Metrics -->
+              <div class="bg-red-50 border border-red-200 rounded-xl p-2.5 text-xs mb-2">
+                <div class="font-bold text-red-900">⚠️ 案例：碰撞後的安全處置</div>
+                <p class="text-slate-700 mt-0.5 leading-snug">
+                  碰撞後即使車輛能煞停，若對周遭狀態估計不足，隨後的移動指令仍可能造成二次危害。應在恢復前確認安全條件，不能假設硬體正常就代表後續動作安全。
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+              <div class="bg-slate-900 text-white p-2.5 rounded-lg">
+                <div class="font-bold text-amber-300">🔺 場景三層級金字塔</div>
+                <p class="text-slate-300 mt-0.5">功能場景（文字描述）→ 邏輯場景（速度/角度參數範圍）→ 具體場景（單一精確數值模擬）。</p>
+              </div>
+              <div class="bg-slate-900 text-white p-2.5 rounded-lg">
+                <div class="font-bold text-sky-300">⏱️ TTC vs. PET 安全指標</div>
+                <p class="text-slate-300 mt-0.5"><strong>TTC = Δx/Δv</strong>（追撞倒數）；<strong>PET = t_enter,B − t_exit,A</strong>（衡量路口交會擦身而過的時間差）。</p>
+              </div>
+            </div>
+          </div>
+        

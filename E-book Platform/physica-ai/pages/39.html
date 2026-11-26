@@ -1,0 +1,67 @@
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-purple-600 pb-1.5 mb-2">
+                <span class="text-xs font-bold tracking-wider text-purple-700">UNIT 06 · 實體 AI 工業基建（整合 L10, L11）</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 39</span>
+              </div>
+
+              <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-1.5">
+                NVIDIA 實體 AI 全棧加速與數位分身生態系
+              </h2>
+
+              <p class="text-xs text-slate-600 mb-2">
+                打造通用機器人需要橫跨「雲端訓練 → 虛擬模擬 → 機載推論」的三台電腦協同作戰，以及打通虛實界線的軟體全棧：
+              </p>
+
+              <!-- SVG Full-Stack Architecture Diagram -->
+              <div class="bg-white border border-slate-200 rounded-xl p-2.5 shadow-sm mb-2">
+                <svg viewBox="0 0 460 250" class="w-full h-auto">
+                  <!-- Layer 4 (Top): Foundation Models & Agentic AI -->
+                  <rect x="8" y="6" width="444" height="54" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+                  <text x="18" y="23" font-size="10" font-weight="bold" fill="#5B21B6">🧠 具身基礎模型 & Agentic AI 工作流</text>
+                  <text x="18" y="39" font-size="8.8" fill="#1E293B">• <tspan font-weight="bold">Project GR00T：</tspan>人形機器人 VLA 視覺-語言-動作模型  • <tspan font-weight="bold">Cosmos：</tspan>物理世界基礎模型</text>
+                  <text x="18" y="52" font-size="8.8" fill="#475569">• <tspan font-weight="bold">Newton / Warp：</tspan>可微分流體與軟物體物理引擎  • <tspan font-weight="bold">Agentic AI：</tspan>自動化生成任務與除錯</text>
+
+                  <!-- Layer 3: Isaac Sim & Isaac Lab -->
+                  <rect x="8" y="68" width="218" height="68" rx="8" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+                  <text x="18" y="85" font-size="10" font-weight="bold" fill="#1D4ED8">🌐 Isaac Sim（數位分身模擬）</text>
+                  <text x="18" y="100" font-size="8.5" fill="#1E293B">• <tspan font-weight="bold">OpenUSD：</tspan>3D 界的 HTML 統一場景</text>
+                  <text x="18" y="113" font-size="8.5" fill="#1E293B">• RTX 光線追蹤逼真材質渲染</text>
+                  <text x="18" y="126" font-size="8.5" fill="#1E293B">• 合成數據生成（SDG）自動標註</text>
+
+                  <rect x="234" y="68" width="218" height="68" rx="8" fill="#F0FDFA" stroke="#0D9488" stroke-width="1.5"/>
+                  <text x="244" y="85" font-size="10" font-weight="bold" fill="#0F766E">⚡ Isaac Lab（GPU 並行強化學習）</text>
+                  <text x="244" y="100" font-size="8.5" fill="#1E293B">• GPU 並行模擬多個環境</text>
+                  <text x="244" y="113" font-size="8.5" fill="#1E293B">• 學習策略與 MPC 各有適用條件</text>
+                  <text x="244" y="126" font-size="8.5" fill="#1E293B">• 訓練不同地形下的運動策略</text>
+
+                  <!-- Layer 2: Isaac ROS -->
+                  <rect x="8" y="144" width="444" height="42" rx="8" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.5"/>
+                  <text x="18" y="161" font-size="10" font-weight="bold" fill="#C2410C">🚀 Isaac ROS（機載即時感知與規劃加速）</text>
+                  <text x="18" y="176" font-size="8.8" fill="#1E293B">GPU 硬體加速 <tspan font-weight="bold">cuVSLAM</tspan>（毫秒級空間定位）與 <tspan font-weight="bold">cuMotion</tspan>（即時碰撞避讓運動規劃）</text>
+
+                  <!-- Layer 1 (Bottom): Three Computers Hardware -->
+                  <rect x="8" y="194" width="142" height="50" rx="7" fill="#0F172A"/>
+                  <text x="18" y="211" font-size="9" font-weight="bold" fill="#38BDF8">1. DGX H200 / B200</text>
+                  <text x="18" y="225" font-size="8" fill="#CBD5E1">雲端巨量矩陣訓練</text>
+                  <text x="18" y="237" font-size="8" fill="#94A3B8">訓練基礎大腦模型</text>
+
+                  <rect x="159" y="194" width="142" height="50" rx="7" fill="#0F172A"/>
+                  <text x="169" y="211" font-size="9" font-weight="bold" fill="#A78BFA">2. RTX Pro 6000</text>
+                  <text x="169" y="225" font-size="8" fill="#CBD5E1">數位分身模擬渲染</text>
+                  <text x="169" y="237" font-size="8" fill="#94A3B8">虛擬環境壓力測試</text>
+
+                  <rect x="310" y="194" width="142" height="50" rx="7" fill="#0F172A"/>
+                  <text x="320" y="211" font-size="9" font-weight="bold" fill="#34D399">3. Jetson Orin</text>
+                  <text x="320" y="225" font-size="8" fill="#CBD5E1">機器人邊緣大腦</text>
+                  <text x="320" y="237" font-size="8" fill="#94A3B8">低功耗毫秒級即時反應</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="bg-purple-950 text-purple-100 rounded-xl p-2.5 text-[11px] leading-snug">
+              <strong>🌉 數位分身（Digital Twin）的真正使命：</strong> 不是為了做出漂亮的動畫電影，而是當作「Sim-to-Real」的練功房——讓機器人在虛擬環境反覆測試與訓練，再以真實資料驗證策略能否轉移。
+            </div>
+          </div>
+        

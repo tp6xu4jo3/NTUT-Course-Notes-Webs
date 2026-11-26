@@ -1,55 +1,80 @@
 
           <div class="h-full flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between border-b-2 border-indigo-600 pb-1.5 mb-2.5">
-                <span class="text-xs font-bold tracking-wider text-indigo-700">UNIT 04 · 路徑規劃基礎（整合 L7, L8）</span>
+              <div class="flex items-center justify-between border-b-2 border-teal-600 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-teal-700">UNIT 03 · 3D 視覺幾何（整合 L5–L7）</span>
                 <span class="text-xs font-mono-code text-slate-400">P. 15</span>
               </div>
 
               <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
-                構型空間（C-Space）與高維搜尋的演算法演進
+                針孔相機投影與「比薩斜塔錯位照」之謎
               </h2>
 
               <p class="mag-body mb-2.5">
-                假設一條走廊寬 <strong>60 公分</strong>，在平面圖上這塊區域明明是「空的」，但寬 30 公分的掃地機器人能輕鬆通過，寬 80 公分的搬運車卻會卡死！為了讓演算法不用每次都計算複雜的車身碰撞體積，數學家發明了<strong>構型空間（Configuration Space, C-Space）</strong>：把所有障礙物向外<strong>膨脹（Minkowski Sum）機器人半徑 r</strong>，機器人本體就能簡化成一顆「無體積的幾何質點」！
+                相機拍下的照片是平面的 2D 像素 <code class="font-mono-code text-xs bg-slate-200 px-1 rounded">(u, v)</code>，但機械臂必須知道物體在 3D 空間中的真實座標 <code class="font-mono-code text-xs bg-slate-200 px-1 rounded">(X, Y, Z)</code> 才能伸手去抓。這中間的橋樑就是<strong>針孔相機模型（Pinhole Camera Model）</strong>：先透過<strong>外參矩陣 [R|t]</strong> 把世界座標轉到相機視角，再透過<strong>內參矩陣 K</strong>（焦距與光心）投影成像素。
               </p>
 
-              <!-- SVG C-Space Obstacle Inflation -->
+              <!-- SVG Pinhole Camera & Back-Projection + Leaning Tower Ill-Posed Diagram -->
               <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
-                <div class="text-xs font-bold text-slate-800 mb-1">📐 Minkowski 障礙物膨脹：把機器人縮小成一個點</div>
-                <svg viewBox="0 0 460 122" class="w-full h-auto">
-                  <!-- Workspace -->
-                  <rect x="8" y="8" width="205" height="106" rx="8" fill="#F8FAFC" stroke="#CBD5E1"/>
-                  <text x="18" y="24" font-size="9.5" font-weight="bold" fill="#475569">真實工作空間（Workspace）</text>
-                  <rect x="85" y="42" width="46" height="46" fill="#64748B"/>
-                  <circle cx="48" cy="65" r="16" fill="#4F46E5" fill-opacity="0.25" stroke="#4F46E5" stroke-width="2"/>
-                  <circle cx="48" cy="65" r="3" fill="#4F46E5"/>
-                  <text x="26" y="96" font-size="8.5" fill="#4F46E5">半徑 r 的實體機器人</text>
+                <svg viewBox="0 0 460 215" class="w-full h-auto">
+                  <!-- Top Half: Pinhole Camera Projection -->
+                  <text x="10" y="16" font-size="10.5" font-weight="bold" fill="#0F766E">📐 針孔投影與深度反投影（Back-Projection）</text>
 
-                  <text x="220" y="65" font-size="16" font-weight="bold" fill="#4F46E5">➔</text>
+                  <!-- Image Plane -->
+                  <rect x="65" y="34" width="12" height="72" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+                  <text x="42" y="118" font-size="9" fill="#0F766E">2D 像素 (u,v)</text>
 
-                  <!-- C-Space -->
-                  <rect x="245" y="8" width="207" height="106" rx="8" fill="#EEF2FF" stroke="#A5B4FC"/>
-                  <text x="255" y="24" font-size="9.5" font-weight="bold" fill="#4338CA">構型空間（C-Space）</text>
-                  <!-- Inflated Obstacle -->
-                  <rect x="312" y="28" width="76" height="76" rx="15" fill="#FCA5A5" fill-opacity="0.55" stroke="#DC2626" stroke-dasharray="3 2"/>
-                  <rect x="327" y="43" width="46" height="46" fill="#64748B"/>
-                  <!-- Point Robot -->
-                  <circle cx="282" cy="65" r="4" fill="#4F46E5"/>
-                  <path d="M 282 65 Q 302 22 415 58" fill="none" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 2"/>
-                  <text x="256" y="96" font-size="8.5" font-weight="bold" fill="#B91C1C">膨脹後若走廊閉合 = 卡死！</text>
+                  <!-- Optical Center -->
+                  <circle cx="135" cy="70" r="4" fill="#0F172A"/>
+                  <text x="115" y="86" font-size="9" fill="#475569">光心 O</text>
+
+                  <!-- Optical Axis -->
+                  <line x1="45" y1="70" x2="310" y2="70" stroke="#94A3B8" stroke-width="1" stroke-dasharray="4 3"/>
+
+                  <!-- 3D World Point -->
+                  <circle cx="285" cy="36" r="5.5" fill="#EA580C"/>
+                  <text x="255" y="27" font-size="9.5" font-weight="bold" fill="#C2410C">3D 點 P(Xw,Yw,Zw)</text>
+
+                  <!-- Projection Ray -->
+                  <line x1="71" y1="86" x2="285" y2="36" stroke="#EA580C" stroke-width="1.8"/>
+                  <circle cx="71" cy="86" r="3" fill="#EA580C"/>
+
+                  <!-- Formula Box -->
+                  <rect x="315" y="28" width="138" height="76" rx="7" fill="#F0FDFA" stroke="#5EEAD4"/>
+                  <text x="323" y="45" font-size="9.5" font-weight="bold" fill="#0F766E">已知深度 Z 反推 3D：</text>
+                  <text x="323" y="64" font-size="10" font-weight="bold" fill="#1E293B" font-family="JetBrains Mono">P_cam = Z · K⁻¹ p</text>
+                  <text x="323" y="81" font-size="8.5" fill="#475569">少了深度 Z，一條射線上</text>
+                  <text x="323" y="93" font-size="8.5" fill="#475569">有無窮多個可能的 3D 點！</text>
+
+                  <!-- Divider -->
+                  <line x1="10" y1="126" x2="450" y2="126" stroke="#E2E8F0" stroke-width="1.5"/>
+
+                  <!-- Bottom Half: Leaning Tower of Pisa Ill-Posed Problem -->
+                  <text x="10" y="143" font-size="10.5" font-weight="bold" fill="#B45309">🗼 為什麼單眼估測深度是「病態問題（Ill-Posed）」？</text>
+
+                  <!-- Camera Eye -->
+                  <polygon points="22,178 44,166 44,190" fill="#1E293B"/>
+                  <!-- Ray Cone -->
+                  <line x1="44" y1="178" x2="275" y2="148" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <line x1="44" y1="178" x2="275" y2="205" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 2"/>
+
+                  <!-- Near Hand -->
+                  <rect x="108" y="170" width="10" height="18" rx="3" fill="#F97316"/>
+                  <text x="90" y="202" font-size="8.5" font-weight="bold" fill="#C2410C">近處小手指</text>
+
+                  <!-- Far Tower -->
+                  <rect x="242" y="152" width="22" height="50" rx="2" fill="#94A3B8" stroke="#475569"/>
+                  <text x="225" y="212" font-size="8.5" font-weight="bold" fill="#334155">遠處巨大比薩斜塔</text>
+
+                  <text x="290" y="172" font-size="9.5" fill="#1E293B">在 2D 照片上佔據</text>
+                  <text x="290" y="186" font-size="9.5" font-weight="bold" fill="#B45309">完全相同的像素高度！</text>
+                  <text x="290" y="200" font-size="8.5" fill="#475569">單靠一張圖無法區分大小與遠近</text>
                 </svg>
               </div>
-
-              <!-- Algorithm Evolution Ladder -->
-              <div class="bg-slate-900 text-slate-100 rounded-xl p-3 text-xs space-y-1.5">
-                <div class="font-bold text-indigo-300">🪜 演算法演進：為什麼 A* 會在機械臂前崩潰？</div>
-                <p class="text-[11px] text-slate-300 leading-snug">
-                  <strong>① A* 啟發式搜尋（f(n) = g(n) + h(n)）：</strong>在 2D 地圖（100×100 = 10⁴ 格點）極快，但遇上 7 軸機械臂（100⁷ = 10¹⁴）或 24 軸靈巧手（100²⁴）就會陷入<strong>「維度災難」</strong>。
-                </p>
-                <p class="text-[11px] text-slate-300 leading-snug">
-                  <strong>② 採樣型規劃（Sampling-Based）：</strong>放棄切格子，改在空間中隨機撒點連線！<strong>PRM（機率路網）</strong>適合靜態地圖多次查詢；<strong>RRT / RRT*</strong>：RRT 透過採樣延伸搜尋樹；RRT* 額外選擇低代價父節點與重連線，在適當條件下漸近逼近最佳解。
-                </p>
-              </div>
             </div>
-          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜柵格、BFS、A*、PRM與RRT</summary><div class="mag-body mt-2 space-y-2"><p>Occupancy Grid把地圖離散成佔用、空閒或未知格；解析度過粗可能消失窄通道，過細會增加計算。圓形機器人可用半徑膨脹障礙物；一般非圓形機器人還需考慮朝向及完整構型。</p><p>BFS逐層擴展，在等權重圖上找最少步數；A*以累積代價g及啟發式h選擇節點，最優性取決於啟發式及搜尋條件。PRM先採樣可行節點、檢查連線碰撞、建路網，再以圖搜尋連接起終點；狹窄通道可能難以抽中。</p><p>RRT從起點建樹，抽樣→找近鄰→朝樣本延伸→檢查碰撞→加入節點。RRT*再比較附近父節點成本及重連線；在相應條件下成本漸近逼近最優，而非保證有限時間找到最短路徑。</p></div></details></div>
+
+            <div class="bg-teal-900 text-teal-50 rounded-xl p-3 text-xs leading-relaxed">
+              <strong class="text-amber-300">💡 一句話看懂投影本質：</strong>
+              相機拍照是把 3D 世界「壓扁」成 2D 平面，過程中唯獨丟失了<strong>深度 Z</strong>。只要能找回每個像素的 Z 值，就能用 <code class="font-mono-code text-teal-200">Z · K⁻¹p</code> 瞬間還原整座立體世界！
+            </div>
+          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜座標系、投影與反投影</summary><div class="mag-body mt-2 space-y-2"><p>世界座標、相機座標與像素座標是不同參考系。先以外參將世界點轉到相機座標，再依針孔模型投影。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">P<sub>c</sub> = RP<sub>w</sub> + t<br>u = fₓX<sub>c</sub>/Z<sub>c</sub> + cₓ<br>v = fᵧY<sub>c</sub>/Z<sub>c</sub> + cᵧ</div><p>fₓ、fᵧ是像素單位焦距，cₓ、cᵧ為主點，Zc為相機深度。若RGB-D提供Zc，即可反投影。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">X<sub>c</sub> = (u − cₓ)Z<sub>c</sub>/fₓ<br>Y<sub>c</sub> = (v − cᵧ)Z<sub>c</sub>/fᵧ</div><p>實機還需處理鏡頭畸變、無效深度及感測器座標軸約定。參考：<a class="underline" href="https://docs.opencv.org/4.12.0/dc/dbb/tutorial_py_calibration.html">OpenCV相機校正</a>。</p></div></details></div>

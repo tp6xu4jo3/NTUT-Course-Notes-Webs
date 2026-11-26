@@ -1,73 +1,74 @@
 
           <div class="h-full flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between border-b border-slate-300 pb-1.5 mb-2.5">
-                <span class="text-xs font-mono-code text-indigo-700 font-bold">NON-HOLONOMIC & BICYCLE MODEL</span>
+              <div class="flex items-center justify-between border-b border-slate-300 pb-1.5 mb-2">
+                <span class="text-xs font-mono-code text-teal-700 font-bold">STEREO LAB & 3D RECONSTRUCTION</span>
                 <span class="text-xs font-mono-code text-slate-400">P. 16</span>
               </div>
 
-              <h3 class="font-serif-tc text-lg sm:text-xl font-bold text-slate-900 mb-2">
-                運動學單車模型：為什麼汽車不能「橫著走」？
+              <h3 class="font-serif-tc text-lg sm:text-xl font-bold text-slate-900 mb-1.5">
+                破解單目盲區的三把鑰匙＋雙目誤差實驗室
               </h3>
 
-              <p class="mag-body mb-2.5">
-                畫出一條避開障礙物的折線很容易，但汽車卻開不過去！因為全向輪機器人屬於<strong>完整約束（Holonomic）</strong>，可以隨時向任何方向平移；而一般四輪汽車屬於<strong>非完整約束（Non-holonomic）</strong>——輪胎只能往前滾動、不能橫向側滑（速度必須滿足 <code class="font-mono-code text-xs bg-slate-200 px-1 rounded">ẋ sinθ − ẏ cosθ = 0</code>）。
-              </p>
-
-              <!-- SVG Kinematic Bicycle Model -->
-              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="text-xs font-bold text-slate-800">🚲 運動學單車模型（Kinematic Bicycle Model）</span>
-                  <span class="text-xs font-mono-code bg-indigo-50 text-indigo-800 px-2 py-0.5 rounded border border-indigo-200">
-                    R_min = <span class="math-frac"><span>L</span><span>tan δ_f,max</span></span>
-                  </span>
+              <!-- Key 1: Stereo Vision + Interactive Slider Widget -->
+              <div class="bg-teal-50/90 border-2 border-teal-500/40 rounded-xl p-3 mb-2.5 shadow-xs">
+                <div class="flex flex-wrap items-center justify-between gap-1 mb-1.5">
+                  <span class="text-xs font-bold text-teal-950">① 雙目立體視覺（Stereo Vision）互動實驗室</span>
+                  <div class="text-xs font-mono-code text-teal-900 bg-white px-2 py-0.5 rounded border border-teal-200">
+                    Z = <span class="math-frac"><span>B · f</span><span>d</span></span> ｜ ΔZ = <span class="math-frac"><span>Z²</span><span>B · f</span></span> Δd
+                  </div>
                 </div>
 
-                <svg viewBox="0 0 460 190" class="w-full h-auto">
-                  <!-- Turning Circle Arc -->
-                  <path d="M 145 145 A 135 135 0 0 1 255 32" fill="none" stroke="#93C5FD" stroke-width="2" stroke-dasharray="5 3"/>
+                <!-- Interactive Sliders -->
+                <div class="grid grid-cols-2 gap-3 text-[11px] mb-2">
+                  <div class="bg-white p-2 rounded-lg border border-teal-200">
+                    <div class="flex justify-between font-bold text-slate-700 mb-1">
+                      <span>目標距離 Z：</span>
+                      <span id="stereo-z-val" class="font-mono-code text-teal-700">1.5 m</span>
+                    </div>
+                    <input id="stereo-z-slider" type="range" min="0.5" max="15" step="0.5" value="1.5" class="w-full accent-teal-600 cursor-pointer" />
+                  </div>
+                  <div class="bg-white p-2 rounded-lg border border-teal-200">
+                    <div class="flex justify-between font-bold text-slate-700 mb-1">
+                      <span>雙目基線 B：</span>
+                      <span id="stereo-b-val" class="font-mono-code text-blue-700">6 cm</span>
+                    </div>
+                    <input id="stereo-b-slider" type="range" min="3" max="30" step="1" value="6" class="w-full accent-blue-600 cursor-pointer" />
+                  </div>
+                </div>
 
-                  <!-- ICR Center -->
-                  <circle cx="52" cy="145" r="5" fill="#DC2626"/>
-                  <text x="16" y="164" font-size="9.5" font-weight="bold" fill="#DC2626">瞬間旋轉中心 ICR</text>
+                <!-- Live Calculated Error Readout & Visual Bar -->
+                <div class="bg-slate-900 text-white rounded-lg p-2.5 flex items-center justify-between gap-2 text-xs">
+                  <div>
+                    <div class="text-[10px] text-slate-400">假設焦距 f=800px、視差誤差 Δd=0.5px：</div>
+                    <div class="font-mono-code mt-0.5">
+                      測距誤差 ΔZ ≈ <span id="stereo-err-val" class="text-amber-300 font-bold text-sm">± 2.3 cm</span>
+                    </div>
+                  </div>
+                  <div id="stereo-verdict" class="px-2.5 py-1 rounded bg-emerald-600/30 border border-emerald-400 text-emerald-200 text-[11px] font-bold text-right">
+                    示意：估計誤差較小
+                  </div>
+                </div>
+                <p class="text-[11px] text-slate-700 mt-1.5 leading-snug">
+                  <strong>關鍵發現：</strong>誤差 <code class="font-mono-code">ΔZ</code> 與距離平方 <strong>Z²</strong> 成正比！距離變 10 倍，誤差暴增 100 倍。因此教具機器人 <strong>Sid</strong> 採用<strong>雙基線設計</strong>：窄基線看近處桌面，寬基線看遠方走廊。
+                </p>
+              </div>
 
-                  <!-- Radius Lines from ICR -->
-                  <line x1="52" y1="145" x2="145" y2="145" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3 2"/>
-                  <line x1="52" y1="145" x2="145" y2="75" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3 2"/>
-                  <text x="86" y="139" font-size="9.5" font-weight="bold" fill="#DC2626">轉向半徑 R</text>
+              <!-- Key 2 & Key 3 -->
+              <div class="space-y-2 text-xs">
+                <div class="bg-white border border-slate-200 rounded-lg p-2.5">
+                  <div class="font-bold text-slate-900">② 多視角運動恢復結構（SfM）與對極幾何</div>
+                  <p class="text-slate-600 mt-0.5 leading-relaxed">
+                    單眼相機邊走邊拍，透過 <strong>SIFT 特徵點</strong>與對極約束（<code class="font-mono-code text-teal-800">x₂ᵀ E x₁ = 0</code>）及光束法平差（BA）三角測量還原 3D。但 <strong>COLMAP</strong> 遇上五大天坑會失靈：<em>無紋理白牆、反光玻璃、移動物體、原地純旋轉、重複花紋</em>。
+                  </p>
+                </div>
 
-                  <!-- Chassis Spine (Wheelbase L) -->
-                  <line x1="145" y1="145" x2="145" y2="75" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
-                  <text x="153" y="114" font-size="10" font-weight="bold" fill="#1E293B">軸距 L</text>
-
-                  <!-- Rear Wheel -->
-                  <rect x="139" y="131" width="12" height="28" rx="3" fill="#475569"/>
-                  <text x="155" y="149" font-size="9" fill="#475569">後輪（固定方向）</text>
-
-                  <!-- Front Steered Wheel (Rotated) -->
-                  <g transform="translate(145, 75) rotate(36)">
-                    <rect x="-6" y="-14" width="12" height="28" rx="3" fill="#4F46E5"/>
-                    <line x1="0" y1="0" x2="0" y2="-34" stroke="#4F46E5" stroke-width="2"/>
-                  </g>
-                  <!-- Heading reference line -->
-                  <line x1="145" y1="75" x2="145" y2="36" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="3 2"/>
-                  <text x="155" y="54" font-size="9.5" font-weight="bold" fill="#4F46E5">前輪轉角 δ_f</text>
-
-                  <!-- Right Explanation Box -->
-                  <rect x="262" y="16" width="190" height="158" rx="8" fill="#EEF2FF" stroke="#C7D2FE"/>
-                  <text x="272" y="36" font-size="10.5" font-weight="bold" fill="#3730A3">🅿️ 路邊平行停車的幾何魔法</text>
-                  <text x="272" y="56" font-size="9.5" fill="#1E293B">1. 因為前輪最大轉角 δ_f,max</text>
-                  <text x="282" y="70" font-size="9.5" fill="#1E293B">受限，車子存在最小轉向</text>
-                  <text x="282" y="84" font-size="9.5" fill="#1E293B">半徑 R_min，無法直角轉彎。</text>
-                  <text x="272" y="106" font-size="9.5" fill="#1E293B">2. 人類靠「前進＋左打＋倒車</text>
-                  <text x="282" y="120" font-size="9.5" fill="#1E293B">＋右打」四步組合，把前後</text>
-                  <text x="282" y="134" font-size="9.5" fill="#1E293B">進退累積成純粹的橫向位移！</text>
-                  <text x="272" y="156" font-size="9" font-weight="bold" fill="#4F46E5">（數學上稱為 Lie Bracket 運動）</text>
-                </svg>
+                <div class="bg-white border border-slate-200 rounded-lg p-2.5">
+                  <div class="font-bold text-slate-900">③ 學習型深度估計（AI 學會看立體）</div>
+                  <p class="text-slate-600 mt-0.5 leading-relaxed">
+                    Google 巧妙蒐集網路爆紅的<strong>「假人挑戰（Mannequin Challenge）」</strong>影片——當所有人像雕像定格不動時，攝影機穿梭其中就能用多視角幾何算出精準深度當標準答案！而 <strong>SfMLearner</strong> 更透過「預測下一幀畫面（視圖合成）」實現完全無需標註的自監督深度學習。
+                  </p>
+                </div>
               </div>
             </div>
-
-            <div class="bg-indigo-950 text-indigo-100 rounded-xl p-2.5 text-xs">
-              <strong>🚗 工程小知識：</strong> 為什麼要把四輪汽車簡化成前後各一輪的「單車模型」？因為在一般車速下，將左右兩輪合併到車軸中心線，就能用極簡三角函數精準預測整台車的轉彎軌跡！
-            </div>
-          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜低速單車模型的運動方程</summary><div class="mag-body mt-2 space-y-2"><p>將四輪車近似為前後兩個輪子，選後軸中心為參考點，假設平面、低速且輪胎無側滑。L是軸距，v為後軸縱向速度，δ為前輪轉角。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">ẋ = v cos θ<br>ẏ = v sin θ<br>θ̇ = (v/L) tan δ<br>R = L / tan |δ|</div><p>最大前輪轉角限制最小轉彎半徑。高速、低摩擦或顯著側滑時，需考慮輪胎動力學；全向輪與非完整約束車輛的可行運動也不同。</p></div></details></div>
+          </div>

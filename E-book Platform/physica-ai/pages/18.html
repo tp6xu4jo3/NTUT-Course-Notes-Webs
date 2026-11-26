@@ -1,1 +1,67 @@
-<article class="h-full flex flex-col"><header class="flex items-center justify-between border-b-2 pb-1.5 mb-3" style="border-color:#4F46E5"><span class="text-xs font-bold tracking-wider" style="color:#4F46E5">UNIT 04 · 軌跡與控制（L8）</span><span class="text-xs font-mono-code text-slate-400">P. 18</span></header><h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 leading-snug mb-3">從可通行路徑到可執行運動</h2><div class="space-y-2"><p class="mag-body mb-2.5">規劃出不碰撞的幾何路徑後，還要安排速度、加速度與時間。車輛或機械臂不能瞬間轉向或跳到另一個構型。</p><div class="font-mono-code text-sm text-center bg-slate-100 rounded-lg p-2.5 my-2 break-words">min J = w₁C<sub>安全</sub> + w₂C<sub>平順</sub> + w₃C<sub>時間</sub></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-2 my-2"><div class="bg-white border border-slate-200 rounded-lg p-2.5"><h3 class="text-xs font-bold text-slate-800 mb-1">碰撞</h3><p class="text-xs leading-relaxed text-slate-700">沿途每個構型皆需保留安全距離。</p></div><div class="bg-white border border-slate-200 rounded-lg p-2.5"><h3 class="text-xs font-bold text-slate-800 mb-1">運動學</h3><p class="text-xs leading-relaxed text-slate-700">滿足轉向角、關節角度與可達範圍。</p></div><div class="bg-white border border-slate-200 rounded-lg p-2.5"><h3 class="text-xs font-bold text-slate-800 mb-1">動力學</h3><p class="text-xs leading-relaxed text-slate-700">速度、加速度、扭力不得超過設備能力。</p></div><div class="bg-white border border-slate-200 rounded-lg p-2.5"><h3 class="text-xs font-bold text-slate-800 mb-1">控制</h3><p class="text-xs leading-relaxed text-slate-700">利用感測回饋調整軌跡，避免跟蹤偏差。</p></div></div><div class="bg-slate-900 text-slate-100 rounded-xl p-3 mt-2"><h3 class="text-xs font-bold text-amber-300 mb-1">與操控的連結</h3><p class="text-xs leading-relaxed">手臂終點可達，不代表整段移動安全。第七單元會用抓取任務解釋三重可行性。</p></div></div></article>
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-slate-300 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold text-amber-700">INFOGRAPHIC COLUMN · 視覺專欄</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 18</span>
+              </div>
+
+              <h3 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+                評估悖論：平均誤差更低的 Model A，為什麼可能更容易碰撞？
+              </h3>
+
+              <p class="mag-body mb-3">
+                在訓練深度估計模型時，學生常盯著全圖「平均絕對誤差（MAE）」看分數。但下面的假設性教學對照揭示了一個反直覺的工程真相：
+              </p>
+
+              <!-- Visual Infographic: Model A vs Model B -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-sm mb-3">
+                <svg viewBox="0 0 450 215" class="w-full h-auto">
+                  <!-- Model A Card -->
+                  <rect x="6" y="6" width="212" height="202" rx="10" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1.5"/>
+                  <text x="18" y="26" font-size="11.5" font-weight="bold" fill="#B91C1C">Model A（紙面學霸 · 全圖誤差較低）</text>
+                  <text x="18" y="44" font-size="10" font-family="JetBrains Mono" fill="#475569">全圖平均誤差：<tspan font-weight="bold" fill="#059669">2.0 cm</tspan></text>
+                  <text x="18" y="60" font-size="10" font-family="JetBrains Mono" fill="#475569">示意碰撞率：<tspan font-weight="bold" fill="#DC2626">15.0% 💥</tspan></text>
+
+                  <!-- Diagram A: Smooth blurry edge over obstacle -->
+                  <rect x="22" y="74" width="180" height="78" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <!-- True Obstacle Box -->
+                  <rect x="85" y="96" width="54" height="56" fill="#CBD5E1" stroke="#475569" stroke-width="1.5"/>
+                  <text x="94" y="128" font-size="9" font-weight="bold" fill="#1E293B">桌角障礙</text>
+                  <!-- Model A Predicted Contour (Rounded / Over-smoothed) -->
+                  <path d="M 28 150 L 72 150 Q 112 85 152 150 L 196 150" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="4 2"/>
+                  <text x="32" y="89" font-size="8.5" font-weight="bold" fill="#DC2626">邊緣過度平滑，誤差達 10cm！</text>
+
+                  <text x="18" y="170" font-size="9.5" fill="#7F1D1D">背景白牆佔畫面 90% 拉低了平均誤差，</text>
+                  <text x="18" y="184" font-size="9.5" fill="#7F1D1D">卻把關鍵 10% 的桌角邊界抹糊了！</text>
+
+                  <!-- Model B Card -->
+                  <rect x="232" y="6" width="212" height="202" rx="10" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.5"/>
+                  <text x="244" y="26" font-size="11.5" font-weight="bold" fill="#047857">Model B（物體邊界較準）</text>
+                  <text x="244" y="44" font-size="10" font-family="JetBrains Mono" fill="#475569">全圖平均誤差：<tspan font-weight="bold" fill="#D97706">4.0 cm</tspan></text>
+                  <text x="244" y="60" font-size="10" font-family="JetBrains Mono" fill="#475569">示意碰撞率：<tspan font-weight="bold" fill="#059669">2.0% ✅</tspan></text>
+
+                  <!-- Diagram B: Crisp edge lock -->
+                  <rect x="248" y="74" width="180" height="78" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="311" y="96" width="54" height="56" fill="#CBD5E1" stroke="#475569" stroke-width="1.5"/>
+                  <text x="320" y="128" font-size="9" font-weight="bold" fill="#1E293B">桌角障礙</text>
+                  <!-- Model B Predicted Contour (Crisp) -->
+                  <polyline points="254,148 310,148 310,95 366,95 366,148 422,148" fill="none" stroke="#059669" stroke-width="2.5"/>
+                  <text x="258" y="89" font-size="8.5" font-weight="bold" fill="#047857">死死鎖定物體邊界，誤差僅 1cm！</text>
+
+                  <text x="244" y="170" font-size="9.5" fill="#065F46">空曠牆壁多差 2 公分根本不會撞車，</text>
+                  <text x="244" y="184" font-size="9.5" fill="#065F46">精準刻畫障礙物輪廓才是避障關鍵！</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="pull-quote text-teal-950 border-teal-600 bg-teal-50/80">
+              <p class="font-serif-tc font-bold text-sm sm:text-base">
+                「完美重建不是終點，支援安全物理行動才是最高標準。」
+              </p>
+              <p class="text-xs text-slate-600 mt-1">
+                上圖數值是假設性的教學示例，不是研究實測結果。評估感知模型時，不能只看全圖平均分數，必須以<strong>下游運動規劃的任務成功率與碰撞率</strong>作為重要的補充指標。
+              </p>
+            </div>
+          </div>
+        

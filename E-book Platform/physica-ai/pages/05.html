@@ -7,10 +7,10 @@
               </div>
 
               <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-1.5">
-                現實世界的五大物理天坑圖鑑
+                五類部署失效與工程限制
               </h2>
               <p class="text-xs text-slate-600 mb-3">
-                為什麼機器人一離開恆溫空調實驗室就頻頻出包？以下是工程師最常踩中的五個真實物理陷阱：
+                課程以五類失效說明：評估模型時，也必須檢查硬體、感測器、環境與運算限制。
               </p>
 
               <!-- 5 Physical Pitfall Illustrated Cards -->
@@ -24,7 +24,7 @@
                   </svg>
                   <div class="text-xs leading-snug">
                     <div class="font-bold text-slate-900">① Dina / Greer 溫暖夾爪（熱力學退化）</div>
-                    <p class="text-slate-600 mt-0.5">機械臂連續運作幾小時後，馬達發熱使橡膠指尖軟化、摩擦係數改變導致東西滑落——團隊常誤以為是 AI 演算法出了 Bug！</p>
+                    <p class="text-slate-600 mt-0.5">機械臂連續運作幾小時後，硬體溫升或磨耗可能改變夾持特性，應排查硬體而非直接判定模型退化。</p>
                   </div>
                 </div>
 
@@ -39,7 +39,7 @@
                   </svg>
                   <div class="text-xs leading-snug">
                     <div class="font-bold text-slate-900">② LiDAR 灑水幻影（光學散射假陽性）</div>
-                    <p class="text-slate-600 mt-0.5">光學雷達射出的雷射光束打到路邊灑水器水花或汽車排氣白煙會被散射回來，自駕車誤以為前方突然出現一堵「混凝土牆」而緊急急煞。</p>
+                    <p class="text-slate-600 mt-0.5">光學雷達射出的雷射光束打到路邊灑水器水花或汽車排氣白煙會被散射回來，可能造成假陽性障礙物與不必要煞車。</p>
                   </div>
                 </div>
 
@@ -52,7 +52,7 @@
                   </svg>
                   <div class="text-xs leading-snug">
                     <div class="font-bold text-slate-900">③ OBI 餵食機器人與融化冰淇淋（時變流體）</div>
-                    <p class="text-slate-600 mt-0.5">冰淇淋隨室溫從固體變成黏稠液體，舀取力道與防潑灑角度必須動態調整，固定軌跡只會把湯匙戳空或灑滿桌。</p>
+                    <p class="text-slate-600 mt-0.5">食物的形狀與黏性隨時間改變；完整操控方法見第七單元。</p>
                   </div>
                 </div>
 
@@ -65,7 +65,7 @@
                   </svg>
                   <div class="text-xs leading-snug">
                     <div class="font-bold text-slate-900">④ 透明玻璃門與不規則軟地形</div>
-                    <p class="text-slate-600 mt-0.5">紅外線深度相機會直接穿透玻璃門看到門後景物，導致機器人一頭撞上玻璃；厚地毯與斜坡也會讓輪式底盤打滑。</p>
+                    <p class="text-slate-600 mt-0.5">透明或反光表面可能產生無效深度；低摩擦地面及斜坡可能造成打滑與定位偏差。</p>
                   </div>
                 </div>
 
@@ -78,7 +78,7 @@
                   </svg>
                   <div class="text-xs leading-snug">
                     <div class="font-bold text-slate-900">⑤ 邊緣算力與電池續航緊箍咒</div>
-                    <p class="text-slate-600 mt-0.5">機器人不能拖著一座資料中心走路，所有視覺與控制模型必須壓縮進數十瓦功耗的機載晶片中即時運算。</p>
+                    <p class="text-slate-600 mt-0.5">機載推論與控制受功耗、記憶體、延遲及電池容量限制，需量測並符合任務需求。</p>
                   </div>
                 </div>
               </div>

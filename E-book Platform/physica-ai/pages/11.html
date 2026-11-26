@@ -1,80 +1,79 @@
 
           <div class="h-full flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between border-b-2 border-teal-600 pb-1.5 mb-2.5">
-                <span class="text-xs font-bold tracking-wider text-teal-700">UNIT 03 · 3D 視覺幾何（整合 L5–L7）</span>
+              <div class="flex items-center justify-between border-b-2 border-orange-600 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-orange-600">UNIT 02 · 數據品質評估</span>
                 <span class="text-xs font-mono-code text-slate-400">P. 11</span>
               </div>
 
               <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
-                針孔相機投影與「比薩斜塔錯位照」之謎
+                機器人資料的四個品質維度
               </h2>
 
-              <p class="mag-body mb-2.5">
-                相機拍下的照片是平面的 2D 像素 <code class="font-mono-code text-xs bg-slate-200 px-1 rounded">(u, v)</code>，但機械臂必須知道物體在 3D 空間中的真實座標 <code class="font-mono-code text-xs bg-slate-200 px-1 rounded">(X, Y, Z)</code> 才能伸手去抓。這中間的橋樑就是<strong>針孔相機模型（Pinhole Camera Model）</strong>：先透過<strong>外參矩陣 [R|t]</strong> 把世界座標轉到相機視角，再透過<strong>內參矩陣 K</strong>（焦距與光心）投影成像素。
+              <p class="mag-body mb-3">
+                既然沒有單一方法能無限量產完美數據，應依任務在以下四個指標之間取捨：
               </p>
 
-              <!-- SVG Pinhole Camera & Back-Projection + Leaning Tower Ill-Posed Diagram -->
-              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
-                <svg viewBox="0 0 460 215" class="w-full h-auto">
-                  <!-- Top Half: Pinhole Camera Projection -->
-                  <text x="10" y="16" font-size="10.5" font-weight="bold" fill="#0F766E">📐 針孔投影與深度反投影（Back-Projection）</text>
+              <!-- 4 Dimensions Grid -->
+              <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                  <span class="font-bold text-blue-700">🎯 保真度 (Fidelity)</span>
+                  <p class="text-slate-600 mt-0.5">物理接觸力與視覺畫面有多貼近真實硬體？</p>
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                  <span class="font-bold text-orange-600">📦 規模 (Scale)</span>
+                  <p class="text-slate-600 mt-0.5">能否在幾天內低成本擴展到數百萬條軌跡？</p>
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                  <span class="font-bold text-teal-700">🌈 覆蓋率 (Coverage)</span>
+                  <p class="text-slate-600 mt-0.5">是否涵蓋各種光照、材質、擺放角度與長尾異常？</p>
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                  <span class="font-bold text-purple-700">💰 成本 (Cost)</span>
+                  <p class="text-slate-600 mt-0.5">採集每小時數據所需的人力、硬體與算力開銷。</p>
+                </div>
+              </div>
 
-                  <!-- Image Plane -->
-                  <rect x="65" y="34" width="12" height="72" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
-                  <text x="42" y="118" font-size="9" fill="#0F766E">2D 像素 (u,v)</text>
+              <!-- SVG 4-Axis Radar / Trade-off Chart -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
+                <div class="text-xs font-bold text-slate-800 mb-1">📊 不同資料來源的定性取捨（示意，非實測）</div>
+                <svg viewBox="0 0 440 195" class="w-full h-auto">
+                  <!-- Radar Axes -->
+                  <g stroke="#CBD5E1" stroke-width="1">
+                    <polygon points="145,25 225,95 145,165 65,95" fill="none"/>
+                    <polygon points="145,48 198,95 145,142 92,95" fill="none"/>
+                    <polygon points="145,71 172,95 145,119 118,95" fill="none"/>
+                    <line x1="145" y1="20" x2="145" y2="170"/>
+                    <line x1="60" y1="95" x2="230" y2="95"/>
+                  </g>
+                  <!-- Axis Labels -->
+                  <text x="122" y="14" font-size="10" font-weight="bold" fill="#1D4ED8">高保真度</text>
+                  <text x="234" y="98" font-size="10" font-weight="bold" fill="#EA580C">大規模</text>
+                  <text x="122" y="184" font-size="10" font-weight="bold" fill="#0D9488">高覆蓋率</text>
+                  <text x="14" y="98" font-size="10" font-weight="bold" fill="#7C3AED">低成本</text>
 
-                  <!-- Optical Center -->
-                  <circle cx="135" cy="70" r="4" fill="#0F172A"/>
-                  <text x="115" y="86" font-size="9" fill="#475569">光心 O</text>
+                  <!-- Polygon 1: Real-World Teleop (High Fidelity, Low Scale/Low Cost) -->
+                  <polygon points="145,30 165,95 145,120 112,95" fill="#1D4ED8" fill-opacity="0.22" stroke="#1D4ED8" stroke-width="2"/>
 
-                  <!-- Optical Axis -->
-                  <line x1="45" y1="70" x2="310" y2="70" stroke="#94A3B8" stroke-width="1" stroke-dasharray="4 3"/>
+                  <!-- Polygon 2: Physics Simulation (High Scale & Coverage, Medium Fidelity) -->
+                  <polygon points="145,52 218,95 145,158 76,95" fill="#EA580C" fill-opacity="0.22" stroke="#EA580C" stroke-width="2"/>
 
-                  <!-- 3D World Point -->
-                  <circle cx="285" cy="36" r="5.5" fill="#EA580C"/>
-                  <text x="255" y="27" font-size="9.5" font-weight="bold" fill="#C2410C">3D 點 P(Xw,Yw,Zw)</text>
+                  <!-- Legend on Right -->
+                  <g font-size="10.5">
+                    <rect x="275" y="34" width="12" height="12" rx="2" fill="#1D4ED8"/>
+                    <text x="293" y="44" font-weight="bold" fill="#1E293B">真實遙控採集</text>
+                    <text x="293" y="59" font-size="9" fill="#475569">真實接觸訊號，但人力成本高</text>
 
-                  <!-- Projection Ray -->
-                  <line x1="71" y1="86" x2="285" y2="36" stroke="#EA580C" stroke-width="1.8"/>
-                  <circle cx="71" cy="86" r="3" fill="#EA580C"/>
+                    <rect x="275" y="84" width="12" height="12" rx="2" fill="#EA580C"/>
+                    <text x="293" y="94" font-weight="bold" fill="#1E293B">物理模擬器 SDG</text>
+                    <text x="293" y="109" font-size="9" fill="#475569">可設定變異；有虛實落差</text>
 
-                  <!-- Formula Box -->
-                  <rect x="315" y="28" width="138" height="76" rx="7" fill="#F0FDFA" stroke="#5EEAD4"/>
-                  <text x="323" y="45" font-size="9.5" font-weight="bold" fill="#0F766E">已知深度 Z 反推 3D：</text>
-                  <text x="323" y="64" font-size="10" font-weight="bold" fill="#1E293B" font-family="JetBrains Mono">P_cam = Z · K⁻¹ p</text>
-                  <text x="323" y="81" font-size="8.5" fill="#475569">少了深度 Z，一條射線上</text>
-                  <text x="323" y="93" font-size="8.5" fill="#475569">有無窮多個可能的 3D 點！</text>
-
-                  <!-- Divider -->
-                  <line x1="10" y1="126" x2="450" y2="126" stroke="#E2E8F0" stroke-width="1.5"/>
-
-                  <!-- Bottom Half: Leaning Tower of Pisa Ill-Posed Problem -->
-                  <text x="10" y="143" font-size="10.5" font-weight="bold" fill="#B45309">🗼 為什麼單眼估測深度是「病態問題（Ill-Posed）」？</text>
-
-                  <!-- Camera Eye -->
-                  <polygon points="22,178 44,166 44,190" fill="#1E293B"/>
-                  <!-- Ray Cone -->
-                  <line x1="44" y1="178" x2="275" y2="148" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 2"/>
-                  <line x1="44" y1="178" x2="275" y2="205" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 2"/>
-
-                  <!-- Near Hand -->
-                  <rect x="108" y="170" width="10" height="18" rx="3" fill="#F97316"/>
-                  <text x="90" y="202" font-size="8.5" font-weight="bold" fill="#C2410C">近處小手指</text>
-
-                  <!-- Far Tower -->
-                  <rect x="242" y="152" width="22" height="50" rx="2" fill="#94A3B8" stroke="#475569"/>
-                  <text x="225" y="212" font-size="8.5" font-weight="bold" fill="#334155">遠處巨大比薩斜塔</text>
-
-                  <text x="290" y="172" font-size="9.5" fill="#1E293B">在 2D 照片上佔據</text>
-                  <text x="290" y="186" font-size="9.5" font-weight="bold" fill="#B45309">完全相同的像素高度！</text>
-                  <text x="290" y="200" font-size="8.5" fill="#475569">單靠一張圖無法區分大小與遠近</text>
+                    <rect x="275" y="134" width="12" height="12" rx="2" fill="#0D9488"/>
+                    <text x="293" y="144" font-weight="bold" fill="#1E293B">依任務混合資料</text>
+                    <text x="293" y="159" font-size="9" fill="#475569">實機接觸驗證 + 可控場景變異</text>
+                  </g>
                 </svg>
               </div>
             </div>
-
-            <div class="bg-teal-900 text-teal-50 rounded-xl p-3 text-xs leading-relaxed">
-              <strong class="text-amber-300">💡 一句話看懂投影本質：</strong>
-              相機拍照是把 3D 世界「壓扁」成 2D 平面，過程中唯獨丟失了<strong>深度 Z</strong>。只要能找回每個像素的 Z 值，就能用 <code class="font-mono-code text-teal-200">Z · K⁻¹p</code> 瞬間還原整座立體世界！
-            </div>
-          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜座標系、投影與反投影</summary><div class="mag-body mt-2 space-y-2"><p>世界座標、相機座標與像素座標是不同參考系。先以外參將世界點轉到相機座標，再依針孔模型投影。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">P<sub>c</sub> = RP<sub>w</sub> + t<br>u = fₓX<sub>c</sub>/Z<sub>c</sub> + cₓ<br>v = fᵧY<sub>c</sub>/Z<sub>c</sub> + cᵧ</div><p>fₓ、fᵧ是像素單位焦距，cₓ、cᵧ為主點，Zc為相機深度。若RGB-D提供Zc，即可反投影。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">X<sub>c</sub> = (u − cₓ)Z<sub>c</sub>/fₓ<br>Y<sub>c</sub> = (v − cᵧ)Z<sub>c</sub>/fᵧ</div><p>以4×4齊次矩陣可合併旋轉與平移；三維旋轉通常不可交換，先Roll再Pitch與反過來不同。實機還需處理鏡頭畸變、無效深度及感測器座標軸約定。參考：<a class="underline" href="https://docs.opencv.org/4.12.0/dc/dbb/tutorial_py_calibration.html">OpenCV相機校正</a>。</p></div></details></div>
+          </div>
+        

@@ -1,1 +1,73 @@
-<article class="h-full flex flex-col"><header class="flex items-center justify-between border-b-2 pb-1.5 mb-3" style="border-color:#7C3AED"><span class="text-xs font-bold tracking-wider" style="color:#7C3AED">UNIT 07 · 末端工具（L12）</span><span class="text-xs font-mono-code text-slate-400">P. 26</span></header><h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 leading-snug mb-3">夾爪選擇會改變抓取問題</h2><div class="space-y-2"><p class="mag-body mb-2.5">末端執行器的尺寸、接觸方式、可施加的力及可進入的空間，決定哪些任務可以完成。</p><figure class="bg-white border border-slate-200 rounded-xl p-2 my-2"><svg viewBox="0 0 440 160" class="w-full h-auto" role="img" aria-label="三種工具的接觸方式"><g stroke="#7C3AED" stroke-width="4" fill="none"><path d="M65 18v45m-24 0h48m-48 0v50h14m34-50v50H75"/><path d="M220 18v45m-25 0h50m-48 0-14 44m37-44v44m23-44 14 44"/><path d="M366 18v60m-30 0h60m-55 0-13 25h76l-13-25"/></g><rect x="50" y="101" width="30" height="25" rx="4" fill="#CBD5E1"/><circle cx="220" cy="110" r="18" fill="#CBD5E1"/><rect x="334" y="104" width="64" height="15" fill="#CBD5E1"/><g fill="#475569" font-size="11" text-anchor="middle"><text x="65" y="145">二指夾爪</text><text x="220" y="145">多指夾爪</text><text x="366" y="145">吸盤</text></g></svg><figcaption class="text-[11px] text-slate-500 text-center">三種工具的接觸方式（示意圖）</figcaption></figure><div class="overflow-x-auto"><table class="w-full text-xs border-collapse my-2"><thead><tr><th class="text-left bg-slate-100 border border-slate-200 p-2">工具</th><th class="text-left bg-slate-100 border border-slate-200 p-2">適用條件</th><th class="text-left bg-slate-100 border border-slate-200 p-2">常見失敗</th></tr></thead><tbody><tr><td class="align-top border border-slate-200 p-2">吸盤</td><td class="align-top border border-slate-200 p-2">可形成密封的平整表面</td><td class="align-top border border-slate-200 p-2">多孔、粗糙或透氣材料可能漏氣</td></tr><tr><td class="align-top border border-slate-200 p-2">二指夾爪</td><td class="align-top border border-slate-200 p-2">可接觸相對表面、尺寸合適</td><td class="align-top border border-slate-200 p-2">摩擦或夾力不足造成滑脫</td></tr><tr><td class="align-top border border-slate-200 p-2">靈巧手</td><td class="align-top border border-slate-200 p-2">複雜形狀與多點操控</td><td class="align-top border border-slate-200 p-2">關節與接觸控制複雜</td></tr></tbody></table></div><div class="bg-slate-900 text-slate-100 rounded-xl p-3 mt-2"><h3 class="text-xs font-bold text-amber-300 mb-1">簡化夾持模型</h3><p class="text-xs leading-relaxed">垂直夾住質量 m 的物件，若兩指各施法向力 N、摩擦係數 μ，對稱靜態模型需 2μN ≥ mg。實機需留裕度，並考慮物件強度、加速度與扭矩。</p></div><p class="text-[11px] text-slate-500 mt-2">課程來源：<a class="underline" href="https://docs.google.com/document/d/1yg6q3MnkFNLyNEujEtNEDg-xp4bIosLthd8CjEkEXgs/edit" target="_blank" rel="noopener noreferrer">Lecture 12 講義</a>、<a class="underline" href="https://drive.google.com/file/d/1Xk47MRAxE3eSK0DlKbj4TOrOI6gweHWX/view" target="_blank" rel="noopener noreferrer">逐字稿 Part 1</a>、<a class="underline" href="https://drive.google.com/file/d/1lRt0Knt3tl-0dSu0_XpHauuE4tbwMgRn/view" target="_blank" rel="noopener noreferrer">Part 2</a></p></div></article>
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-slate-300 pb-1.5 mb-2.5">
+                <span class="text-xs font-mono-code text-indigo-700 font-bold">NON-HOLONOMIC & BICYCLE MODEL</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 26</span>
+              </div>
+
+              <h3 class="font-serif-tc text-lg sm:text-xl font-bold text-slate-900 mb-2">
+                運動學單車模型：為什麼汽車不能「橫著走」？
+              </h3>
+
+              <p class="mag-body mb-2.5">
+                畫出一條避開障礙物的折線很容易，但汽車卻開不過去！因為全向輪機器人屬於<strong>完整約束（Holonomic）</strong>，可以隨時向任何方向平移；而一般四輪汽車屬於<strong>非完整約束（Non-holonomic）</strong>——輪胎只能往前滾動、不能橫向側滑（速度必須滿足 <code class="font-mono-code text-xs bg-slate-200 px-1 rounded">ẋ sinθ − ẏ cosθ = 0</code>）。
+              </p>
+
+              <!-- SVG Kinematic Bicycle Model -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-bold text-slate-800">🚲 運動學單車模型（Kinematic Bicycle Model）</span>
+                  <span class="text-xs font-mono-code bg-indigo-50 text-indigo-800 px-2 py-0.5 rounded border border-indigo-200">
+                    R_min = <span class="math-frac"><span>L</span><span>tan δ_f,max</span></span>
+                  </span>
+                </div>
+
+                <svg viewBox="0 0 460 190" class="w-full h-auto">
+                  <!-- Turning Circle Arc -->
+                  <path d="M 145 145 A 135 135 0 0 1 255 32" fill="none" stroke="#93C5FD" stroke-width="2" stroke-dasharray="5 3"/>
+
+                  <!-- ICR Center -->
+                  <circle cx="52" cy="145" r="5" fill="#DC2626"/>
+                  <text x="16" y="164" font-size="9.5" font-weight="bold" fill="#DC2626">瞬間旋轉中心 ICR</text>
+
+                  <!-- Radius Lines from ICR -->
+                  <line x1="52" y1="145" x2="145" y2="145" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <line x1="52" y1="145" x2="145" y2="75" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <text x="86" y="139" font-size="9.5" font-weight="bold" fill="#DC2626">轉向半徑 R</text>
+
+                  <!-- Chassis Spine (Wheelbase L) -->
+                  <line x1="145" y1="145" x2="145" y2="75" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
+                  <text x="153" y="114" font-size="10" font-weight="bold" fill="#1E293B">軸距 L</text>
+
+                  <!-- Rear Wheel -->
+                  <rect x="139" y="131" width="12" height="28" rx="3" fill="#475569"/>
+                  <text x="155" y="149" font-size="9" fill="#475569">後輪（固定方向）</text>
+
+                  <!-- Front Steered Wheel (Rotated) -->
+                  <g transform="translate(145, 75) rotate(36)">
+                    <rect x="-6" y="-14" width="12" height="28" rx="3" fill="#4F46E5"/>
+                    <line x1="0" y1="0" x2="0" y2="-34" stroke="#4F46E5" stroke-width="2"/>
+                  </g>
+                  <!-- Heading reference line -->
+                  <line x1="145" y1="75" x2="145" y2="36" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <text x="155" y="54" font-size="9.5" font-weight="bold" fill="#4F46E5">前輪轉角 δ_f</text>
+
+                  <!-- Right Explanation Box -->
+                  <rect x="262" y="16" width="190" height="158" rx="8" fill="#EEF2FF" stroke="#C7D2FE"/>
+                  <text x="272" y="36" font-size="10.5" font-weight="bold" fill="#3730A3">🅿️ 路邊平行停車的幾何魔法</text>
+                  <text x="272" y="56" font-size="9.5" fill="#1E293B">1. 因為前輪最大轉角 δ_f,max</text>
+                  <text x="282" y="70" font-size="9.5" fill="#1E293B">受限，車子存在最小轉向</text>
+                  <text x="282" y="84" font-size="9.5" fill="#1E293B">半徑 R_min，無法直角轉彎。</text>
+                  <text x="272" y="106" font-size="9.5" fill="#1E293B">2. 人類靠「前進＋左打＋倒車</text>
+                  <text x="282" y="120" font-size="9.5" fill="#1E293B">＋右打」四步組合，把前後</text>
+                  <text x="282" y="134" font-size="9.5" fill="#1E293B">進退累積成純粹的橫向位移！</text>
+                  <text x="272" y="156" font-size="9" font-weight="bold" fill="#4F46E5">（數學上稱為 Lie Bracket 運動）</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="bg-indigo-950 text-indigo-100 rounded-xl p-2.5 text-xs">
+              <strong>🚗 工程小知識：</strong> 為什麼要把四輪汽車簡化成前後各一輪的「單車模型」？因為在一般車速下，將左右兩輪合併到車軸中心線，就能用極簡三角函數精準預測整台車的轉彎軌跡！
+            </div>
+          </div>

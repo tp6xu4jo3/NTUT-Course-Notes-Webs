@@ -46,7 +46,27 @@
     "pages/33.html",
     "pages/34.html",
     "pages/35.html",
-    "pages/36.html"
+    "pages/36.html",
+    "pages/37.html",
+    "pages/38.html",
+    "pages/39.html",
+    "pages/40.html",
+    "pages/41.html",
+    "pages/42.html",
+    "pages/43.html",
+    "pages/44.html",
+    "pages/45.html",
+    "pages/46.html",
+    "pages/47.html",
+    "pages/48.html",
+    "pages/49.html",
+    "pages/50.html",
+    "pages/51.html",
+    "pages/52.html",
+    "pages/53.html",
+    "pages/54.html",
+    "pages/55.html",
+    "pages/56.html"
   ],
   "toc": [
     {
@@ -64,109 +84,179 @@
       "page": 2
     },
     {
-      "title": "現實世界的五大物理天坑 & 科技的人性溫度",
+      "title": "物理失效、工作流程與工程評估",
       "unit": "單元一｜覺醒",
       "color": "#1D4ED8",
       "lectures": "整合 Lecture 1, 2, 11",
       "page": 4
     },
     {
-      "title": "為什麼不能直接用網路影片教機器人？",
-      "unit": "單元二｜數據飛輪",
-      "color": "#EA580C",
-      "lectures": "整合 Lecture 3",
+      "title": "失效分類與雙臂動態協作",
+      "unit": "單元一｜覺醒",
+      "color": "#1D4ED8",
+      "lectures": "L1–L2",
       "page": 6
     },
     {
-      "title": "七大資料採集策略全景圖鑑",
+      "title": "資料缺口與資料飛輪",
+      "unit": "單元二｜數據飛輪",
+      "color": "#EA580C",
+      "lectures": "整合 Lecture 3",
+      "page": 8
+    },
+    {
+      "title": "資料品質與七種採集策略",
       "unit": "單元二｜數據飛輪",
       "color": "#EA580C",
       "lectures": "整合 Lecture 3, 10",
-      "page": 8
+      "page": 10
+    },
+    {
+      "title": "資料採集取捨與資料管線",
+      "unit": "單元二｜數據飛輪",
+      "color": "#EA580C",
+      "lectures": "L3",
+      "page": 12
     },
     {
       "title": "從 2D 像素還原 3D 物理世界",
       "unit": "單元三｜幾何之眼",
       "color": "#0D9488",
       "lectures": "整合 Lecture 5, 6, 7",
-      "page": 10
+      "page": 14
     },
     {
       "title": "SLAM 空間記憶與「評估悖論」",
       "unit": "單元三｜幾何之眼",
       "color": "#0D9488",
       "lectures": "整合 Lecture 5, 6, 7",
-      "page": 12
+      "page": 16
+    },
+    {
+      "title": "旋轉、齊次座標與點雲配準",
+      "unit": "單元三｜幾何之眼",
+      "color": "#0D9488",
+      "lectures": "L5–L6",
+      "page": 18
+    },
+    {
+      "title": "對極幾何、三角測量與BA",
+      "unit": "單元三｜幾何之眼",
+      "color": "#0D9488",
+      "lectures": "L6",
+      "page": 20
+    },
+    {
+      "title": "自監督深度與下游評估",
+      "unit": "單元三｜幾何之眼",
+      "color": "#0D9488",
+      "lectures": "L7",
+      "page": 22
     },
     {
       "title": "構型空間、高維搜尋與車輛運動學",
       "unit": "單元四｜運動大腦",
       "color": "#4F46E5",
       "lectures": "整合 Lecture 7, 8",
-      "page": 14
+      "page": 24
     },
     {
       "title": "軌跡、控制與工程可行性",
       "unit": "單元四｜運動大腦",
       "color": "#4F46E5",
       "lectures": "Lecture 8",
-      "page": 16
+      "page": 26
+    },
+    {
+      "title": "採樣式規劃與運動約束",
+      "unit": "單元四｜運動大腦",
+      "color": "#4F46E5",
+      "lectures": "L7–L8",
+      "page": 28
     },
     {
       "title": "部署架構、營運設計域與安全防護",
       "unit": "單元五｜安全工程",
       "color": "#DC2626",
       "lectures": "整合 Lecture 4, 9",
-      "page": 18
+      "page": 30
     },
     {
       "title": "SOTIF 未知危險與台灣混合車流實戰",
       "unit": "單元五｜安全工程",
       "color": "#DC2626",
       "lectures": "整合 Lecture 9",
-      "page": 20
+      "page": 32
+    },
+    {
+      "title": "V模型、場景抽樣與根因分析",
+      "unit": "單元五｜安全工程",
+      "color": "#DC2626",
+      "lectures": "L4、L9",
+      "page": 34
+    },
+    {
+      "title": "衝突錨點、TTC與PET",
+      "unit": "單元五｜安全工程",
+      "color": "#DC2626",
+      "lectures": "L9",
+      "page": 36
     },
     {
       "title": "NVIDIA Isaac 與機器人學習",
       "unit": "單元六｜未來全棧",
       "color": "#7C3AED",
       "lectures": "整合 Lecture 10, 11",
-      "page": 22
+      "page": 38
+    },
+    {
+      "title": "OpenUSD與合成資料工作流",
+      "unit": "單元六｜未來全棧",
+      "color": "#7C3AED",
+      "lectures": "L10",
+      "page": 40
+    },
+    {
+      "title": "世界模型、VLA與部署評估",
+      "unit": "單元六｜未來全棧",
+      "color": "#7C3AED",
+      "lectures": "L10–L11",
+      "page": 42
     },
     {
       "title": "操控器、末端工具與六自由度姿態",
       "unit": "單元七｜靈巧操控",
       "color": "#7C3AED",
       "lectures": "Lecture 12",
-      "page": 24
+      "page": 44
     },
     {
       "title": "姿態估計、四座標系與物件中心抓取",
       "unit": "單元七｜靈巧操控",
       "color": "#7C3AED",
       "lectures": "Lecture 12",
-      "page": 26
+      "page": 46
     },
     {
       "title": "直接抓取預測與三重可行性驗證",
       "unit": "單元七｜靈巧操控",
       "color": "#7C3AED",
       "lectures": "Lecture 12",
-      "page": 30
+      "page": 50
     },
     {
       "title": "食物操控、主動感知與軟硬體協同設計",
       "unit": "單元七｜靈巧操控",
       "color": "#7C3AED",
       "lectures": "Lecture 11, 12",
-      "page": 32
+      "page": 52
     },
     {
       "title": "技術練習與全刊複習",
       "unit": "實作練習",
       "color": "#7C3AED",
       "lectures": "L1–L12",
-      "page": 34
+      "page": 54
     }
   ],
   "categories": [

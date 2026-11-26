@@ -1,73 +1,62 @@
 
           <div class="h-full flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between border-b-2 border-indigo-600 pb-1.5 mb-2.5">
-                <span class="text-xs font-bold tracking-wider text-indigo-700">UNIT 04 · 軌跡優化與感測融合</span>
+              <div class="flex items-center justify-between border-b-2 border-teal-600 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-teal-700">UNIT 03 · 同步定位與建圖</span>
                 <span class="text-xs font-mono-code text-slate-400">P. 17</span>
               </div>
 
               <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
-                Path、Trajectory 與 Policy：加入「時間」的藝術
+                SLAM：機器人在陌生房間邊走邊畫地圖
               </h2>
 
-              <!-- 3-Column Comparison -->
-              <div class="grid grid-cols-3 gap-2 text-xs mb-2.5">
-                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
-                  <div class="font-bold text-slate-800">Path（路徑）</div>
-                  <div class="font-mono-code text-[10px] text-indigo-600 my-0.5">q(s) · 純幾何</div>
-                  <p class="text-[11px] text-slate-600">只管從 A 到 B 畫在地面上的路線，不管開多快。</p>
-                </div>
-                <div class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-300">
-                  <div class="font-bold text-indigo-950">Trajectory（軌跡）</div>
-                  <div class="font-mono-code text-[10px] text-indigo-700 my-0.5">q(t) · 幾何＋時間</div>
-                  <p class="text-[11px] text-slate-700">規定每一毫秒的位置、速度與加速度，實現時間差避撞。</p>
-                </div>
-                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
-                  <div class="font-bold text-slate-800">Policy（策略）</div>
-                  <div class="font-mono-code text-[10px] text-teal-700 my-0.5">π(sₜ) → aₜ · 閉環</div>
-                  <p class="text-[11px] text-slate-600">不死背時間表，根據當下感測畫面即時輸出控制指令。</p>
-                </div>
-              </div>
+              <p class="mag-body mb-2.5">
+                在沒有 GPS 的室內，機器人靠 <strong>SLAM（同步定位與建圖）</strong>把每一幀局部點雲透過 <strong>4×4 齊次變換矩陣</strong>連乘（<code class="font-mono-code text-xs bg-slate-200 px-1 rounded">T_C3→C1 = T_C2→C1 · T_C3→C2</code>）拼接成全局地圖。對齊兩幀點雲的經典演算法是 <strong>ICP（迭代最近點）</strong>，但以每幀點雲有 20 萬個點為例，工程師會選取例如 <strong>5,000 個特徵或降採樣點</strong>，使參與配準的點數降為原本的 1/40；實際速度仍取決於搜尋方式、迭代次數與硬體。
+              </p>
 
-              <!-- SVG Intersection Timing Avoidance & Sensor Fusion -->
+              <!-- SVG Loop Closure Diagram -->
               <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
-                <div class="text-xs font-bold text-slate-800 mb-1">⏱️ 十字路口時間差避撞 & LiDAR-相機感測融合</div>
-                <svg viewBox="0 0 460 148" class="w-full h-auto">
-                  <!-- Left: Intersection Timing -->
-                  <rect x="6" y="6" width="215" height="136" rx="8" fill="#F8FAFC" stroke="#CBD5E1"/>
-                  <text x="16" y="22" font-size="9.5" font-weight="bold" fill="#1E293B">幾何路徑相交，但時間錯開就安全！</text>
-                  <!-- Cross Roads -->
-                  <line x1="30" y1="82" x2="195" y2="82" stroke="#94A3B8" stroke-width="14"/>
-                  <line x1="112" y1="34" x2="112" y2="132" stroke="#94A3B8" stroke-width="14"/>
-                  <!-- Car A -->
-                  <rect x="48" y="76" width="20" height="12" rx="2" fill="#1D4ED8"/>
-                  <text x="32" y="66" font-size="8.5" font-weight="bold" fill="#1D4ED8">自車 (t=2s 通過)</text>
-                  <!-- Car B -->
-                  <rect x="106" y="38" width="12" height="20" rx="2" fill="#EA580C"/>
-                  <text x="124" y="50" font-size="8.5" font-weight="bold" fill="#EA580C">橫向車 (t=4s 通過)</text>
+                <div class="text-xs font-bold text-slate-800 mb-1.5">🧭 閉眼走路的「漂移雙重影」與閉環檢測（Loop Closure）</div>
+                <svg viewBox="0 0 460 165" class="w-full h-auto">
+                  <!-- Left: Drift Double-Wall Ghosting -->
+                  <rect x="6" y="6" width="216" height="152" rx="8" fill="#FEF2F2" stroke="#FCA5A5"/>
+                  <text x="16" y="23" font-size="10" font-weight="bold" fill="#B91C1C">❌ 僅靠前端里程計：累積漂移（Drift）</text>
 
-                  <!-- Right: LiDAR + Camera Fusion -->
-                  <rect x="233" y="6" width="221" height="136" rx="8" fill="#EEF2FF" stroke="#A5B4FC"/>
-                  <text x="243" y="22" font-size="9.5" font-weight="bold" fill="#3730A3">LiDAR 3D + 相機 2D 感測器融合</text>
-                  <rect x="246" y="34" width="84" height="44" rx="5" fill="#1E293B"/>
-                  <text x="255" y="53" font-size="9" fill="#38BDF8" font-family="JetBrains Mono">LiDAR 點雲</text>
-                  <text x="255" y="67" font-size="8.5" fill="#CBD5E1">精準距離 12.4m</text>
+                  <!-- True Square Room -->
+                  <rect x="44" y="42" width="120" height="86" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 3"/>
+                  <!-- Drifted Path -->
+                  <path d="M 44 128 L 164 126 L 170 38 L 52 34 L 58 114" fill="none" stroke="#DC2626" stroke-width="2.5"/>
+                  <circle cx="44" cy="128" r="4" fill="#1E293B"/>
+                  <circle cx="58" cy="114" r="4.5" fill="#DC2626"/>
+                  <text x="66" y="116" font-size="9" font-weight="bold" fill="#B91C1C">牆壁出現雙重影！</text>
+                  <text x="18" y="148" font-size="8.5" fill="#7F1D1D">每步 0.5° 誤差繞一圈後位置完全錯開</text>
 
-                  <rect x="354" y="34" width="88" height="44" rx="5" fill="#1E293B"/>
-                  <text x="363" y="53" font-size="9" fill="#FDE047" font-family="JetBrains Mono">RGB 相機</text>
-                  <text x="363" y="67" font-size="8.5" fill="#CBD5E1">語意：紅燈/行人</text>
+                  <!-- Right: Loop Closure Global Optimization -->
+                  <rect x="234" y="6" width="220" height="152" rx="8" fill="#F0FDFA" stroke="#5EEAD4"/>
+                  <text x="244" y="23" font-size="10" font-weight="bold" fill="#0F766E">✅ 後端閉環檢測：全局位姿圖拉正</text>
 
-                  <text x="246" y="98" font-size="9" fill="#1E293B">透過外參/內參投影把 3D 點雲貼上 2D 影像，</text>
-                  <text x="246" y="112" font-size="9" font-weight="bold" fill="#4338CA">同時知道「它是誰（語意）」與「有多遠（幾何）」！</text>
+                  <rect x="276" y="42" width="120" height="86" fill="none" stroke="#0D9488" stroke-width="3"/>
+                  <circle cx="276" cy="128" r="5" fill="#0D9488"/>
+                  <circle cx="276" cy="128" r="10" fill="none" stroke="#F59E0B" stroke-width="2"/>
+                  <text x="292" y="116" font-size="9" font-weight="bold" fill="#0F766E">辨識出「回到原點！」</text>
+                  <text x="246" y="148" font-size="8.5" fill="#115E59">平行線程執行 Pose Graph Optimization 降低累積誤差</text>
                 </svg>
               </div>
             </div>
 
-            <!-- Trajectory Optimization Cost Function -->
-            <div class="bg-slate-900 text-white rounded-xl p-2.5 text-xs">
-              <div class="text-amber-300 font-bold mb-0.5">⚖️ 軌跡優化目標函數（Trajectory Optimization）：</div>
-              <div class="font-mono-code text-[11px] text-slate-200">
-                Minimize J = w₁·C_safety(遠離障礙) + w₂·C_comfort(減少急動度 Jerk) + w₃·C_efficiency(準時抵達)
+            <!-- UMI & Project Aria -->
+            <div class="grid grid-cols-2 gap-2.5 text-xs">
+              <div class="bg-slate-900 text-white p-2.5 rounded-xl">
+                <div class="font-bold text-teal-300">🗜️ UMI 手持採集夾爪</div>
+                <p class="text-slate-300 text-[11px] mt-0.5 leading-snug">
+                  不用買昂貴機械臂！人類直接拿著裝有魚眼相機與 SLAM 的手持夾爪去開門、疊碗，就能錄製精準 6D 軌跡教機器人。
+                </p>
+              </div>
+              <div class="bg-slate-900 text-white p-2.5 rounded-xl">
+                <div class="font-bold text-sky-300">👓 Meta Project Aria 眼鏡</div>
+                <p class="text-slate-300 text-[11px] mt-0.5 leading-snug">
+                  輕量智慧眼鏡內建多顆 SLAM 相機與眼動追蹤，在日常生活中無感記錄第一人稱空間記憶與人類注意力。
+                </p>
               </div>
             </div>
-          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜感測融合與軌跡約束</summary><div class="mag-body mt-2 space-y-2"><p>將LiDAR點映射到相機座標，再依內參投影至像素。若時間不同步或外參因震動改變，點雲可能與影像物體錯位。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">P<sub>c</sub> = R<sub>c←l</sub>P<sub>l</sub> + t<sub>c←l</sub><br>Z<sub>c</sub>[u,v,1]ᵀ = KP<sub>c</sub></div><p>目標函數在安全距離、平順度與時間間取捨；碰撞、最大速度、最大加速度、轉角等物理或安全限制應在規劃問題中明確處理。軌跡跟蹤時需依新觀測修正。</p></div></details></div>
+          </div>

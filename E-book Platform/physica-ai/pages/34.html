@@ -1,1 +1,72 @@
-<article class="h-full flex flex-col"><header class="flex items-center justify-between border-b-2 pb-1.5 mb-3" style="border-color:#7C3AED"><span class="text-xs font-bold tracking-wider" style="color:#7C3AED">UNIT 07 · 冰淇淋與協同設計（L12）</span><span class="text-xs font-mono-code text-slate-400">P. 34</span></header><h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 leading-snug mb-3">長時程操控：冰淇淋為什麼難舀？</h2><div class="space-y-2"><p class="mag-body mb-2.5">冰淇淋會隨時間改變形狀與黏性；舀取不是單次抓取，而是多次接觸、分離與運送。課堂描述的受試者觀察發現兩種常見做法。</p><figure class="bg-white border border-slate-200 rounded-xl p-2 my-2"><svg viewBox="0 0 440 160" class="w-full h-auto" role="img" aria-label="食物分離與碗壁支撐"><g stroke="#7C3AED" stroke-width="2" fill="none"><path d="M18 40Q25 132 104 136T190 40M250 40Q257 132 336 136T422 40"/></g><g fill="#E2C6A2" stroke="#A16207" stroke-width="1.5"><path d="M40 81Q70 28 112 74L112 125H59Z"/><path d="M120 75Q158 39 174 84L158 119H120Z"/><path d="M350 77Q380 51 404 82L391 115 352 126Z"/></g><g stroke="#475569" stroke-width="5" stroke-linecap="round"><path d="M116 20v70m0 0-11 15M287 36l65 65m-3-5 22 6"/></g><g fill="#475569" font-size="11" text-anchor="middle"><text x="104" y="153">切割後分離</text><text x="336" y="153">碗壁提供支撐</text></g></svg><figcaption class="text-[11px] text-slate-500 text-center">食物分離與碗壁支撐（示意圖）</figcaption></figure><p class="mag-body mb-2.5">切割可減少與大塊食物的黏連；利用碗壁反作用力，可將食物推向湯匙。效果取決於食物狀態、容器與工具。</p><section class="bg-white border border-slate-200 rounded-xl p-3 mb-2.5"><h3 class="font-bold text-sm text-slate-800 mb-1">軟硬體協同設計 Co-Design</h3><p class="mag-body mb-2.5">同時調整湯匙長度、相機安裝、碗的位置及動作軌跡。先在模擬檢查可達性與碰撞，再用實物檢驗舀取量、溢出、時間、剩餘量及人為介入。</p></section><div class="bg-slate-900 text-slate-100 rounded-xl p-3 mt-2"><h3 class="text-xs font-bold text-amber-300 mb-1">任務評估</h3><p class="text-xs leading-relaxed">定義每份食物合理份量、完成標準與重複操作的成功率，並記錄融化等狀態變化。</p></div><p class="text-[11px] text-slate-500 mt-2">課程來源：<a class="underline" href="https://docs.google.com/document/d/1yg6q3MnkFNLyNEujEtNEDg-xp4bIosLthd8CjEkEXgs/edit" target="_blank" rel="noopener noreferrer">Lecture 12 講義</a>、<a class="underline" href="https://drive.google.com/file/d/1Xk47MRAxE3eSK0DlKbj4TOrOI6gweHWX/view" target="_blank" rel="noopener noreferrer">逐字稿 Part 1</a>、<a class="underline" href="https://drive.google.com/file/d/1lRt0Knt3tl-0dSu0_XpHauuE4tbwMgRn/view" target="_blank" rel="noopener noreferrer">Part 2</a></p></div></article>
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-slate-300 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold text-red-700">TAIWAN RESEARCH · 場景參數化</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 34</span>
+              </div>
+
+              <h3 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+                低車道約束下的混合車流建模
+              </h3>
+
+              <p class="mag-body mb-2.5">
+                課程以台灣混合車流的HetroData研究案例說明：若車輛並非嚴格沿車道線行駛，單純依賴車道拓撲的場景表徵可能不足。可用衝突位置及相對軌跡參數描述交會關係。
+              </p>
+
+              <!-- SVG Diagram: Conflict Instance Anchoring & HetroData -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
+                <div class="text-xs font-bold text-slate-800 mb-1.5">🛵 HetroData 與「衝突瞬時錨定（Conflict Instance Anchoring）」</div>
+                <svg viewBox="0 0 460 175" class="w-full h-auto">
+                  <!-- Intersection Background -->
+                  <rect x="8" y="6" width="250" height="162" rx="8" fill="#F8FAFC" stroke="#CBD5E1"/>
+                  <text x="16" y="22" font-size="9.5" font-weight="bold" fill="#1E293B">拋棄車道線依賴，改以「衝突錨點 Qc」建模</text>
+
+                  <!-- Road Grid -->
+                  <rect x="20" y="75" width="226" height="44" fill="#E2E8F0"/>
+                  <rect x="112" y="30" width="44" height="130" fill="#E2E8F0"/>
+
+                  <!-- Car Trajectory -->
+                  <path d="M 32 97 L 195 97" stroke="#1D4ED8" stroke-width="2.5"/>
+                  <rect x="42" y="90" width="22" height="14" rx="2" fill="#1D4ED8"/>
+                  <text x="34" y="84" font-size="8.5" font-weight="bold" fill="#1D4ED8">汽車 v_in</text>
+
+                  <!-- Scooter Hook Turn Trajectory -->
+                  <path d="M 134 152 Q 134 102 185 88" fill="none" stroke="#EA580C" stroke-width="2.5" stroke-dasharray="4 2"/>
+                  <circle cx="134" cy="144" r="6" fill="#EA580C"/>
+                  <text x="144" y="148" font-size="8.5" font-weight="bold" fill="#C2410C">機車鉤狀轉彎</text>
+
+                  <!-- Conflict Anchor Qc -->
+                  <circle cx="134" cy="97" r="9" fill="#DC2626" fill-opacity="0.25" stroke="#DC2626" stroke-width="2"/>
+                  <circle cx="134" cy="97" r="3.5" fill="#DC2626"/>
+                  <text x="145" y="114" font-size="9.5" font-weight="bold" fill="#B91C1C">衝突錨點 Qc</text>
+
+                  <!-- Angle Arcs -->
+                  <text x="92" y="114" font-size="8.5" font-family="JetBrains Mono" fill="#334155">θ₁, θ₂</text>
+
+                  <!-- Right Parameter Extraction & Boundary Testing -->
+                  <rect x="268" y="6" width="184" height="162" rx="8" fill="#FEF2F2" stroke="#FECACA"/>
+                  <text x="278" y="25" font-size="10" font-weight="bold" fill="#991B1B">📊 參數化限界壓力測試</text>
+                  <text x="278" y="44" font-size="9" fill="#1E293B">從真實台灣路口數據集</text>
+                  <text x="278" y="57" font-size="9" font-weight="bold" fill="#1D4ED8">HetroData</text>
+                  <text x="332" y="57" font-size="9" fill="#1E293B">中提取四大變數：</text>
+
+                  <g font-size="9" font-family="JetBrains Mono" fill="#1E293B">
+                    <text x="282" y="75">• 進場角度 θ₁</text>
+                    <text x="282" y="89">• 轉向角度 θ₂</text>
+                    <text x="282" y="103">• 進場速度 v_in</text>
+                    <text x="282" y="117">• 抵達時間差 Δt</text>
+                  </g>
+
+                  <text x="278" y="137" font-size="8.5" fill="#7F1D1D">輸入模擬器自動生成數千個</text>
+                  <text x="278" y="150" font-size="8.5" font-weight="bold" fill="#B91C1C">極端臨界組合，畫出安全邊界！</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="bg-slate-900 text-slate-100 rounded-xl p-3 text-xs leading-relaxed">
+              <strong class="text-amber-300">🌏 用途與限制</strong>
+              衝突錨點有助於將交互軌跡參數化，生成可重現的測試案例。抽樣分布、原始標註與模擬器誤差仍會影響驗證結果。
+            </div>
+          </div>
+        

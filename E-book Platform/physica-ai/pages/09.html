@@ -1,79 +1,59 @@
 
           <div class="h-full flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between border-b-2 border-orange-600 pb-1.5 mb-2.5">
-                <span class="text-xs font-bold tracking-wider text-orange-600">UNIT 02 · 數據品質評估</span>
+              <div class="flex items-center justify-between border-b-2 border-orange-600 pb-1.5 mb-3">
+                <span class="text-xs font-bold tracking-wider text-orange-600">UNIT 02 · 數據困境（整合 L3）</span>
                 <span class="text-xs font-mono-code text-slate-400">P. 09</span>
               </div>
 
               <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
-                評價機器人數據的四大黃金維度
+                「網路人類」與「網路機器人」的巨大數據鴻溝
               </h2>
 
               <p class="mag-body mb-3">
-                既然沒有單一方法能無限量產完美數據，工程師必須像調配營養餐一樣，在四個相互拉扯的指標之間尋找最佳平衡：
+                ChatGPT 之所以聰明，是因為人類把幾千年來的書籍、維基百科與網頁全放上了網際網路，隨手可得數兆個文字 Token。但網際網路上卻<strong>沒有「機器人關節力矩與觸覺數據」</strong>！更棘手的是，看 100 萬支人類做菜影片，影片裡只有畫面，卻沒有告訴機器人「手腕該轉幾度、手指該用幾牛頓力道」。
               </p>
 
-              <!-- 4 Dimensions Grid -->
-              <div class="grid grid-cols-2 gap-2 text-xs mb-3">
-                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
-                  <span class="font-bold text-blue-700">🎯 保真度 (Fidelity)</span>
-                  <p class="text-slate-600 mt-0.5">物理接觸力與視覺畫面有多貼近真實硬體？</p>
+              <!-- Combinatorial Explosion Visual Equation -->
+              <div class="bg-orange-50 border-2 border-orange-200 rounded-xl p-4 mb-3 shadow-sm">
+                <div class="text-xs font-bold text-orange-800 uppercase tracking-wider mb-2">💥 組合爆炸（Combinatorial Explosion）算式</div>
+                <div class="flex flex-wrap items-center justify-center gap-2 text-center font-mono-code my-2">
+                  <div class="bg-white px-2.5 py-2 rounded-lg border border-orange-200 shadow-xs">
+                    <div class="text-lg font-bold text-slate-900">100</div>
+                    <div class="text-[10px] text-slate-500">種日常物體</div>
+                  </div>
+                  <span class="text-lg font-bold text-orange-600">×</span>
+                  <div class="bg-white px-2.5 py-2 rounded-lg border border-orange-200 shadow-xs">
+                    <div class="text-lg font-bold text-slate-900">20</div>
+                    <div class="text-[10px] text-slate-500">種操作任務</div>
+                  </div>
+                  <span class="text-lg font-bold text-orange-600">×</span>
+                  <div class="bg-white px-2.5 py-2 rounded-lg border border-orange-200 shadow-xs">
+                    <div class="text-lg font-bold text-slate-900">20</div>
+                    <div class="text-[10px] text-slate-500">種光照環境</div>
+                  </div>
+                  <span class="text-lg font-bold text-orange-600">×</span>
+                  <div class="bg-white px-2.5 py-2 rounded-lg border border-orange-200 shadow-xs">
+                    <div class="text-lg font-bold text-slate-900">5</div>
+                    <div class="text-[10px] text-slate-500">種機械臂形態</div>
+                  </div>
                 </div>
-                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
-                  <span class="font-bold text-orange-600">📦 規模 (Scale)</span>
-                  <p class="text-slate-600 mt-0.5">能否在幾天內低成本擴展到數百萬條軌跡？</p>
+                <div class="text-center mt-2 pt-2 border-t border-orange-200/80">
+                  <span class="font-mono-code text-xl sm:text-2xl font-black text-orange-600">= 200,000（二十萬種組合！）</span>
                 </div>
-                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
-                  <span class="font-bold text-teal-700">🌈 覆蓋率 (Coverage)</span>
-                  <p class="text-slate-600 mt-0.5">是否涵蓋各種光照、材質、擺放角度與長尾異常？</p>
-                </div>
-                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
-                  <span class="font-bold text-purple-700">💰 成本 (Cost)</span>
-                  <p class="text-slate-600 mt-0.5">採集每小時數據所需的人力、硬體與算力開銷。</p>
-                </div>
+                <p class="text-xs text-slate-700 mt-2 leading-relaxed">
+                  <strong>結論：</strong>就算僱用一千名工程師每天不眠不休地遙控採集，也永遠填不滿這個天文數字。盲目追求「收集海量靜態資料」的舊思維註定失敗！
+                </p>
               </div>
+            </div>
 
-              <!-- SVG 4-Axis Radar / Trade-off Chart -->
-              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
-                <div class="text-xs font-bold text-slate-800 mb-1">📊 四大資料來源能力雷達對照圖</div>
-                <svg viewBox="0 0 440 195" class="w-full h-auto">
-                  <!-- Radar Axes -->
-                  <g stroke="#CBD5E1" stroke-width="1">
-                    <polygon points="145,25 225,95 145,165 65,95" fill="none"/>
-                    <polygon points="145,48 198,95 145,142 92,95" fill="none"/>
-                    <polygon points="145,71 172,95 145,119 118,95" fill="none"/>
-                    <line x1="145" y1="20" x2="145" y2="170"/>
-                    <line x1="60" y1="95" x2="230" y2="95"/>
-                  </g>
-                  <!-- Axis Labels -->
-                  <text x="122" y="14" font-size="10" font-weight="bold" fill="#1D4ED8">高保真度</text>
-                  <text x="234" y="98" font-size="10" font-weight="bold" fill="#EA580C">大規模</text>
-                  <text x="122" y="184" font-size="10" font-weight="bold" fill="#0D9488">高覆蓋率</text>
-                  <text x="14" y="98" font-size="10" font-weight="bold" fill="#7C3AED">低成本</text>
-
-                  <!-- Polygon 1: Real-World Teleop (High Fidelity, Low Scale/Low Cost) -->
-                  <polygon points="145,30 165,95 145,120 112,95" fill="#1D4ED8" fill-opacity="0.22" stroke="#1D4ED8" stroke-width="2"/>
-
-                  <!-- Polygon 2: Physics Simulation (High Scale & Coverage, Medium Fidelity) -->
-                  <polygon points="145,52 218,95 145,158 76,95" fill="#EA580C" fill-opacity="0.22" stroke="#EA580C" stroke-width="2"/>
-
-                  <!-- Legend on Right -->
-                  <g font-size="10.5">
-                    <rect x="275" y="34" width="12" height="12" rx="2" fill="#1D4ED8"/>
-                    <text x="293" y="44" font-weight="bold" fill="#1E293B">真實遙控採集</text>
-                    <text x="293" y="59" font-size="9" fill="#475569">物理最真實，但人力昂貴慢</text>
-
-                    <rect x="275" y="84" width="12" height="12" rx="2" fill="#EA580C"/>
-                    <text x="293" y="94" font-weight="bold" fill="#1E293B">物理模擬器 SDG</text>
-                    <text x="293" y="109" font-size="9" fill="#475569">一鍵生成萬種變化，有 Sim2Real 落差</text>
-
-                    <rect x="275" y="134" width="12" height="12" rx="2" fill="#0D9488"/>
-                    <text x="293" y="144" font-weight="bold" fill="#1E293B">黃金混合配方</text>
-                    <text x="293" y="159" font-size="9" fill="#475569">少量真實高保真 + 海量模擬/世界模型</text>
-                  </g>
-                </svg>
+            <!-- Bottom Comparison Bar -->
+            <div class="bg-slate-900 text-white rounded-xl p-3 flex items-center justify-between gap-3">
+              <div class="text-xs">
+                <span class="text-orange-400 font-bold">關鍵思維轉向：</span>
+                從「一次性買斷靜態資料集」升級為「讓機器人在錯誤中精準進化的資料飛輪」。
               </div>
+              <span class="font-mono-code text-xs px-2.5 py-1 rounded bg-orange-600 text-white shrink-0">DATA FLYWHEEL</span>
             </div>
           </div>
         

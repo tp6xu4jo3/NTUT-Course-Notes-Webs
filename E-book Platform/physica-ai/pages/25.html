@@ -1,1 +1,55 @@
-<article class="h-full flex flex-col"><header class="flex items-center justify-between border-b-2 pb-1.5 mb-3" style="border-color:#7C3AED"><span class="text-xs font-bold tracking-wider" style="color:#7C3AED">UNIT 07 · 機器人操控（L12）</span><span class="text-xs font-mono-code text-slate-400">P. 25</span></header><h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 leading-snug mb-3">機械手臂由什麼組成？</h2><div class="space-y-2"><p class="mag-body mb-2.5">串列連桿操控器由剛性連桿和關節依序連接。關節提供運動，連桿傳遞運動，末端執行器接觸環境。自由度（DoF）是描述構型所需的獨立座標數量。</p><figure class="bg-white border border-slate-200 rounded-xl p-2 my-2"><svg viewBox="0 0 440 160" class="w-full h-auto" role="img" aria-label="串列連桿操控器"><g fill="none" stroke="#7C3AED" stroke-width="8" stroke-linecap="round"><path d="M55 126 L106 81 L160 105 L218 42 L277 67 L330 44"/></g><g fill="#F4F0FF" stroke="#4F46E5" stroke-width="3"><circle cx="55" cy="126" r="8"/><circle cx="106" cy="81" r="8"/><circle cx="160" cy="105" r="8"/><circle cx="218" cy="42" r="8"/><circle cx="277" cy="67" r="8"/><circle cx="330" cy="44" r="8"/></g><rect x="28" y="128" width="55" height="14" rx="3" fill="#475569"/><path d="M338 44h18v-13h17m-17 13v13h17" fill="none" stroke="#0D9488" stroke-width="4"/><g fill="#475569" font-size="11"><text x="14" y="119">基座</text><text x="115" y="69">關節</text><text x="180" y="90">連桿</text><text x="335" y="23">末端工具</text></g></svg><figcaption class="text-[11px] text-slate-500 text-center">串列連桿操控器（示意圖）</figcaption></figure><div class="overflow-x-auto"><table class="w-full text-xs border-collapse my-2"><thead><tr><th class="text-left bg-slate-100 border border-slate-200 p-2">關節</th><th class="text-left bg-slate-100 border border-slate-200 p-2">運動</th><th class="text-left bg-slate-100 border border-slate-200 p-2">自由度</th></tr></thead><tbody><tr><td class="align-top border border-slate-200 p-2">旋轉 Revolute</td><td class="align-top border border-slate-200 p-2">繞軸旋轉，像門鉸鏈</td><td class="align-top border border-slate-200 p-2">1</td></tr><tr><td class="align-top border border-slate-200 p-2">滑動 Prismatic</td><td class="align-top border border-slate-200 p-2">沿軸平移，像抽屜</td><td class="align-top border border-slate-200 p-2">1</td></tr><tr><td class="align-top border border-slate-200 p-2">螺旋 Helical</td><td class="align-top border border-slate-200 p-2">旋轉與平移按螺距耦合</td><td class="align-top border border-slate-200 p-2">1</td></tr></tbody></table></div><div class="bg-slate-900 text-slate-100 rounded-xl p-3 mt-2"><h3 class="text-xs font-bold text-amber-300 mb-1">構型與姿態不同</h3><p class="text-xs leading-relaxed">七軸手臂有七個關節變數；末端剛體在三維空間的姿態通常用六個自由度描述。</p></div><p class="text-[11px] text-slate-500 mt-2">課程來源：<a class="underline" href="https://docs.google.com/document/d/1yg6q3MnkFNLyNEujEtNEDg-xp4bIosLthd8CjEkEXgs/edit" target="_blank" rel="noopener noreferrer">Lecture 12 講義</a>、<a class="underline" href="https://drive.google.com/file/d/1Xk47MRAxE3eSK0DlKbj4TOrOI6gweHWX/view" target="_blank" rel="noopener noreferrer">逐字稿 Part 1</a>、<a class="underline" href="https://drive.google.com/file/d/1lRt0Knt3tl-0dSu0_XpHauuE4tbwMgRn/view" target="_blank" rel="noopener noreferrer">Part 2</a></p></div></article>
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-indigo-600 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-indigo-700">UNIT 04 · 路徑規劃基礎（整合 L7, L8）</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 25</span>
+              </div>
+
+              <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+                構型空間（C-Space）與高維搜尋的演算法演進
+              </h2>
+
+              <p class="mag-body mb-2.5">
+                假設一條走廊寬 <strong>60 公分</strong>，在平面圖上這塊區域明明是「空的」，但寬 30 公分的掃地機器人能輕鬆通過，寬 80 公分的搬運車卻會卡死！為了讓演算法不用每次都計算複雜的車身碰撞體積，數學家發明了<strong>構型空間（Configuration Space, C-Space）</strong>：把所有障礙物向外<strong>膨脹（Minkowski Sum）機器人半徑 r</strong>，機器人本體就能簡化成一顆「無體積的幾何質點」！
+              </p>
+
+              <!-- SVG C-Space Obstacle Inflation -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
+                <div class="text-xs font-bold text-slate-800 mb-1">📐 Minkowski 障礙物膨脹：把機器人縮小成一個點</div>
+                <svg viewBox="0 0 460 122" class="w-full h-auto">
+                  <!-- Workspace -->
+                  <rect x="8" y="8" width="205" height="106" rx="8" fill="#F8FAFC" stroke="#CBD5E1"/>
+                  <text x="18" y="24" font-size="9.5" font-weight="bold" fill="#475569">真實工作空間（Workspace）</text>
+                  <rect x="85" y="42" width="46" height="46" fill="#64748B"/>
+                  <circle cx="48" cy="65" r="16" fill="#4F46E5" fill-opacity="0.25" stroke="#4F46E5" stroke-width="2"/>
+                  <circle cx="48" cy="65" r="3" fill="#4F46E5"/>
+                  <text x="26" y="96" font-size="8.5" fill="#4F46E5">半徑 r 的實體機器人</text>
+
+                  <text x="220" y="65" font-size="16" font-weight="bold" fill="#4F46E5">➔</text>
+
+                  <!-- C-Space -->
+                  <rect x="245" y="8" width="207" height="106" rx="8" fill="#EEF2FF" stroke="#A5B4FC"/>
+                  <text x="255" y="24" font-size="9.5" font-weight="bold" fill="#4338CA">構型空間（C-Space）</text>
+                  <!-- Inflated Obstacle -->
+                  <rect x="312" y="28" width="76" height="76" rx="15" fill="#FCA5A5" fill-opacity="0.55" stroke="#DC2626" stroke-dasharray="3 2"/>
+                  <rect x="327" y="43" width="46" height="46" fill="#64748B"/>
+                  <!-- Point Robot -->
+                  <circle cx="282" cy="65" r="4" fill="#4F46E5"/>
+                  <path d="M 282 65 Q 302 22 415 58" fill="none" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 2"/>
+                  <text x="256" y="96" font-size="8.5" font-weight="bold" fill="#B91C1C">膨脹後若走廊閉合 = 卡死！</text>
+                </svg>
+              </div>
+
+              <!-- Algorithm Evolution Ladder -->
+              <div class="bg-slate-900 text-slate-100 rounded-xl p-3 text-xs space-y-1.5">
+                <div class="font-bold text-indigo-300">🪜 演算法演進：為什麼 A* 會在機械臂前崩潰？</div>
+                <p class="text-[11px] text-slate-300 leading-snug">
+                  <strong>① A* 啟發式搜尋（f(n) = g(n) + h(n)）：</strong>在 2D 地圖（100×100 = 10⁴ 格點）極快，但遇上 7 軸機械臂（100⁷ = 10¹⁴）或 24 軸靈巧手（100²⁴）就會陷入<strong>「維度災難」</strong>。
+                </p>
+                <p class="text-[11px] text-slate-300 leading-snug">
+                  <strong>② 採樣型規劃（Sampling-Based）：</strong>放棄切格子，改在空間中隨機撒點連線！<strong>PRM（機率路網）</strong>適合靜態地圖多次查詢；<strong>RRT / RRT*</strong>：RRT 透過採樣延伸搜尋樹；RRT* 額外選擇低代價父節點與重連線，在適當條件下漸近逼近最佳解。
+                </p>
+              </div>
+            </div>
+          </div>
