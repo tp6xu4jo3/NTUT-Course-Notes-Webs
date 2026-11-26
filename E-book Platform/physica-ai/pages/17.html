@@ -70,5 +70,4 @@
                 Minimize J = w₁·C_safety(遠離障礙) + w₂·C_comfort(減少急動度 Jerk) + w₃·C_efficiency(準時抵達)
               </div>
             </div>
-          </div>
-        
+          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜感測融合與軌跡約束</summary><div class="mag-body mt-2 space-y-2"><p>將LiDAR點映射到相機座標，再依內參投影至像素。若時間不同步或外參因震動改變，點雲可能與影像物體錯位。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">P<sub>c</sub> = R<sub>c←l</sub>P<sub>l</sub> + t<sub>c←l</sub><br>Z<sub>c</sub>[u,v,1]ᵀ = KP<sub>c</sub></div><p>目標函數在安全距離、平順度與時間間取捨；碰撞、最大速度、最大加速度、轉角等物理或安全限制應在規劃問題中明確處理。軌跡跟蹤時需依新觀測修正。</p></div></details></div>

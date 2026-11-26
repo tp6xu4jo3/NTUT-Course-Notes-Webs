@@ -46,7 +46,7 @@
                     </div>
                   </div>
                   <div id="stereo-verdict" class="px-2.5 py-1 rounded bg-emerald-600/30 border border-emerald-400 text-emerald-200 text-[11px] font-bold text-right">
-                    ✅ 案頭抓取超精準！
+                    示意：估計誤差較小
                   </div>
                 </div>
                 <p class="text-[11px] text-slate-700 mt-1.5 leading-snug">
@@ -71,5 +71,4 @@
                 </div>
               </div>
             </div>
-          </div>
-        
+          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜多視角重建與五種深度監督</summary><div class="mag-body mt-2 space-y-2"><p>對極約束用於縮小另一張影像中的對應點搜尋範圍；三角測量估計3D位置，BA聯合調整相機姿態及3D點以降低重投影誤差。單目SfM通常存在尺度模糊性：無已知尺度時，整個重建同時放大仍可得到相同影像投影。</p><p>訓練深度模型的五種來源：實測RGB-D（直接量測但有盲區）、物理模擬（標註可控但有虛實差距）、雙目影像（有校準的基線可提供尺度）、人類標註（通常是相對遠近）、影片時序（可用視圖合成自監督）。</p><p>自監督以Depth CNN預測深度、Pose CNN預測相對運動，將鄰幀重投影到當前影像，比較像素差異。移動物體、遮擋、鏡面反射與光照變化會破壞假設。上方滑桿為近似誤差模型，沒有通用抓取／導航安全門檻。</p></div></details></div>

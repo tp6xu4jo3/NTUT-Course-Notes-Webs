@@ -30,13 +30,13 @@ export function bindInteractiveWidgets() {
 
         if (deltaZ_cm <= 2.5) {
           verdictEl.className = 'px-2.5 py-1 rounded bg-emerald-600/30 border border-emerald-400 text-emerald-200 text-[11px] font-bold text-right';
-          verdictEl.textContent = '✅ 案頭抓取超精準！';
+          verdictEl.textContent = '示意：估計誤差較小';
         } else if (deltaZ_cm <= 15) {
           verdictEl.className = 'px-2.5 py-1 rounded bg-amber-500/30 border border-amber-400 text-amber-200 text-[11px] font-bold text-right';
-          verdictEl.textContent = '⚠️ 室內導航尚可';
+          verdictEl.textContent = '示意：估計誤差中等';
         } else {
           verdictEl.className = 'px-2.5 py-1 rounded bg-rose-600/40 border border-rose-400 text-rose-200 text-[11px] font-bold text-right';
-          verdictEl.textContent = '🚨 誤差過大！需靠 LiDAR';
+          verdictEl.textContent = '示意：估計誤差較大';
         }
       }
 

@@ -59,5 +59,4 @@
                 </p>
               </div>
             </div>
-          </div>
-        
+          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜ICP從對應點到變換矩陣</summary><div class="mag-body mt-2 space-y-2"><p>已知點對時，可用最小平方剛體配準求旋轉與平移；未知點對時，ICP先尋找最近點，估計R、t，再更新點雲位置與對應點，直到誤差變化低於閾值或達迭代上限。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">min Σᵢ ‖ pᵢ − (Rqᵢ + t) ‖²</div><p>點到平面ICP則沿目標表面法向計算殘差。初始姿態差太大、平面缺乏特徵、重疊區過少或動態物體都可能導致錯配。IMU、里程計或全域配準可提供初始猜測；閉環檢測與位姿圖優化用於降低長時間漂移。<a class="underline" href="https://www.open3d.org/docs/latest/tutorial/pipelines/icp_registration.html">Open3D ICP</a></p></div></details></div>

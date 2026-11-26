@@ -70,5 +70,4 @@
             <div class="bg-indigo-950 text-indigo-100 rounded-xl p-2.5 text-xs">
               <strong>🚗 工程小知識：</strong> 為什麼要把四輪汽車簡化成前後各一輪的「單車模型」？因為在一般車速下，將左右兩輪合併到車軸中心線，就能用極簡三角函數精準預測整台車的轉彎軌跡！
             </div>
-          </div>
-        
+          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜低速單車模型的運動方程</summary><div class="mag-body mt-2 space-y-2"><p>將四輪車近似為前後兩個輪子，選後軸中心為參考點，假設平面、低速且輪胎無側滑。L是軸距，v為後軸縱向速度，δ為前輪轉角。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">ẋ = v cos θ<br>ẏ = v sin θ<br>θ̇ = (v/L) tan δ<br>R = L / tan |δ|</div><p>最大前輪轉角限制最小轉彎半徑。高速、低摩擦或顯著側滑時，需考慮輪胎動力學；全向輪與非完整約束車輛的可行運動也不同。</p></div></details></div>

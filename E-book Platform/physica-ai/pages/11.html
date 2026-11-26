@@ -77,5 +77,4 @@
               <strong class="text-amber-300">💡 一句話看懂投影本質：</strong>
               相機拍照是把 3D 世界「壓扁」成 2D 平面，過程中唯獨丟失了<strong>深度 Z</strong>。只要能找回每個像素的 Z 值，就能用 <code class="font-mono-code text-teal-200">Z · K⁻¹p</code> 瞬間還原整座立體世界！
             </div>
-          </div>
-        
+          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜座標系、投影與反投影</summary><div class="mag-body mt-2 space-y-2"><p>世界座標、相機座標與像素座標是不同參考系。先以外參將世界點轉到相機座標，再依針孔模型投影。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">P<sub>c</sub> = RP<sub>w</sub> + t<br>u = fₓX<sub>c</sub>/Z<sub>c</sub> + cₓ<br>v = fᵧY<sub>c</sub>/Z<sub>c</sub> + cᵧ</div><p>fₓ、fᵧ是像素單位焦距，cₓ、cᵧ為主點，Zc為相機深度。若RGB-D提供Zc，即可反投影。</p><div class="font-mono-code text-xs bg-slate-100 rounded p-2 my-1 break-words">X<sub>c</sub> = (u − cₓ)Z<sub>c</sub>/fₓ<br>Y<sub>c</sub> = (v − cᵧ)Z<sub>c</sub>/fᵧ</div><p>以4×4齊次矩陣可合併旋轉與平移；三維旋轉通常不可交換，先Roll再Pitch與反過來不同。實機還需處理鏡頭畸變、無效深度及感測器座標軸約定。參考：<a class="underline" href="https://docs.opencv.org/4.12.0/dc/dbb/tutorial_py_calibration.html">OpenCV相機校正</a>。</p></div></details></div>

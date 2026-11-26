@@ -52,5 +52,4 @@
                 </p>
               </div>
             </div>
-          </div>
-        
+          <details class="bg-white border border-slate-200 rounded-xl p-3 mt-2"><summary class="cursor-pointer text-xs font-bold text-slate-800">技術延伸｜柵格、BFS、A*、PRM與RRT</summary><div class="mag-body mt-2 space-y-2"><p>Occupancy Grid把地圖離散成佔用、空閒或未知格；解析度過粗可能消失窄通道，過細會增加計算。圓形機器人可用半徑膨脹障礙物；一般非圓形機器人還需考慮朝向及完整構型。</p><p>BFS逐層擴展，在等權重圖上找最少步數；A*以累積代價g及啟發式h選擇節點，最優性取決於啟發式及搜尋條件。PRM先採樣可行節點、檢查連線碰撞、建路網，再以圖搜尋連接起終點；狹窄通道可能難以抽中。</p><p>RRT從起點建樹，抽樣→找近鄰→朝樣本延伸→檢查碰撞→加入節點。RRT*再比較附近父節點成本及重連線；在相應條件下成本漸近逼近最優，而非保證有限時間找到最短路徑。</p></div></details></div>
