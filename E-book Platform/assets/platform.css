@@ -29,25 +29,44 @@
 .toc-entry[aria-current=page] .toc-page{color:var(--accent)}
 .toc-entry[aria-current=page]{box-shadow:inset 2px 0 var(--accent)}
 #toc-toggle[aria-expanded=true]{background:#e4e9e0;border-color:#cdd7ca;color:var(--accent)}
-/* Incoming paper swings about the binding, with a directional moving shadow. */
-.spread{position:relative;perspective:1500px;isolation:isolate}
-.spread.turn-next{--turn-angle:26deg;--turn-shift:22px;--shadow-direction:270deg}
-.spread.turn-prev{--turn-angle:-26deg;--turn-shift:-22px;--shadow-direction:90deg}
-.spread:is(.turn-next,.turn-prev) .reader-page{animation:paperTurn .48s cubic-bezier(.2,.75,.22,1) both;backface-visibility:hidden}
-.spread.turn-next .reader-page{transform-origin:left center}
-.spread.turn-prev .reader-page{transform-origin:right center}
-@keyframes paperTurn{0%{opacity:.48;transform:translateX(var(--turn-shift)) rotateY(var(--turn-angle));filter:brightness(.82)}55%{opacity:1;filter:brightness(.98)}100%{opacity:1;transform:none;filter:none}}
-.spread:is(.turn-next,.turn-prev)::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;background:linear-gradient(var(--shadow-direction),transparent 12%,#51463624 45%,#302a2040 53%,transparent 90%);animation:paperShadow .48s ease-out both}
-@keyframes paperShadow{0%{opacity:.9}100%{opacity:0}}
 @media(max-width:1099px){
   .reader-layout{flex-direction:column}
   .toc-panel{position:relative;inset:auto;width:100%;max-width:none;max-height:min(36%,250px);border-right:0;border-bottom:1px solid var(--line);box-shadow:none;padding:8px 14px}
   .toc-head{top:-8px;padding-top:2px}
   .stage{width:100%;flex:1;min-height:0}
-  .spread.turn-next{--turn-angle:19deg;--turn-shift:16px}
-  .spread.turn-prev{--turn-angle:-19deg;--turn-shift:-16px}
 }
-@media(prefers-reduced-motion:reduce){
-  .spread:is(.turn-next,.turn-prev) .reader-page,.spread:is(.turn-next,.turn-prev)::after{animation:none!important}
-  .spread:is(.turn-next,.turn-prev)::after{display:none}
-}
+
+/* Physical page leaf. Live pages remain stationary beneath the temporary layer. */
+.spread{position:relative;isolation:isolate;perspective:2000px}
+.turn-overlay{position:absolute;inset:0;z-index:4;pointer-events:none;perspective:1800px;transform-style:preserve-3d;overflow:visible}
+.turn-stationary,.turn-leaf,.turn-single,.turn-single-base{position:absolute;top:0;bottom:0}
+.turn-left{left:0;width:50%}
+.turn-right{right:0;width:50%}
+.turn-stationary{z-index:1;overflow:hidden}
+.turn-leaf{z-index:2;transform-style:preserve-3d;will-change:transform}
+.turn-leaf.turn-right{transform-origin:left center}
+.turn-leaf.turn-left{transform-origin:right center}
+.turn-face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#faf8f3}
+.turn-back{transform:rotateY(180deg)}
+.turn-front::after,.turn-back::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#29251826,transparent 22%,transparent 83%,#29251814)}
+.turn-leaf.turn-left .turn-front::after,.turn-leaf.turn-right .turn-back::after{background:linear-gradient(270deg,#29251826,transparent 22%,transparent 83%,#29251814)}
+.turn-single,.turn-single-base{left:0;right:0;overflow:hidden}
+.turn-single{z-index:2;transform-origin:left center;will-change:transform;box-shadow:8px 0 24px #241d262e;backface-visibility:hidden}
+.turn-overlay .reader-page{width:100%;height:100%;min-height:0;max-height:none;flex:none;pointer-events:none;scrollbar-width:none}
+.turn-overlay .reader-page::-webkit-scrollbar{display:none}
+@media(prefers-reduced-motion:reduce){.turn-overlay{display:none!important}}
+
+/* Rounded reading rail, native accessible range with matching visual endpoints. */
+.reader-footer{gap:clamp(10px,2.5vw,30px);padding-block:10px;min-height:57px}
+#counter{font-size:12px;font-weight:600;letter-spacing:.02em;color:#4c554a;min-width:76px}
+#percent{font-size:12px;min-width:43px;text-align:right;color:var(--accent);font-weight:750}
+.progress-control{flex:1;min-width:0;display:flex;align-items:center;padding:0 1px}
+.reader-footer #progress{--progress:0%;--rail:#dce2d9;--fill:#47796b;appearance:none;-webkit-appearance:none;display:block;width:100%;height:28px;margin:0;padding:0;border:0;background:transparent;cursor:pointer;touch-action:pan-y}
+#progress::-webkit-slider-runnable-track{height:7px;border-radius:999px;background:linear-gradient(to right,var(--fill) 0%,var(--fill) var(--progress),var(--rail) var(--progress),var(--rail) 100%);box-shadow:inset 0 1px 2px #273b2620}
+#progress::-moz-range-track{height:7px;border-radius:999px;background:var(--rail);box-shadow:inset 0 1px 2px #273b2620}
+#progress::-moz-range-progress{height:7px;border-radius:999px;background:var(--fill)}
+#progress::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:17px;height:17px;margin-top:-5px;border:2px solid #f8f7f3;border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px #47796b,0 2px 5px #263d3a36}
+#progress::-moz-range-thumb{width:13px;height:13px;border:2px solid #f8f7f3;border-radius:50%;background:var(--accent);box-shadow:0 0 0 1px #47796b,0 2px 5px #263d3a36}
+#progress:hover::-webkit-slider-thumb,#progress:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px #47796b28,0 2px 5px #263d3a36}
+#progress:disabled{cursor:default;opacity:.7}
+@media(max-width:500px){#counter{min-width:58px;font-size:11px}#percent{min-width:34px;font-size:11px}.reader-footer{gap:8px}}

@@ -145,3 +145,8 @@
       padding: 1px 3px 0;
     }
   
+/* Full-bleed cover: paint the actual page, not a fixed-height negative-margin child. */
+.magazine-page.physica-cover-page{padding:0;background:#0f172a;background-image:linear-gradient(135deg,#0f172a,#172554,#0f172a);color:#fff;scrollbar-color:#45608a #0f172a}
+.physica-cover-page>.physica-cover{margin:0;min-height:100%;width:100%;padding:clamp(20px,2.7vw,36px);border-radius:0;background:transparent;gap:12px}
+.physica-cover-page>.physica-cover>div{flex-shrink:0}
+.physica-cover-page>.physica-cover>div:nth-child(3){flex:1 0 auto}

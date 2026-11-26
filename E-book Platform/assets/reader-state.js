@@ -1,11 +1,16 @@
-// Reading-order and progress helpers, independent of the DOM.
+// Reading positions, not individual visible page counts.
 export function pageState(length, target, doublePage) {
-  const count = Math.max(1, length);
+  const count = Math.max(1, length), stride = doublePage ? 2 : 1;
   const idx = Math.max(0, Math.min(count - 1, Math.trunc(Number(target) || 0)));
-  const first = doublePage ? idx - idx % 2 : idx;
-  const last = Math.min(count - 1, first + (doublePage ? 1 : 0));
-  const value = last + 1;
-  return {first, last, value, percent: value === count ? 100 : Math.min(99, Math.round(value / count * 100))};
+  const first = idx - idx % stride;
+  const last = Math.min(count - 1, first + stride - 1);
+  const position = Math.floor(first / stride);
+  const max = Math.ceil(count / stride) - 1;
+  const percent = max === 0 ? 0 : position === max ? 100 : Math.min(99, Math.round(position / max * 100));
+  return {first,last,position,max,percent};
+}
+export function targetForPosition(position,doublePage) {
+  return Math.max(0,Math.trunc(Number(position)||0))*(doublePage?2:1);
 }
 
 export function groupToc(entries) {

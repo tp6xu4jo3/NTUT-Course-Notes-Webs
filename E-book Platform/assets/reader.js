@@ -1,7 +1,8 @@
 import {getBooks,loadPosition,savePosition} from "./catalog.js";
-import {pageState,groupToc} from "./reader-state.js";
+import {pageState,groupToc,targetForPosition} from "./reader-state.js";
+import {makeSnapshot,playPageTurn} from "./page-turn.js";
 const $=id=>document.getElementById(id),left=$("left"),right=$("right"),spread=$("spread"),mq=matchMedia("(min-width:1100px)"),status=$("reader-status"),stage=$("stage");
-let book,page=0,revision=0,scale=1,bindWidgets=()=>{},cache=new Map(),start=null,displayedPage=null,activeChapter=null;
+let book,page=0,revision=0,scale=1,bindWidgets=()=>{},cache=new Map(),start=null,displayedPage=null,activeChapter=null,turn=null;
 const wide=()=>mq.matches;
 const state=n=>pageState(book.pages.length,n,wide());
 function toggleToc(show){$("toc").hidden=!show;$("toc-toggle").setAttribute("aria-expanded",String(show));if(show){$("toc-close").focus();revealActive()}}
@@ -20,7 +21,8 @@ function sync(){
   $("chapter").textContent=c?.title||"";
   $("counter").textContent=(s.first===s.last?String(s.first+1):(s.first+1)+"–"+(s.last+1))+" / "+count;
   $("percent").textContent=s.percent+"%";
-  progress.value=s.value;
+  progress.max=Math.max(1,s.max);progress.disabled=s.max===0;progress.value=s.position;
+  progress.style.setProperty('--progress',s.percent+'%');
   progress.setAttribute("aria-valuetext",$("counter").textContent+"，"+s.percent+"%");
   $("prev").disabled=s.first===0;$("next").disabled=s.last===count-1;
   const changed=activeChapter!==c?.page;activeChapter=c?.page;
@@ -35,7 +37,34 @@ function sync(){
   }
   if(changed)revealActive();
 }
-async function render(n){if(!book)return;const old=displayedPage;page=state(n).first;const request=++revision,here=page;const hasRight=wide()&&here+1<book.pages.length;sync();status.textContent="";spread.setAttribute("aria-busy","true");try{const [a,b]=await Promise.all([text(new URL(book.pages[here],book.base).href),hasRight?text(new URL(book.pages[here+1],book.base).href):Promise.resolve("")]);if(request!==revision)return;left.innerHTML=a;right.innerHTML=b;right.hidden=!hasRight;left.scrollTop=right.scrollTop=0;bindWidgets();savePosition(book.id,here);spread.classList.remove("turn-next","turn-prev");if(old!==null&&here!==old){void spread.offsetWidth;spread.classList.add(here>old?"turn-next":"turn-prev");}displayedPage=here;const upcoming=here+(wide()?2:1);if(upcoming<book.pages.length)text(new URL(book.pages[upcoming],book.base).href).catch(()=>{});}catch(e){if(request===revision){status.textContent="頁面載入失敗，請重新整理。";console.error(e)}}finally{if(request===revision)spread.removeAttribute("aria-busy")}}
+function stopTurn(){if(turn){turn.cancel();turn=null}}
+function installPage(el,html,index){
+  el.innerHTML=html;el.dataset.page=String(index);
+  el.classList.toggle("physica-cover-page",book.id==="physica-ai"&&index===0);
+  el.scrollTop=0;el.scrollLeft=0;
+}
+async function render(n,{animate=true}={}){
+  if(!book)return;
+  const here=state(n).first,request=++revision,hasRight=wide()&&here+1<book.pages.length;
+  const old=displayedPage;page=here;status.textContent="";spread.setAttribute("aria-busy","true");
+  try{
+    const [a,b]=await Promise.all([text(new URL(book.pages[here],book.base).href),hasRight?text(new URL(book.pages[here+1],book.base).href):Promise.resolve("")]);
+    if(request!==revision)return;
+    stopTurn();
+    const shouldTurn=animate&&old!==null&&here!==old&&!matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const oldLeft=shouldTurn?makeSnapshot(left):null,oldRight=shouldTurn&&!right.hidden?makeSnapshot(right):null;
+    installPage(left,a,here);installPage(right,b,here+1);right.hidden=!hasRight;
+    if(shouldTurn){
+      try{turn=playPageTurn(spread,oldLeft,oldRight,makeSnapshot(left),hasRight?makeSnapshot(right):null,here>old)}
+      catch(e){spread.querySelectorAll(".turn-overlay").forEach(el=>el.remove());console.warn("Page animation fallback",e)}
+    }
+    displayedPage=here;sync();bindWidgets();savePosition(book.id,here);
+    const upcoming=here+(wide()?2:1);
+    if(upcoming<book.pages.length)text(new URL(book.pages[upcoming],book.base).href).catch(()=>{});
+    if(upcoming+1<book.pages.length&&wide())text(new URL(book.pages[upcoming+1],book.base).href).catch(()=>{});
+  }catch(e){if(request===revision){page=displayedPage??0;sync();status.textContent="頁面載入失敗，請重新整理。";console.error(e)}}
+  finally{if(request===revision)spread.removeAttribute("aria-busy")}
+}
 function step(dir){if(!book)return;const n=page+dir*(wide()?2:1);if(n>=0&&n<book.pages.length)render(n)}
 function buildToc(){
   const nav=$("toc-list");nav.replaceChildren();
@@ -54,7 +83,11 @@ function buildToc(){
 }
 function font(delta){scale=Math.max(.88,Math.min(1.30,scale+delta));document.documentElement.style.setProperty("--font-scale",scale)}
 const interactive="button,a,input,select,textarea,label,summary,details,[role=button],[role=slider],[role=checkbox],[contenteditable],.quiz-card,[onclick]";
-$("prev").onclick=()=>step(-1);$("next").onclick=()=>step(1);$("progress").oninput=e=>render(Number(e.target.value)-1);$("toc-toggle").onclick=()=>{const show=$("toc").hidden;toggleToc(show);if(!show)$("toc-toggle").focus()};$("toc-close").onclick=()=>{toggleToc(false);$("toc-toggle").focus()};$("smaller").onclick=()=>font(-.06);$("larger").onclick=()=>font(.06);
+$("prev").onclick=()=>step(-1);$("next").onclick=()=>step(1);$("progress").oninput=e=>{
+  const value=Number(e.target.value),max=Number(e.target.max);
+  e.target.style.setProperty("--progress",(max?value/max*100:0)+"%");
+  render(targetForPosition(value,wide()),{animate:false});
+};$("toc-toggle").onclick=()=>{const show=$("toc").hidden;toggleToc(show);if(!show)$("toc-toggle").focus()};$("toc-close").onclick=()=>{toggleToc(false);$("toc-toggle").focus()};$("smaller").onclick=()=>font(-.06);$("larger").onclick=()=>font(.06);
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("toc").hidden){toggleToc(false);$("toc-toggle").focus();return}if(e.target.closest?.(interactive)||e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();step(e.key==="ArrowRight"?1:-1)}});
 let pointerOrigin=null,ignoreClickUntil=0;
 spread.addEventListener("pointerdown",e=>{pointerOrigin=[e.clientX,e.clientY]});
@@ -69,5 +102,5 @@ spread.addEventListener("click",e=>{
 });
 spread.addEventListener("touchstart",e=>{start=e.target.closest(interactive)?null:[e.changedTouches[0].clientX,e.changedTouches[0].clientY]},{passive:true});spread.addEventListener("touchend",e=>{if(!start)return;const [x,y]=start;start=null;const dx=e.changedTouches[0].clientX-x,dy=e.changedTouches[0].clientY-y;if(Math.abs(dx)>55&&Math.abs(dx)>1.5*Math.abs(dy)){ignoreClickUntil=Date.now()+500;step(dx<0?1:-1)}},{passive:true});
 spread.addEventListener("touchcancel",()=>{start=null},{passive:true});
-mq.addEventListener("change",()=>render(page));window.jumpToSpread=i=>render(i*2);
-try{const id=new URLSearchParams(location.search).get("book");book=(await getBooks()).find(b=>b.id===id);if(!book?.pages.length){location.replace("./");throw Error("Book unavailable")}document.title=book.title+" · E-book Platform";$("book-title").textContent=book.title;await Promise.all((book.styles||[]).map(p=>css(new URL(p,book.base))));for(const p of book.scripts||[])await script(new URL(p,book.base));if(book.widgets){const mod=await import(new URL(book.widgets,book.base));bindWidgets=mod.bindInteractiveWidgets}if(!book.toc.length)book.toc=[{title:book.title,page:0}];$("progress").min=0;$("progress").max=book.pages.length;buildToc();await render(loadPosition(book.id))}catch(e){status.textContent="書籍無法載入。";console.error(e)}
+mq.addEventListener("change",()=>{stopTurn();render(page,{animate:false})});window.jumpToSpread=i=>render(i*2);
+try{const id=new URLSearchParams(location.search).get("book");book=(await getBooks()).find(b=>b.id===id);if(!book?.pages.length){location.replace("./");throw Error("Book unavailable")}document.title=book.title+" · E-book Platform";$("book-title").textContent=book.title;await Promise.all((book.styles||[]).map(p=>css(new URL(p,book.base))));for(const p of book.scripts||[])await script(new URL(p,book.base));if(book.widgets){const mod=await import(new URL(book.widgets,book.base));bindWidgets=mod.bindInteractiveWidgets}if(!book.toc.length)book.toc=[{title:book.title,page:0}];$("progress").min=0;buildToc();await render(loadPosition(book.id))}catch(e){status.textContent="書籍無法載入。";console.error(e)}
