@@ -27,6 +27,7 @@ function face(leaf,kind,snapshot){const el=layer("turn-face "+kind);leaf.append(
 export function playPageTurn(spread,oldLeft,oldRight,newLeft,newRight,forward){
   if(matchMedia("(prefers-reduced-motion: reduce)").matches||!spread.animate)return null;
   const overlay=layer("turn-overlay"),double=!!oldRight&&!!newRight;
+  spread.classList.add("is-turning");
   spread.append(overlay);
   let animation;
   if(double){
@@ -36,16 +37,19 @@ export function playPageTurn(spread,oldLeft,oldRight,newLeft,newRight,forward){
     face(leaf,"turn-front",forward?oldRight:oldLeft);
     face(leaf,"turn-back",forward?newLeft:newRight);
     const angle=forward?-180:180;
-    animation=leaf.animate([{transform:"rotateY(0deg)"},{transform:"rotateY("+angle+"deg)"}],{duration:650,easing:"cubic-bezier(.42,0,.25,1)",fill:"both"});
+    animation=leaf.animate([{transform:"rotateY(0deg)"},{transform:"rotateY("+angle+"deg)"}],{duration:380,easing:"cubic-bezier(.35,0,.3,1)",fill:"both"});
   }else{
     const leaf=layer("turn-single");overlay.append(leaf);
     // Forward: lift the old page off the new page. Backward: lay the new page over the old one.
     if(!forward){const old=layer("turn-single-base");overlay.prepend(old);attach(old,oldLeft)}
     attach(leaf,forward?oldLeft:newLeft);
     const frames=forward?[{transform:"rotateY(0deg)",opacity:1},{transform:"rotateY(-92deg)",opacity:1}]:[{transform:"rotateY(-92deg)",opacity:1},{transform:"rotateY(0deg)",opacity:1}];
-    animation=leaf.animate(frames,{duration:420,easing:"cubic-bezier(.42,0,.25,1)",fill:"both"});
+    animation=leaf.animate(frames,{duration:260,easing:"cubic-bezier(.35,0,.3,1)",fill:"both"});
   }
-  const finish=()=>overlay.remove();
+  const finish=()=>{
+    overlay.remove();
+    if(!spread.querySelector(".turn-overlay"))spread.classList.remove("is-turning");
+  };
   animation.finished.then(finish,finish);
   return {cancel(){animation.cancel();finish()}};
 }

@@ -37,8 +37,16 @@
 }
 
 /* Physical page leaf. Live pages remain stationary beneath the temporary layer. */
-.spread{position:relative;isolation:isolate;perspective:2000px}
-.turn-overlay{position:absolute;inset:0;z-index:4;pointer-events:none;perspective:1800px;transform-style:preserve-3d;overflow:visible}
+.spread{position:relative;isolation:isolate;perspective:1600px}
+/* Clip the resting book only. During a turn the projected leaf may extend beyond its edges. */
+.spread.is-turning{overflow:visible;z-index:3}
+.spread.is-turning > .reader-page:first-child{border-radius:6px 0 0 6px}
+.spread.is-turning > .reader-page:nth-child(2){border-radius:0 6px 6px 0}
+.spread.is-turning > .reader-page:only-of-type,.spread.is-turning > .reader-page:first-child:has(+.reader-page[hidden]){border-radius:6px}
+.reader-layout,.stage{overflow:visible}
+.reader-header,.reader-footer{position:relative;z-index:6}
+.reader .reader-page{overscroll-behavior-y:contain}
+.turn-overlay{position:absolute;inset:0;z-index:4;pointer-events:none;perspective:1250px;transform-style:preserve-3d;overflow:visible}
 .turn-stationary,.turn-leaf,.turn-single,.turn-single-base{position:absolute;top:0;bottom:0}
 .turn-left{left:0;width:50%}
 .turn-right{right:0;width:50%}

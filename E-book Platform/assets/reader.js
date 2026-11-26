@@ -1,6 +1,7 @@
 import {getBooks,loadPosition,savePosition} from "./catalog.js";
 import {pageState,groupToc,targetForPosition} from "./reader-state.js";
 import {makeSnapshot,playPageTurn} from "./page-turn.js";
+import {createWheelGate} from "./reader-input.js";
 const $=id=>document.getElementById(id),left=$("left"),right=$("right"),spread=$("spread"),mq=matchMedia("(min-width:1100px)"),status=$("reader-status"),stage=$("stage");
 let book,page=0,revision=0,scale=1,bindWidgets=()=>{},cache=new Map(),start=null,displayedPage=null,activeChapter=null,turn=null;
 const wide=()=>mq.matches;
@@ -56,7 +57,7 @@ async function render(n,{animate=true}={}){
     installPage(left,a,here);installPage(right,b,here+1);right.hidden=!hasRight;
     if(shouldTurn){
       try{turn=playPageTurn(spread,oldLeft,oldRight,makeSnapshot(left),hasRight?makeSnapshot(right):null,here>old)}
-      catch(e){spread.querySelectorAll(".turn-overlay").forEach(el=>el.remove());console.warn("Page animation fallback",e)}
+      catch(e){spread.querySelectorAll(".turn-overlay").forEach(el=>el.remove());spread.classList.remove("is-turning");console.warn("Page animation fallback",e)}
     }
     displayedPage=here;sync();bindWidgets();savePosition(book.id,here);
     const upcoming=here+(wide()?2:1);
@@ -88,7 +89,41 @@ $("prev").onclick=()=>step(-1);$("next").onclick=()=>step(1);$("progress").oninp
   e.target.style.setProperty("--progress",(max?value/max*100:0)+"%");
   render(targetForPosition(value,wide()),{animate:false});
 };$("toc-toggle").onclick=()=>{const show=$("toc").hidden;toggleToc(show);if(!show)$("toc-toggle").focus()};$("toc-close").onclick=()=>{toggleToc(false);$("toc-toggle").focus()};$("smaller").onclick=()=>font(-.06);$("larger").onclick=()=>font(.06);
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("toc").hidden){toggleToc(false);$("toc-toggle").focus();return}if(e.target.closest?.(interactive)||e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();step(e.key==="ArrowRight"?1:-1)}});
+// All four arrows navigate; focused controls keep their native keyboard behavior.
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&!$("toc").hidden){toggleToc(false);$("toc-toggle").focus();return}
+  if(e.defaultPrevented||e.isComposing||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)return;
+  const control=e.target.closest?.(interactive);
+  if(e.target.closest?.("#toc")||(control&&!control.matches("#prev,#next")))return;
+  const direction={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+  if(!direction)return;
+  e.preventDefault();
+  if(!e.repeat)step(direction);
+});
+// Let a long page (or a nested scrollable region) scroll normally first.
+// Wheel turns only at the appropriate edge, outside interactive inputs.
+const wheelGate=createWheelGate();
+function canScrollVertical(target,dir){
+  for(let el=target;el&&el!==stage;el=el.parentElement){
+    if(!(el instanceof HTMLElement))continue;
+    const style=getComputedStyle(el);
+    if(!/^(auto|scroll|overlay)$/.test(style.overflowY))continue;
+    const max=el.scrollHeight-el.clientHeight;
+    if(max>2&&(dir>0?el.scrollTop<max-2:el.scrollTop>2))return true;
+  }
+  return false;
+}
+stage.addEventListener("wheel",e=>{
+  if(!book||e.defaultPrevented||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||Math.abs(e.deltaY)<=Math.abs(e.deltaX)||e.deltaY===0)return;
+  const target=e.target;
+  if(target.closest?.("input,textarea,select,[contenteditable],[role=slider]"))return;
+  const dir=Math.sign(e.deltaY);
+  const delta=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?stage.clientHeight:1);
+  const action=wheelGate({now:performance.now(),dir,delta,canScroll:canScrollVertical(target,dir),busy:spread.getAttribute("aria-busy")==="true"||spread.classList.contains("is-turning")});
+  if(action==="scroll")return;
+  if(e.cancelable)e.preventDefault();
+  if(action==="turn")step(dir);
+},{passive:false});
 let pointerOrigin=null,ignoreClickUntil=0;
 spread.addEventListener("pointerdown",e=>{pointerOrigin=[e.clientX,e.clientY]});
 spread.addEventListener("pointercancel",()=>{pointerOrigin=null});
