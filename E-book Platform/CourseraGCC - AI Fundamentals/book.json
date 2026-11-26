@@ -1,8 +1,76 @@
 {
   "id": "gcc-ai-fundamentals",
-  "title": "CourseraGCC - AI Fundamentals",
-  "subtitle": "",
+  "title": "AI Fundamentals",
+  "subtitle": "Google AI · 基礎教學誌",
+  "categories": [
+    "Google Career Credential",
+    "Google AI"
+  ],
   "cover": "cover.svg",
-  "pages": [],
-  "toc": []
+  "styles": [
+    "magazine.css"
+  ],
+  "pages": [
+    "pages/00-cover.html",
+    "pages/00-contents.html",
+    "pages/module-01/01.html",
+    "pages/module-01/02.html",
+    "pages/module-02/01.html",
+    "pages/module-02/02.html",
+    "pages/module-03/01.html",
+    "pages/module-03/02.html",
+    "pages/module-03/03.html",
+    "pages/module-03/04.html",
+    "pages/module-04/01.html",
+    "pages/module-04/02.html",
+    "pages/module-04/03.html",
+    "pages/module-04/04.html",
+    "pages/module-05/01.html",
+    "pages/module-05/02.html",
+    "pages/module-05/03.html",
+    "pages/module-05/04.html",
+    "pages/module-06/01.html",
+    "pages/module-06/02.html",
+    "pages/module-06/03.html",
+    "pages/module-06/04.html",
+    "pages/module-06/05.html",
+    "pages/module-06/06.html"
+  ],
+  "toc": [
+    {
+      "title": "封面與學習地圖",
+      "unit": "AI Fundamentals",
+      "page": 0
+    },
+    {
+      "title": "把AI當成合作夥伴",
+      "unit": "Module 1 · COLLABORATION",
+      "page": 2
+    },
+    {
+      "title": "第一次動手：從想法到簡報",
+      "unit": "Module 2 · FIRST LAB",
+      "page": 4
+    },
+    {
+      "title": "AI如何運作",
+      "unit": "Module 3 · HOW AI WORKS",
+      "page": 6
+    },
+    {
+      "title": "寫出有效的Prompt",
+      "unit": "Module 4 · PROMPT DESIGN",
+      "page": 10
+    },
+    {
+      "title": "進階提示與多模態",
+      "unit": "Module 5 · ADVANCED PROMPTS",
+      "page": 14
+    },
+    {
+      "title": "負責任地使用AI",
+      "unit": "Module 6 · RESPONSIBLE AI",
+      "page": 18
+    }
+  ]
 }

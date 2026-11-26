@@ -13,10 +13,21 @@ async function render(n){if(!book)return;const old=page,idx=clamp(n);page=wide()
 function step(dir){if(!book)return;const n=page+dir*(wide()?2:1);if(n>=0&&n<book.pages.length)render(n)}
 function buildToc(){for(const c of book.toc){const b=document.createElement("button");b.className="toc-entry";b.dataset.page=c.page;const t=document.createElement("span"),num=document.createElement("span"),unit=document.createElement("small");t.textContent=c.title;num.textContent=String(c.page+1).padStart(2,"0");unit.textContent=c.unit||"";b.append(t,num,unit);b.onclick=()=>{render(c.page);if(!wide()){toggleToc(false);$("toc-toggle").focus()}};$("toc-list").append(b)}}
 function font(delta){scale=Math.max(.88,Math.min(1.30,scale+delta));document.documentElement.style.setProperty("--font-scale",scale)}
-const interactive="button,a,input,select,textarea,label,summary,[role=button],[contenteditable],.quiz-card,[onclick]";
+const interactive="button,a,input,select,textarea,label,summary,details,[role=button],[role=slider],[role=checkbox],[contenteditable],.quiz-card,[onclick]";
 $("prev").onclick=()=>step(-1);$("next").onclick=()=>step(1);$("progress").oninput=e=>render(Number(e.target.value)-1);$("toc-toggle").onclick=()=>{const show=$("toc").hidden;toggleToc(show);if(!show)$("toc-toggle").focus()};$("toc-close").onclick=()=>{toggleToc(false);$("toc-toggle").focus()};$("smaller").onclick=()=>font(-.06);$("larger").onclick=()=>font(.06);
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("toc").hidden){toggleToc(false);$("toc-toggle").focus();return}if(e.target.closest?.(interactive)||e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==="ArrowRight"||e.key==="ArrowLeft"){e.preventDefault();step(e.key==="ArrowRight"?1:-1)}});
-spread.addEventListener("click",e=>{if(e.target.closest(interactive)||window.getSelection()?.toString())return;const r=spread.getBoundingClientRect(),x=(e.clientX-r.left)/r.width;if(x<.13)step(-1);else if(x>.87)step(1)});
-spread.addEventListener("touchstart",e=>{start=e.target.closest(interactive)?null:[e.changedTouches[0].clientX,e.changedTouches[0].clientY]},{passive:true});spread.addEventListener("touchend",e=>{if(!start)return;const [x,y]=start;start=null;const dx=e.changedTouches[0].clientX-x,dy=e.changedTouches[0].clientY-y;if(Math.abs(dx)>55&&Math.abs(dx)>1.5*Math.abs(dy))step(dx<0?1:-1)},{passive:true});
+let pointerOrigin=null,ignoreClickUntil=0;
+spread.addEventListener("pointerdown",e=>{pointerOrigin=[e.clientX,e.clientY]});
+spread.addEventListener("pointercancel",()=>{pointerOrigin=null});
+spread.addEventListener("click",e=>{
+  if(Date.now()<ignoreClickUntil||e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.target.closest(interactive)||window.getSelection()?.toString())return;
+  if(pointerOrigin&&Math.hypot(e.clientX-pointerOrigin[0],e.clientY-pointerOrigin[1])>10)return;
+  const r=spread.getBoundingClientRect();if(r.width<=0)return;
+  const pageEl=e.target.closest(".reader-page");
+  if(pageEl&&pageEl.offsetWidth>pageEl.clientWidth){const pr=pageEl.getBoundingClientRect();if(e.clientX>=pr.left+pageEl.clientWidth)return}
+  step(e.clientX<r.left+r.width/2?-1:1);
+});
+spread.addEventListener("touchstart",e=>{start=e.target.closest(interactive)?null:[e.changedTouches[0].clientX,e.changedTouches[0].clientY]},{passive:true});spread.addEventListener("touchend",e=>{if(!start)return;const [x,y]=start;start=null;const dx=e.changedTouches[0].clientX-x,dy=e.changedTouches[0].clientY-y;if(Math.abs(dx)>55&&Math.abs(dx)>1.5*Math.abs(dy)){ignoreClickUntil=Date.now()+500;step(dx<0?1:-1)}},{passive:true});
+spread.addEventListener("touchcancel",()=>{start=null},{passive:true});
 mq.addEventListener("change",()=>render(page));window.jumpToSpread=i=>render(i*2);
 try{const id=new URLSearchParams(location.search).get("book");book=(await getBooks()).find(b=>b.id===id);if(!book?.pages.length){location.replace("./");throw Error("Book unavailable")}document.title=book.title+" · E-book Platform";$("book-title").textContent=book.title;await Promise.all((book.styles||[]).map(p=>css(new URL(p,book.base))));for(const p of book.scripts||[])await script(new URL(p,book.base));if(book.widgets){const mod=await import(new URL(book.widgets,book.base));bindWidgets=mod.bindInteractiveWidgets}if(!book.toc.length)book.toc=[{title:book.title,page:0}];$("progress").max=book.pages.length;buildToc();await render(loadPosition(book.id))}catch(e){status.textContent="書籍無法載入。";console.error(e)}
