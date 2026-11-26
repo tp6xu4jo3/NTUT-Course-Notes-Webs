@@ -1,0 +1,55 @@
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-slate-300 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold text-indigo-700">CASE STUDY · CoRL 前沿實戰（整合 L11）</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 18</span>
+              </div>
+
+              <h3 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+                OBI 餵食機器人的逆襲：如何一滴不灑地把湯送進嘴裡？
+              </h3>
+
+              <p class="mag-body mb-3">
+                在頂尖機器人學習大會 <strong>CoRL（2023–2025）</strong>上，一個看似日常卻極度困難的任務引發熱議：<strong>照顧行動不便者吃飯</strong>。食物不像金屬螺絲那樣剛硬，它是會流動、會變形、黏稠度各異的複雜物質。研究團隊透過三大關鍵技術，讓原本只會死板執行固定動作的 OBI 餵食機器人徹底蛻變：
+              </p>
+
+              <!-- 3 Breakthroughs Cards with SVG Flow -->
+              <div class="space-y-2.5 mb-3">
+                <div class="bg-amber-50/90 border border-amber-300 rounded-xl p-3">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs font-bold text-amber-950">① 主動感知（Active Perception）：舀之前先「攪拌試探」</span>
+                    <span class="text-[10px] font-mono-code bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded">INTERACTIVE SENSING</span>
+                  </div>
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    單靠相機看碗裡的白色食物，機器人分不清那是「硬塊馬鈴薯泥」還是「稀薄優格」。因此它學會先用湯匙輕輕攪拌一圈，透過視覺流動與力覺阻力即時辨識物理材質，再決定舀取角度！
+                  </p>
+                </div>
+
+                <div class="bg-indigo-50/90 border border-indigo-300 rounded-xl p-3">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs font-bold text-indigo-950">② 擴散策略（Diffusion Policy）：像去噪畫圖一樣生成平滑動作</span>
+                    <span class="text-[10px] font-mono-code bg-indigo-200 text-indigo-900 px-1.5 py-0.5 rounded">GENERATIVE CONTROL</span>
+                  </div>
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    傳統模型在「從左邊繞過去」與「從右邊繞過去」兩種合理示範之間容易取平均值，結果一頭撞進障礙物。擴散策略借鏡圖像生成技術，把隨機動作雜訊逐步去噪，生成<strong>極度平滑且能處理多模態選擇</strong>的關節軌跡。
+                  </p>
+                </div>
+
+                <div class="bg-teal-50/90 border border-teal-300 rounded-xl p-3">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs font-bold text-teal-950">③ 預測-反應（Anticipate & React）防潑灑架構</span>
+                    <span class="text-[10px] font-mono-code bg-teal-200 text-teal-900 px-1.5 py-0.5 rounded">SPILL PREDICTOR</span>
+                  </div>
+                  <p class="text-xs text-slate-700 leading-relaxed">
+                    團隊先在流體物理模擬器中訓練一個「潑灑預測器」，當湯匙端著湯走向使用者嘴邊時，系統提前 0.2 秒預判液面晃動波浪，即時微調手腕傾角抵消慣性，實現<strong>零潑灑</strong>貼心餵食！
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-slate-100 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-700">
+              <strong>🔬 學術前沿觀察：</strong> 這項研究證明了「模擬器預訓練（預測物理後果）＋ 真實世界主動觸覺試探」正是攻克軟物體與流體操縱的最佳方程式。
+            </div>
+          </div>
+        

@@ -1,0 +1,60 @@
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b-2 border-red-600 pb-1.5 mb-2.5">
+                <span class="text-xs font-bold tracking-wider text-red-700">UNIT 05 · 預期功能安全 SOTIF</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 21</span>
+              </div>
+
+              <h2 class="font-serif-tc text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+                SOTIF（ISO 21448）：硬體沒壞卻釀禍的「未知危險」
+              </h2>
+
+              <p class="mag-body mb-2.5">
+                傳統安全只管「零件有沒有故障」，但 <strong>SOTIF（預期功能安全）</strong>專攻「硬體完全正常，卻因演算法誤判或情境超出預期而發生危險」！最致命的就是第四象限——<strong>「未知危險（Unknown Unsafe）」</strong>：
+              </p>
+
+              <!-- SVG SOTIF 4-Quadrant Matrix -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-2.5">
+                <svg viewBox="0 0 460 155" class="w-full h-auto">
+                  <!-- 4 Quadrants -->
+                  <rect x="8" y="6" width="218" height="68" rx="6" fill="#ECFDF5" stroke="#6EE7B7"/>
+                  <text x="16" y="23" font-size="9.5" font-weight="bold" fill="#047857">Q1｜已知安全（Known Safe）</text>
+                  <text x="16" y="38" font-size="8.5" fill="#065F46">晴天高速公路巡航，驗證通過的正常區</text>
+
+                  <rect x="234" y="6" width="218" height="68" rx="6" fill="#FFFBEB" stroke="#FCD34D"/>
+                  <text x="242" y="23" font-size="9.5" font-weight="bold" fill="#B45309">Q2｜已知危險（Known Unsafe）</text>
+                  <text x="242" y="38" font-size="8.5" fill="#78350F">已知濃霧會遮蔽相機，可設規則限制不啟動</text>
+
+                  <rect x="8" y="82" width="218" height="68" rx="6" fill="#EFF6FF" stroke="#93C5FD"/>
+                  <text x="16" y="99" font-size="9.5" font-weight="bold" fill="#1D4ED8">Q3｜未知安全（Unknown Safe）</text>
+                  <text x="16" y="114" font-size="8.5" fill="#1E3A8A">沒測試過的新路況，但模型泛化成功安全通過</text>
+
+                  <rect x="234" y="82" width="218" height="68" rx="6" fill="#FEF2F2" stroke="#DC2626" stroke-width="2"/>
+                  <text x="242" y="99" font-size="9.5" font-weight="bold" fill="#B91C1C">🚨 Q4｜未知危險（Unknown Unsafe）</text>
+                  <text x="242" y="114" font-size="8.5" fill="#7F1D1D">最致命黑天鵝！工程師沒想到的連鎖情境，</text>
+                  <text x="242" y="128" font-size="8.5" font-weight="bold" fill="#991B1B">SOTIF 的核心目標就是不斷縮小 Q4！</text>
+                </svg>
+              </div>
+
+              <!-- Cruise 2023 Case + Scenario Pyramid & Metrics -->
+              <div class="bg-red-50 border border-red-200 rounded-xl p-2.5 text-xs mb-2">
+                <div class="font-bold text-red-900">⚠️ 血淚教訓：2023 舊金山 Cruise 自駕車拖行事故</div>
+                <p class="text-slate-700 mt-0.5 leading-snug">
+                  一名行人先遭人類駕駛撞飛彈至 Cruise 車前，Cruise 感測器正常並成功緊急煞停；但系統隨後執行死板的「靠邊停車（Pull-over）SOP」，沒發現行人已被捲入車底盲區，竟二次啟動將行人拖行 6 公尺！
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+              <div class="bg-slate-900 text-white p-2.5 rounded-lg">
+                <div class="font-bold text-amber-300">🔺 場景三層級金字塔</div>
+                <p class="text-slate-300 mt-0.5">功能場景（文字描述）→ 邏輯場景（速度/角度參數範圍）→ 具體場景（單一精確數值模擬）。</p>
+              </div>
+              <div class="bg-slate-900 text-white p-2.5 rounded-lg">
+                <div class="font-bold text-sky-300">⏱️ TTC vs. PET 安全指標</div>
+                <p class="text-slate-300 mt-0.5"><strong>TTC = Δx/Δv</strong>（追撞倒數）；<strong>PET = t_enter,B − t_exit,A</strong>（衡量路口交會擦身而過的時間差）。</p>
+              </div>
+            </div>
+          </div>
+        

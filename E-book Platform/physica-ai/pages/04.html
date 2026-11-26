@@ -1,0 +1,82 @@
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-slate-300 pb-1.5 mb-3">
+                <span class="text-xs font-mono-code text-slate-500">FROM SCRIPTS TO INTUITION</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 04</span>
+              </div>
+
+              <h3 class="font-serif-tc text-lg sm:text-xl font-bold text-slate-900 mb-2">
+                從「盲目背腳本」到「手眼協調的物理直覺」
+              </h3>
+
+              <p class="mag-body mb-2.5">
+                傳統汽車工廠的機械臂看似精準，實則像「閉著眼睛背舞步的舞者」：工程師寫死座標 <code class="bg-slate-200 px-1 rounded text-xs">(x, y, z)</code> 讓它搬運重型擋風玻璃，只要輸送帶上的玻璃歪了 <strong>2 毫米</strong>，機械臂就會硬生生把玻璃捏碎！現代機器人則導入 <strong>Transformer 端到端視覺運動策略（Visuomotor Policy）</strong>，像人類一樣邊看邊微調手指力度。
+              </p>
+
+              <!-- SVG Comparison: 1966 Shakey SPA vs DeepMind Throwing/Catching -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-3">
+                <div class="text-xs font-bold text-slate-800 mb-2">🔄 範式演進：1966 Shakey 序列循環 vs. 動態投擲物理直覺</div>
+                <svg viewBox="0 0 460 225" class="w-full h-auto">
+                  <!-- Top Box: 1966 Shakey SPA -->
+                  <rect x="6" y="6" width="448" height="72" rx="8" fill="#F8FAFC" stroke="#CBD5E1"/>
+                  <text x="16" y="23" font-size="10.5" font-weight="bold" fill="#475569">【舊範式】1966 史丹佛 Shakey 機器人：Sense → Plan → Act 串行慢循環</text>
+
+                  <rect x="18" y="34" width="110" height="32" rx="6" fill="#E2E8F0"/>
+                  <text x="33" y="54" font-size="10.5" font-weight="bold" fill="#1E293B">Sense 拍照辨識</text>
+
+                  <path d="M 132 50 L 168 50" stroke="#64748B" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+                  <rect x="172" y="34" width="120" height="32" rx="6" fill="#E2E8F0"/>
+                  <text x="184" y="54" font-size="10.5" font-weight="bold" fill="#1E293B">Plan 符號邏輯規劃</text>
+
+                  <path d="M 296 50 L 332 50" stroke="#64748B" stroke-width="2"/>
+
+                  <rect x="336" y="34" width="106" height="32" rx="6" fill="#E2E8F0"/>
+                  <text x="352" y="54" font-size="10.5" font-weight="bold" fill="#1E293B">Act 執行一步</text>
+
+                  <!-- Bottom Box: DeepMind Throwing & Catching -->
+                  <rect x="6" y="88" width="448" height="131" rx="8" fill="#EFF6FF" stroke="#93C5FD"/>
+                  <text x="16" y="106" font-size="10.5" font-weight="bold" fill="#1D4ED8">【新範式】DeepMind 動態投擲與接球：五大物理難關考驗瞬時直覺</text>
+
+                  <!-- Parabola trajectory SVG -->
+                  <path d="M 48 188 Q 145 112 248 175" fill="none" stroke="#EA580C" stroke-width="2.5" stroke-dasharray="5 3"/>
+                  <!-- Banana shape -->
+                  <path d="M 136 136 Q 148 128 158 138 Q 147 142 136 136 Z" fill="#FACC15" stroke="#CA8A04" stroke-width="1.2"/>
+                  <circle cx="48" cy="192" r="8" fill="#1D4ED8"/>
+                  <text x="26" y="211" font-size="9" font-weight="bold" fill="#1E3A8A">投擲臂</text>
+                  <circle cx="252" cy="180" r="8" fill="#0D9488"/>
+                  <text x="233" y="211" font-size="9" font-weight="bold" fill="#115E59">接球臂</text>
+
+                  <!-- 5 Challenges List on Right -->
+                  <g font-size="9.5" fill="#1E293B">
+                    <text x="280" y="126"><tspan font-weight="bold" fill="#EA580C">① 香蕉重心：</tspan>非對稱彎曲物體旋轉</text>
+                    <text x="280" y="144"><tspan font-weight="bold" fill="#EA580C">② 釋放時機：</tspan>微秒級鬆爪決定仰角</text>
+                    <text x="280" y="162"><tspan font-weight="bold" fill="#EA580C">③ 空氣阻力：</tspan>輕量物體受氣流偏折</text>
+                    <text x="280" y="180"><tspan font-weight="bold" fill="#EA580C">④ 雙臂協作：</tspan>投與接需毫秒同步</text>
+                    <text x="280" y="198"><tspan font-weight="bold" fill="#EA580C">⑤ 蝴蝶效應：</tspan>0.5°誤差放大成落點偏差</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Institutional Landscape Mini Comparison -->
+            <div class="bg-blue-50/80 border border-blue-200 rounded-xl p-3">
+              <div class="text-xs font-bold text-blue-900 mb-1.5">🌐 全球通用機器人大腦三大路線</div>
+              <div class="grid grid-cols-3 gap-2 text-[11px]">
+                <div class="bg-white p-2 rounded-lg border border-blue-100">
+                  <div class="font-bold text-slate-900">Physical Intelligence</div>
+                  <p class="text-slate-600 mt-0.5">π0 基礎模型，主打跨形態靈巧折衣與複雜家務。</p>
+                </div>
+                <div class="bg-white p-2 rounded-lg border border-blue-100">
+                  <div class="font-bold text-slate-900">NVIDIA GR00T</div>
+                  <p class="text-slate-600 mt-0.5">結合模擬器海量合成數據與人形雙足全身控制。</p>
+                </div>
+                <div class="bg-white p-2 rounded-lg border border-blue-100">
+                  <div class="font-bold text-slate-900">Gemini Robotics</div>
+                  <p class="text-slate-600 mt-0.5">多模態長程空間推理，聽懂自然語言即時應變。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        

@@ -1,0 +1,76 @@
+
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-slate-300 pb-1.5 mb-2.5">
+                <span class="text-xs font-mono-code text-orange-600 font-bold">DATASET THINKING VS. DATA FLYWHEEL</span>
+                <span class="text-xs font-mono-code text-slate-400">P. 08</span>
+              </div>
+
+              <h3 class="font-serif-tc text-lg sm:text-xl font-bold text-slate-900 mb-2">
+                從靜態「資料集思維」轉向動態「資料飛輪」
+              </h3>
+
+              <!-- Dual-Track SVG Diagram -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm mb-3">
+                <svg viewBox="0 0 460 205" class="w-full h-auto">
+                  <!-- Left Track: Linear Dataset Thinking -->
+                  <rect x="6" y="8" width="168" height="188" rx="8" fill="#F8FAFC" stroke="#CBD5E1"/>
+                  <text x="18" y="27" font-size="10.5" font-weight="bold" fill="#64748B">❌ 舊思維：線性資料集</text>
+
+                  <rect x="24" y="42" width="132" height="32" rx="6" fill="#E2E8F0"/>
+                  <text x="42" y="62" font-size="10" font-weight="bold" fill="#334155">1. 盲目收集百萬筆資料</text>
+
+                  <line x1="90" y1="74" x2="90" y2="92" stroke="#94A3B8" stroke-width="2"/>
+                  <rect x="24" y="92" width="132" height="32" rx="6" fill="#E2E8F0"/>
+                  <text x="45" y="112" font-size="10" font-weight="bold" fill="#334155">2. 訓練出單一模型</text>
+
+                  <line x1="90" y1="124" x2="90" y2="142" stroke="#94A3B8" stroke-width="2"/>
+                  <rect x="24" y="142" width="132" height="40" rx="6" fill="#FEE2E2" stroke="#FCA5A5"/>
+                  <text x="38" y="160" font-size="10" font-weight="bold" fill="#B91C1C">3. 上線遇到新場景就當機</text>
+                  <text x="46" y="174" font-size="9" fill="#991B1B">（缺乏回饋閉環）</text>
+
+                  <!-- Right Track: Closed-Loop Data Flywheel -->
+                  <rect x="186" y="8" width="268" height="188" rx="8" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.5"/>
+                  <text x="198" y="27" font-size="10.5" font-weight="bold" fill="#C2410C">✅ 新思維：評估導向資料飛輪閉環</text>
+
+                  <!-- Circular Flywheel Arrows -->
+                  <circle cx="320" cy="112" r="56" fill="none" stroke="#EA580C" stroke-width="3" stroke-dasharray="18 6"/>
+
+                  <rect x="262" y="42" width="116" height="28" rx="6" fill="#EA580C"/>
+                  <text x="275" y="60" font-size="10" font-weight="bold" fill="#FFFFFF">① 真實部署與壓力評估</text>
+
+                  <rect x="352" y="96" width="94" height="34" rx="6" fill="#FFFFFF" stroke="#EA580C"/>
+                  <text x="360" y="111" font-size="9.5" font-weight="bold" fill="#9A3412">② 抓出能力缺口</text>
+                  <text x="360" y="124" font-size="8.5" fill="#475569">失敗/不確定/高價值</text>
+
+                  <rect x="262" y="156" width="116" height="28" rx="6" fill="#1E293B"/>
+                  <text x="275" y="174" font-size="10" font-weight="bold" fill="#FDE047">③ 針對性精準補採數據</text>
+
+                  <rect x="194" y="96" width="90" height="34" rx="6" fill="#FFFFFF" stroke="#EA580C"/>
+                  <text x="202" y="111" font-size="9.5" font-weight="bold" fill="#9A3412">④ 策略迭代升級</text>
+                  <text x="202" y="124" font-size="8.5" fill="#475569">越用越聰明</text>
+                </svg>
+              </div>
+
+              <!-- Three Gap Hunting Triggers -->
+              <div class="text-xs text-slate-700 mb-2.5 leading-relaxed">
+                <strong>如何聰明挑選該補哪些數據？</strong>工程師依靠三大訊號：<strong>① 失敗驅動</strong>（哪裡跌倒就多練那裡）、<strong>② 不確定性驅動</strong>（模型猶豫不決時請求人類示範）、<strong>③ 價值驅動</strong>（優先針對高風險或高商業價值動作採集）。
+              </div>
+            </div>
+
+            <!-- Open-Source Democratization Column -->
+            <div class="bg-slate-100 border border-slate-300 rounded-xl p-3">
+              <div class="text-xs font-bold text-slate-900 mb-1.5">🌍 開源資料民主化：從百萬實驗室走向高中生書桌</div>
+              <div class="grid grid-cols-2 gap-2.5 text-[11px]">
+                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                  <div class="font-bold text-blue-700">史丹佛 OpenX Embodiment</div>
+                  <p class="text-slate-600 mt-0.5">串聯全球 21 個實驗室、22 種機器人本體，建立超過 100 萬條軌跡的統一資料標準。</p>
+                </div>
+                <div class="bg-white p-2.5 rounded-lg border border-slate-200">
+                  <div class="font-bold text-orange-600">Hugging Face LeRobot</div>
+                  <p class="text-slate-600 mt-0.5">打造機器人界的 GitHub！只需約 <strong>$300 美元</strong>的 3D 列印 <code class="text-slate-800">So-ARM101</code> 機械臂就能在家訓練 AI。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        
