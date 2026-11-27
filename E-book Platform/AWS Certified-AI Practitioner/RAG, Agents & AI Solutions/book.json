@@ -7,7 +7,7 @@
   ],
   "cover": "cover.svg",
   "styles": [
-    "../AWS AIF Shared/magazine.css"
+    "../../assets/aws-aif/magazine.css"
   ],
   "pages": [
     "pages/00-cover.html",

@@ -8,7 +8,7 @@
   ],
   "cover": "cover.svg",
   "styles": [
-    "magazine.css"
+    "../../../assets/google-ai/magazine.css"
   ],
   "pages": [
     "pages/00-cover.html",

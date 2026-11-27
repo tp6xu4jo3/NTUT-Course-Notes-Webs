@@ -1,11 +1,11 @@
 [
-  "CourseraGCC - AI Fundamentals/book.json",
-  "CourseraGCC - AI Strategy and Analysis/book.json",
-  "CourseraGCC - AI Content and Communication/book.json",
-  "CourseraGCC - AI App Development/book.json",
-  "physica-ai/book.json",
-  "AWS Certified AI Practitioner - AI and ML Foundations/book.json",
-  "AWS Certified AI Practitioner - Generative AI/book.json",
-  "AWS Certified AI Practitioner - AI Solutions/book.json",
-  "AWS Certified AI Practitioner - Responsible AI and Security/book.json"
+  "Google Career Credential/Google AI/AI Fundamentals/book.json",
+  "Google Career Credential/Google AI/AI Strategy & Analysis/book.json",
+  "Google Career Credential/Google AI/AI Content & Communication/book.json",
+  "Google Career Credential/Google AI/AI App Development/book.json",
+  "NTUT/PHYSICA AI/book.json",
+  "AWS Certified-AI Practitioner/AI & ML Foundations/book.json",
+  "AWS Certified-AI Practitioner/Generative AI & Bedrock/book.json",
+  "AWS Certified-AI Practitioner/RAG, Agents & AI Solutions/book.json",
+  "AWS Certified-AI Practitioner/Responsible AI & Security/book.json"
 ]

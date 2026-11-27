@@ -26,7 +26,7 @@
   ],
   "cover": "cover.svg",
   "styles": [
-    "../CourseraGCC - AI Fundamentals/magazine.css"
+    "../../../assets/google-ai/magazine.css"
   ],
   "pages": [
     "pages/00-cover.html",
