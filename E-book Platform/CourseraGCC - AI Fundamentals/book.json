@@ -72,5 +72,13 @@
       "unit": "Module 6 · RESPONSIBLE AI",
       "page": 18
     }
+  ],
+  "volume": 1,
+  "courses": [
+    {
+      "number": 1,
+      "title": "AI Fundamentals",
+      "status": "included"
+    }
   ]
 }

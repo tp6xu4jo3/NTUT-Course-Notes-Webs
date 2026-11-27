@@ -10,3 +10,6 @@ PHYSICA AI 保留原本 24 個頁面、圖解與互動元件，原本內嵌的 T
 每本書的 book.json 可加入 `categories` 陣列（由上到下的分類名稱），例如 `["Google Career Credential","Google AI"]`；未指定分類會進入「其他」。書櫃依分類巢狀呈現，既有書籍 ID、路徑及閱讀進度保持不變。
 AI Fundamentals 依 Module 1–6 分目錄存放 HTML 片段，搭配獨立 magazine.css、SVG 封面與標誌；為非官方中文學習筆記，未公開原始課程逐字稿。
 閱讀時點擊書頁區域左半部回上一頁（雙頁模式為上一個跨頁），右半部往下一頁；原有按鈕、鍵盤、滑動、目錄及選字仍保留。互動元件不觸發翻頁。
+
+## Google AI 四冊系列
+四冊對應官方 Google AI Professional Certificate 課程：VOL. 01 C01；VOL. 02 C02、C03、C06；VOL. 03 C04、C05；VOL. 04 C07、C08。book.json 的 courses 記錄官方編號、名稱及 included/pending 狀態；書櫃會顯示實際收錄進度。尚無教材的冊別保留封面與課程對照，不可開啟空書。

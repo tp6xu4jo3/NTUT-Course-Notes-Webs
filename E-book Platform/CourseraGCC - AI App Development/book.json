@@ -1,0 +1,25 @@
+{
+  "id": "gcc-ai-app-development",
+  "title": "AI App Development",
+  "subtitle": "Google AI · 應用程式開發",
+  "volume": 4,
+  "categories": [
+    "Google Career Credential",
+    "Google AI"
+  ],
+  "courses": [
+    {
+      "number": 7,
+      "title": "AI for App Building",
+      "status": "pending"
+    },
+    {
+      "number": 8,
+      "title": "AI for App Deployment",
+      "status": "pending"
+    }
+  ],
+  "cover": "cover.svg",
+  "pages": [],
+  "toc": []
+}

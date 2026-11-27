@@ -78,3 +78,6 @@
 #progress:hover::-webkit-slider-thumb,#progress:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px #47796b28,0 2px 5px #263d3a36}
 #progress:disabled{cursor:default;opacity:.7}
 @media(max-width:500px){#counter{min-width:58px;font-size:11px}#percent{min-width:34px;font-size:11px}.reader-footer{gap:8px}}
+
+/* Google AI certificate course coverage */
+.book-courses{display:grid;gap:6px;margin-top:3px}.book-course{display:grid;gap:3px;padding:8px 9px;border:1px solid var(--line);border-radius:7px;font-size:11px;line-height:1.35;background:#faf9f6}.book-course.pending{background:transparent;border-style:dashed}.course-num{font-weight:750;color:var(--accent);font-size:10px;letter-spacing:.04em}.course-name{color:var(--ink);overflow-wrap:anywhere}.book-course .course-status{font-size:10px;color:var(--muted)}.book-card[aria-disabled=true] .book-courses{opacity:1}

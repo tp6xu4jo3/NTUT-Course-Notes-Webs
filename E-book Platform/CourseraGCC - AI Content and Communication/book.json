@@ -1,0 +1,25 @@
+{
+  "id": "gcc-ai-content-communication",
+  "title": "AI Content & Communication",
+  "subtitle": "Google AI · 創作與溝通",
+  "volume": 3,
+  "categories": [
+    "Google Career Credential",
+    "Google AI"
+  ],
+  "courses": [
+    {
+      "number": 4,
+      "title": "AI for Writing and Communicating",
+      "status": "pending"
+    },
+    {
+      "number": 5,
+      "title": "AI for Content Creation",
+      "status": "pending"
+    }
+  ],
+  "cover": "cover.svg",
+  "pages": [],
+  "toc": []
+}

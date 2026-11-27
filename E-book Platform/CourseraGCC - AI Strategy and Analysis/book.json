@@ -1,0 +1,66 @@
+{
+  "id": "gcc-ai-strategy-analysis",
+  "title": "AI Strategy & Analysis",
+  "subtitle": "Google AI · 策略與分析",
+  "volume": 2,
+  "categories": [
+    "Google Career Credential",
+    "Google AI"
+  ],
+  "courses": [
+    {
+      "number": 2,
+      "title": "AI for Brainstorming and Planning",
+      "status": "included"
+    },
+    {
+      "number": 3,
+      "title": "AI for Research and Insights",
+      "status": "pending"
+    },
+    {
+      "number": 6,
+      "title": "AI for Data Analysis",
+      "status": "pending"
+    }
+  ],
+  "cover": "cover.svg",
+  "styles": [
+    "../CourseraGCC - AI Fundamentals/magazine.css",
+    "magazine.css"
+  ],
+  "pages": [
+    "pages/00-cover.html",
+    "pages/00-contents.html",
+    "pages/course-02/01.html",
+    "pages/course-02/02.html",
+    "pages/course-02/03.html",
+    "pages/course-02/04.html",
+    "pages/course-02/05.html",
+    "pages/course-02/06.html",
+    "pages/course-02/07.html",
+    "pages/course-02/08.html"
+  ],
+  "toc": [
+    {
+      "title": "封面與課程對照",
+      "unit": "VOL. 02 · 學習地圖",
+      "page": 0
+    },
+    {
+      "title": "Module 1｜發想與評估",
+      "unit": "Course 02 · AI for Brainstorming and Planning",
+      "page": 2
+    },
+    {
+      "title": "Module 2｜風險與時程",
+      "unit": "Course 02 · AI for Brainstorming and Planning",
+      "page": 5
+    },
+    {
+      "title": "Module 3｜知識庫與檢核",
+      "unit": "Course 02 · AI for Brainstorming and Planning",
+      "page": 7
+    }
+  ]
+}
