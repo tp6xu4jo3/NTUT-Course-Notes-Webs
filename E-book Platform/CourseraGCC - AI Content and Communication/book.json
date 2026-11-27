@@ -11,15 +11,83 @@
     {
       "number": 4,
       "title": "AI for Writing and Communicating",
-      "status": "pending"
+      "status": "included"
     },
     {
       "number": 5,
       "title": "AI for Content Creation",
-      "status": "pending"
+      "status": "included"
     }
   ],
   "cover": "cover.svg",
-  "pages": [],
-  "toc": []
+  "pages": [
+    "pages/00-cover.html",
+    "pages/00-contents.html",
+    "pages/course-04/01.html",
+    "pages/course-04/02.html",
+    "pages/course-04/03.html",
+    "pages/course-04/04.html",
+    "pages/course-04/05.html",
+    "pages/course-04/06.html",
+    "pages/course-04/07.html",
+    "pages/course-04/08.html",
+    "pages/course-04/09.html",
+    "pages/course-04/10.html",
+    "pages/course-05/01.html",
+    "pages/course-05/02.html",
+    "pages/course-05/03.html",
+    "pages/course-05/04.html",
+    "pages/course-05/05.html",
+    "pages/course-05/06.html",
+    "pages/course-05/07.html",
+    "pages/course-05/08.html",
+    "pages/course-05/09.html",
+    "pages/course-05/10.html",
+    "pages/course-05/11.html"
+  ],
+  "toc": [
+    {
+      "title": "封面與學習地圖",
+      "unit": "VOL. 03 · 學習地圖",
+      "page": 0
+    },
+    {
+      "title": "Module 1｜溝通策略與會議摘要",
+      "unit": "Course 04 · AI for Writing and Communicating",
+      "page": 2
+    },
+    {
+      "title": "Module 2｜角色回饋與修訂",
+      "unit": "Course 04 · AI for Writing and Communicating",
+      "page": 5
+    },
+    {
+      "title": "Module 3｜受眾化溝通套件",
+      "unit": "Course 04 · AI for Writing and Communicating",
+      "page": 8
+    },
+    {
+      "title": "Module 4｜即時對話與演練",
+      "unit": "Course 04 · AI for Writing and Communicating",
+      "page": 10
+    },
+    {
+      "title": "Module 1｜圖像與影片製作",
+      "unit": "Course 05 · AI for Content Creation",
+      "page": 12
+    },
+    {
+      "title": "Module 2｜簡報敘事與視覺系統",
+      "unit": "Course 05 · AI for Content Creation",
+      "page": 15
+    },
+    {
+      "title": "Module 3｜設計評估與交付",
+      "unit": "Course 05 · AI for Content Creation",
+      "page": 19
+    }
+  ],
+  "styles": [
+    "../CourseraGCC - AI Fundamentals/magazine.css"
+  ]
 }

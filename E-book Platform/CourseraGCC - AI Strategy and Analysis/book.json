@@ -16,18 +16,17 @@
     {
       "number": 3,
       "title": "AI for Research and Insights",
-      "status": "pending"
+      "status": "included"
     },
     {
       "number": 6,
       "title": "AI for Data Analysis",
-      "status": "pending"
+      "status": "included"
     }
   ],
   "cover": "cover.svg",
   "styles": [
-    "../CourseraGCC - AI Fundamentals/magazine.css",
-    "magazine.css"
+    "../CourseraGCC - AI Fundamentals/magazine.css"
   ],
   "pages": [
     "pages/00-cover.html",
@@ -39,7 +38,24 @@
     "pages/course-02/05.html",
     "pages/course-02/06.html",
     "pages/course-02/07.html",
-    "pages/course-02/08.html"
+    "pages/course-02/08.html",
+    "pages/course-03/01.html",
+    "pages/course-03/02.html",
+    "pages/course-03/03.html",
+    "pages/course-03/04.html",
+    "pages/course-03/05.html",
+    "pages/course-03/06.html",
+    "pages/course-03/07.html",
+    "pages/course-03/08.html",
+    "pages/course-06/01.html",
+    "pages/course-06/02.html",
+    "pages/course-06/03.html",
+    "pages/course-06/04.html",
+    "pages/course-06/05.html",
+    "pages/course-06/06.html",
+    "pages/course-06/07.html",
+    "pages/course-06/08.html",
+    "pages/course-06/09.html"
   ],
   "toc": [
     {
@@ -61,6 +77,36 @@
       "title": "Module 3｜知識庫與檢核",
       "unit": "Course 02 · AI for Brainstorming and Planning",
       "page": 7
+    },
+    {
+      "title": "Module 1｜深度研究與查證",
+      "unit": "Course 03 · AI for Research and Insights",
+      "page": 10
+    },
+    {
+      "title": "Module 2｜多來源綜整",
+      "unit": "Course 03 · AI for Research and Insights",
+      "page": 14
+    },
+    {
+      "title": "Module 3｜自訂AI專家",
+      "unit": "Course 03 · AI for Research and Insights",
+      "page": 16
+    },
+    {
+      "title": "Module 1｜測量計畫與指標",
+      "unit": "Course 06 · AI for Data Analysis",
+      "page": 18
+    },
+    {
+      "title": "Module 2｜資料清理與標註",
+      "unit": "Course 06 · AI for Data Analysis",
+      "page": 20
+    },
+    {
+      "title": "Module 3｜分析、視覺化與模擬",
+      "unit": "Course 06 · AI for Data Analysis",
+      "page": 22
     }
   ]
 }

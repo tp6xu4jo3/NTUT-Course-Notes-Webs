@@ -12,4 +12,4 @@ AI Fundamentals 依 Module 1–6 分目錄存放 HTML 片段，搭配獨立 maga
 閱讀時點擊書頁區域左半部回上一頁（雙頁模式為上一個跨頁），右半部往下一頁；原有按鈕、鍵盤、滑動、目錄及選字仍保留。互動元件不觸發翻頁。
 
 ## Google AI 四冊系列
-四冊對應官方 Google AI Professional Certificate 課程：VOL. 01 C01；VOL. 02 C02、C03、C06；VOL. 03 C04、C05；VOL. 04 C07、C08。book.json 的 courses 記錄官方編號、名稱及 included/pending 狀態；書櫃會顯示實際收錄進度。尚無教材的冊別保留封面與課程對照，不可開啟空書。
+四冊對應官方 Google AI Professional Certificate 課程：VOL. 01 C01；VOL. 02 C02、C03、C06；VOL. 03 C04、C05；VOL. 04 C07、C08。book.json 的 courses 記錄官方編號、名稱及 included/pending 狀態；書櫃會顯示實際收錄進度。四冊皆已收錄全部8門課程、28個Module，合計107頁（24／27／23／33）。統一使用 AI Fundamentals/magazine.css，封面同時用於書櫃與閱讀器。流程圖以書頁可用寬度響應式排版，假設數據與原創示意標明，新增內容為非官方中文學習筆記。課程08未附原始挑戰題，採原創實作檢核。

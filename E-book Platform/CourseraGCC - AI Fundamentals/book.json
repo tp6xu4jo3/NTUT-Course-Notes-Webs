@@ -39,37 +39,37 @@
   "toc": [
     {
       "title": "封面與學習地圖",
-      "unit": "AI Fundamentals",
+      "unit": "VOL. 01 · 學習地圖",
       "page": 0
     },
     {
-      "title": "把AI當成合作夥伴",
-      "unit": "Module 1 · COLLABORATION",
+      "title": "Module 1｜把AI當成合作夥伴",
+      "unit": "Course 01 · AI Fundamentals",
       "page": 2
     },
     {
-      "title": "第一次動手：從想法到簡報",
-      "unit": "Module 2 · FIRST LAB",
+      "title": "Module 2｜第一次動手：從想法到簡報",
+      "unit": "Course 01 · AI Fundamentals",
       "page": 4
     },
     {
-      "title": "AI如何運作",
-      "unit": "Module 3 · HOW AI WORKS",
+      "title": "Module 3｜AI如何運作",
+      "unit": "Course 01 · AI Fundamentals",
       "page": 6
     },
     {
-      "title": "寫出有效的Prompt",
-      "unit": "Module 4 · PROMPT DESIGN",
+      "title": "Module 4｜寫出有效的Prompt",
+      "unit": "Course 01 · AI Fundamentals",
       "page": 10
     },
     {
-      "title": "進階提示與多模態",
-      "unit": "Module 5 · ADVANCED PROMPTS",
+      "title": "Module 5｜進階提示與多模態",
+      "unit": "Course 01 · AI Fundamentals",
       "page": 14
     },
     {
-      "title": "負責任地使用AI",
-      "unit": "Module 6 · RESPONSIBLE AI",
+      "title": "Module 6｜負責任地使用AI",
+      "unit": "Course 01 · AI Fundamentals",
       "page": 18
     }
   ],
