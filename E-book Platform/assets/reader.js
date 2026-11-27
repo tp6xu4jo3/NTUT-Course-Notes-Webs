@@ -1,4 +1,4 @@
-import {getBooks,loadPosition,savePosition} from "./catalog.js";
+import {getBooks} from "./catalog.js";
 import {pageState,groupToc,targetForPosition} from "./reader-state.js";
 import {makeSnapshot,playPageTurn} from "./page-turn.js";
 import {createWheelGate} from "./reader-input.js";
@@ -59,7 +59,7 @@ async function render(n,{animate=true}={}){
       try{turn=playPageTurn(spread,oldLeft,oldRight,makeSnapshot(left),hasRight?makeSnapshot(right):null,here>old)}
       catch(e){spread.querySelectorAll(".turn-overlay").forEach(el=>el.remove());spread.classList.remove("is-turning");console.warn("Page animation fallback",e)}
     }
-    displayedPage=here;sync();bindWidgets();savePosition(book.id,here);
+    displayedPage=here;sync();bindWidgets();
     const upcoming=here+(wide()?2:1);
     if(upcoming<book.pages.length)text(new URL(book.pages[upcoming],book.base).href).catch(()=>{});
     if(upcoming+1<book.pages.length&&wide())text(new URL(book.pages[upcoming+1],book.base).href).catch(()=>{});
@@ -138,4 +138,4 @@ spread.addEventListener("click",e=>{
 spread.addEventListener("touchstart",e=>{start=e.target.closest(interactive)?null:[e.changedTouches[0].clientX,e.changedTouches[0].clientY]},{passive:true});spread.addEventListener("touchend",e=>{if(!start)return;const [x,y]=start;start=null;const dx=e.changedTouches[0].clientX-x,dy=e.changedTouches[0].clientY-y;if(Math.abs(dx)>55&&Math.abs(dx)>1.5*Math.abs(dy)){ignoreClickUntil=Date.now()+500;step(dx<0?1:-1)}},{passive:true});
 spread.addEventListener("touchcancel",()=>{start=null},{passive:true});
 mq.addEventListener("change",()=>{stopTurn();render(page,{animate:false})});window.jumpToSpread=i=>render(i*2);
-try{const id=new URLSearchParams(location.search).get("book");book=(await getBooks()).find(b=>b.id===id);if(!book?.pages.length){location.replace("./");throw Error("Book unavailable")}document.title=book.title+" · E-book Platform";$("book-title").textContent=book.title;await Promise.all((book.styles||[]).map(p=>css(new URL(p,book.base))));for(const p of book.scripts||[])await script(new URL(p,book.base));if(book.widgets){const mod=await import(new URL(book.widgets,book.base));bindWidgets=mod.bindInteractiveWidgets}if(!book.toc.length)book.toc=[{title:book.title,page:0}];$("progress").min=0;buildToc();await render(loadPosition(book.id))}catch(e){status.textContent="書籍無法載入。";console.error(e)}
+try{const id=new URLSearchParams(location.search).get("book");book=(await getBooks()).find(b=>b.id===id);if(!book?.pages.length){location.replace("./");throw Error("Book unavailable")}document.title=book.title+" · E-book Platform";$("book-title").textContent=book.title;await Promise.all((book.styles||[]).map(p=>css(new URL(p,book.base))));for(const p of book.scripts||[])await script(new URL(p,book.base));if(book.widgets){const mod=await import(new URL(book.widgets,book.base));bindWidgets=mod.bindInteractiveWidgets}if(!book.toc.length)book.toc=[{title:book.title,page:0}];$("progress").min=0;buildToc();await render(0,{animate:false})}catch(e){status.textContent="書籍無法載入。";console.error(e)}
