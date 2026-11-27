@@ -1,0 +1,60 @@
+{
+  "id": "aws-aif-genai",
+  "title": "Generative AI & Bedrock",
+  "subtitle": "AIF-C01 · VOL. 02｜生成式AI與基礎模型",
+  "categories": [
+    "AWS Certified-AI Practitioner"
+  ],
+  "cover": "cover.svg",
+  "styles": [
+    "../AWS AIF Shared/magazine.css"
+  ],
+  "pages": [
+    "pages/00-cover.html",
+    "pages/00-contents.html",
+    "pages/part-06/01.html",
+    "pages/part-06/02.html",
+    "pages/part-07/01.html",
+    "pages/part-07/02.html",
+    "pages/part-08/01.html",
+    "pages/part-08/02.html"
+  ],
+  "toc": [
+    {
+      "title": "封面與學習地圖",
+      "unit": "VOL. 02 · 學習地圖",
+      "page": 0
+    },
+    {
+      "title": "模型如何生成內容",
+      "unit": "Part 6 · 生成式AI與基礎模型原理",
+      "page": 2
+    },
+    {
+      "title": "生成式AI的價值與限制",
+      "unit": "Part 6 · 生成式AI與基礎模型原理",
+      "page": 3
+    },
+    {
+      "title": "Bedrock與SageMaker AI的選擇",
+      "unit": "Part 7 · Amazon Bedrock、模型選擇與成本",
+      "page": 4
+    },
+    {
+      "title": "Token、快取及吞吐量",
+      "unit": "Part 7 · Amazon Bedrock、模型選擇與成本",
+      "page": 5
+    },
+    {
+      "title": "把需求寫成可執行的指令",
+      "unit": "Part 8 · 提示詞工程與推論參數",
+      "page": 6
+    },
+    {
+      "title": "控制生成的多樣性",
+      "unit": "Part 8 · 提示詞工程與推論參數",
+      "page": 7
+    }
+  ],
+  "volume": 2
+}

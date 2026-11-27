@@ -1,0 +1,96 @@
+{
+  "id": "aws-aif-foundations",
+  "title": "AI & ML Foundations",
+  "subtitle": "AIF-C01 · VOL. 01｜AI與機器學習基礎",
+  "categories": [
+    "AWS Certified-AI Practitioner"
+  ],
+  "cover": "cover.svg",
+  "styles": [
+    "../AWS AIF Shared/magazine.css"
+  ],
+  "pages": [
+    "pages/00-cover.html",
+    "pages/00-contents.html",
+    "pages/part-00/01.html",
+    "pages/part-00/02.html",
+    "pages/part-01/01.html",
+    "pages/part-01/02.html",
+    "pages/part-02/01.html",
+    "pages/part-02/02.html",
+    "pages/part-03/01.html",
+    "pages/part-03/02.html",
+    "pages/part-04/01.html",
+    "pages/part-04/02.html",
+    "pages/part-05/01.html",
+    "pages/part-05/02.html"
+  ],
+  "toc": [
+    {
+      "title": "封面與學習地圖",
+      "unit": "VOL. 01 · 學習地圖",
+      "page": 0
+    },
+    {
+      "title": "這張證照要證明什麼",
+      "unit": "Part 0 · 考試定位與學習地圖",
+      "page": 2
+    },
+    {
+      "title": "如何使用四冊教材",
+      "unit": "Part 0 · 考試定位與學習地圖",
+      "page": 3
+    },
+    {
+      "title": "從自建機房到雲端服務",
+      "unit": "Part 1 · AWS與雲端運算基礎",
+      "page": 4
+    },
+    {
+      "title": "區域、權限與責任",
+      "unit": "Part 1 · AWS與雲端運算基礎",
+      "page": 5
+    },
+    {
+      "title": "AI、ML與生成式AI的關係",
+      "unit": "Part 2 · AI、ML與深度學習原理",
+      "page": 6
+    },
+    {
+      "title": "模型如何學習及推論",
+      "unit": "Part 2 · AI、ML與深度學習原理",
+      "page": 7
+    },
+    {
+      "title": "資料的形態與標籤",
+      "unit": "Part 3 · 學習方法、資料類型與應用",
+      "page": 8
+    },
+    {
+      "title": "監督、非監督與強化學習",
+      "unit": "Part 3 · 學習方法、資料類型與應用",
+      "page": 9
+    },
+    {
+      "title": "可重複的模型生命週期",
+      "unit": "Part 4 · ML生命週期、MLOps與模型評估",
+      "page": 10
+    },
+    {
+      "title": "模型表現與商業價值",
+      "unit": "Part 4 · ML生命週期、MLOps與模型評估",
+      "page": 11
+    },
+    {
+      "title": "依任務選擇託管AI服務",
+      "unit": "Part 5 · AWS AI服務與SageMaker AI",
+      "page": 12
+    },
+    {
+      "title": "SageMaker AI與工作流程",
+      "unit": "Part 5 · AWS AI服務與SageMaker AI",
+      "page": 13
+    }
+  ],
+  "volume": 1
+}

@@ -1,0 +1,60 @@
+{
+  "id": "aws-aif-solutions",
+  "title": "RAG, Agents & AI Solutions",
+  "subtitle": "AIF-C01 · VOL. 03｜模型應用與代理式AI",
+  "categories": [
+    "AWS Certified-AI Practitioner"
+  ],
+  "cover": "cover.svg",
+  "styles": [
+    "../AWS AIF Shared/magazine.css"
+  ],
+  "pages": [
+    "pages/00-cover.html",
+    "pages/00-contents.html",
+    "pages/part-09/01.html",
+    "pages/part-09/02.html",
+    "pages/part-10/01.html",
+    "pages/part-10/02.html",
+    "pages/part-11/01.html",
+    "pages/part-11/02.html"
+  ],
+  "toc": [
+    {
+      "title": "封面與學習地圖",
+      "unit": "VOL. 03 · 學習地圖",
+      "page": 0
+    },
+    {
+      "title": "向量表示與語意檢索",
+      "unit": "Part 9 · Embedding、向量資料庫與RAG",
+      "page": 2
+    },
+    {
+      "title": "RAG如何讓模型接觸企業資料",
+      "unit": "Part 9 · Embedding、向量資料庫與RAG",
+      "page": 3
+    },
+    {
+      "title": "選擇模型改善方式",
+      "unit": "Part 10 · 模型訓練、微調與評估",
+      "page": 4
+    },
+    {
+      "title": "生成式AI不只看一個分數",
+      "unit": "Part 10 · 模型訓練、微調與評估",
+      "page": 5
+    },
+    {
+      "title": "代理是能安排行動的系統",
+      "unit": "Part 11 · AI Agents、Agentic AI與MCP",
+      "page": 6
+    },
+    {
+      "title": "MCP與AWS代理工具的角色",
+      "unit": "Part 11 · AI Agents、Agentic AI與MCP",
+      "page": 7
+    }
+  ],
+  "volume": 3
+}

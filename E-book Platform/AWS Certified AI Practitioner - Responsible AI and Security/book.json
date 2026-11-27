@@ -1,0 +1,48 @@
+{
+  "id": "aws-aif-security",
+  "title": "Responsible AI & Security",
+  "subtitle": "AIF-C01 · VOL. 04｜負責任AI與安全治理",
+  "categories": [
+    "AWS Certified-AI Practitioner"
+  ],
+  "cover": "cover.svg",
+  "styles": [
+    "../AWS AIF Shared/magazine.css"
+  ],
+  "pages": [
+    "pages/00-cover.html",
+    "pages/00-contents.html",
+    "pages/part-12/01.html",
+    "pages/part-12/02.html",
+    "pages/part-13/01.html",
+    "pages/part-13/02.html"
+  ],
+  "toc": [
+    {
+      "title": "封面與學習地圖",
+      "unit": "VOL. 04 · 學習地圖",
+      "page": 0
+    },
+    {
+      "title": "公平、穩健及可用的AI",
+      "unit": "Part 12 · 負責任AI、公平性與可解釋性",
+      "page": 2
+    },
+    {
+      "title": "透明度與可解釋性",
+      "unit": "Part 12 · 負責任AI、公平性與可解釋性",
+      "page": 3
+    },
+    {
+      "title": "防止資料洩漏與越權",
+      "unit": "Part 13 · AI安全性、隱私、合規與治理",
+      "page": 4
+    },
+    {
+      "title": "合規、稽核與治理分工",
+      "unit": "Part 13 · AI安全性、隱私、合規與治理",
+      "page": 5
+    }
+  ],
+  "volume": 4
+}
